@@ -1,7 +1,7 @@
 <ion-header>
   <ion-toolbar>
     <ion-buttons slot="primary">
-      <ion-button (click)="openModalEdit(suser.susername)">
+      <ion-button (click)="openModalEdit(suser?.id)">
         <ion-icon slot="icon-only" name="create-outline"></ion-icon>
       </ion-button>
       <ion-button (click)="logout()">
@@ -24,22 +24,22 @@
     
     <ion-row>
       <ion-col size ="12" class = "ion-text-center">
-        {{suser.name}}
+        {{suser?.name}}
       </ion-col>
     </ion-row>
     <ion-row>
       <ion-col size ="12" class = "ion-text-center">
-        {{suser.username}}
+        {{suser?.username}}
       </ion-col>
     </ion-row>
     <ion-row>
       <ion-col size ="12" class = "ion-text-center">
-        {{suser.age}}
+        {{suser?.age}}
       </ion-col>
     </ion-row>
     <ion-row>
       <ion-col size ="12" class = "ion-text-center">
-        Desripcion
+        Descripcion
       </ion-col>
     </ion-row>
 

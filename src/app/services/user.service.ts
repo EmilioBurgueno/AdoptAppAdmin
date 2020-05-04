@@ -11,7 +11,7 @@ export class UserService {
 
   getUser(uId: string){
     return this.afs.collection('users', ref => ref
-    .where('id', '==',uId))
+    .where('id', '==', uId))
     .valueChanges();
   }
 

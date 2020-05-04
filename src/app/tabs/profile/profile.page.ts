@@ -4,6 +4,7 @@ import { NavController, ModalController } from '@ionic/angular';
 import { AlertController } from '@ionic/angular';
 import { UserService } from 'src/app/services/user.service';
 import { EditProfilePage } from '../modals/edit-profile/edit-profile.page';
+import { User } from 'src/models/user.model';
 
 @Component({
   selector: 'app-profile',
@@ -24,13 +25,14 @@ export class ProfilePage implements OnInit {
   ngOnInit() {
     this.authService.user$.subscribe((user) => {
       this.user = user[0];
+      this.getUser(this.user.id);
     })
   }
 
   getUser(userId: string) {
     this.userService.getUser(userId).subscribe((suser) => {
       this.suser = suser;
-      console.log(suser);
+      console.log(this.suser);
     })
   }
 

@@ -30,7 +30,9 @@ export class EditProfilePage implements OnInit {
 
   getUser(userId: string) {
     this.userService.getUser(userId).subscribe((user) => {
+      console.log(user)
       this.user = user;
+      console.log(this.user)
       this.patchForm();
     })
   }
