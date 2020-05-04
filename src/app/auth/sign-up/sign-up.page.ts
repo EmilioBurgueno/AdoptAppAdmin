@@ -47,14 +47,14 @@ export class SignUpPage implements OnInit {
 
   initForm() {
     this.signUpForm = new FormGroup({
-      email: new FormControl(null, [Validators.required, Validators.email]),
       fname: new FormControl(null, [Validators.required]),
       lname: new FormControl(null, [Validators.required]),
-      birthday: new FormControl(null, [Validators.required]),
       address: new FormControl(null, [Validators.required]),
-      username: new FormControl(null, [Validators.required, Validators.minLength(6)]),
-      password: new FormControl(null, [Validators.required, Validators.minLength(6)]),
+      birthday: new FormControl(null, [Validators.required]),
       phone: new FormControl(null, [Validators.required]),
+      username: new FormControl(null, [Validators.required, Validators.minLength(6)]),
+      email: new FormControl(null, [Validators.required, Validators.email]),
+      password: new FormControl(null, [Validators.required, Validators.minLength(6)]),
       confirmPassword: new FormControl(null, [Validators.required, Validators.minLength(6)])
     });
   }
@@ -62,31 +62,44 @@ export class SignUpPage implements OnInit {
   async onSubmit(): Promise<void> {
     await this.presentLoading('Autenticandote...');
     if (this.signUpForm.valid) {
-      console.log(this.signUpForm.value);
 
+      const fname = this.signUpForm.controls.fname.value;
+      const lname = this.signUpForm.controls.lname.value;
+      const address = this.signUpForm.controls.address.value;
+      const birthdate = this.signUpForm.controls.birthday.value;
+      const phone = this.signUpForm.controls.phone.value;
+      const username = this.signUpForm.controls.username.value;
       const email = this.signUpForm.controls.email.value;
       const password = this.signUpForm.controls.password.value;
-      const username = this.signUpForm.controls.username.value;
-      const name = this.signUpForm.controls.name.value;
+      const cpassword = this.signUpForm.controls.confirmPassword.value;
 
-      try {
-        await this.userService.usernameExists(username);
-        const credentials = await this.authService.signup(email, password);
-
-        const user = {
-          id: credentials.user.uid,
-          username,
-          email,
-          name
-        };
-
-        await this.userService.createUser(user);
-        await this.authService.logout();
+      if(password === cpassword) {
+        try {
+          await this.userService.usernameExists(username);
+          const credentials = await this.authService.signup(email, password);
+  
+          const user = {
+            id: credentials.user.uid,
+            fname,
+            lname,
+            birthdate,
+            email,
+            username,
+            address,
+            phone
+          };
+  
+          await this.userService.createUser(user);
+          await this.authService.logout();
+          this.dismissLoading();
+          this.presentAlertConfirm('Bienvenido!', 'Tu cuenta ha sido creada exitosamente.');
+        } catch (error) {
+          this.dismissLoading();
+          this.presentAlert('Algo malo ha pasado', error.message);
+        }
+      } else {
         this.dismissLoading();
-        this.presentAlertConfirm('Bienvenido!', 'Tu cuenta ha sido creada exitosamente.');
-      } catch (error) {
-        this.dismissLoading();
-        this.presentAlert('Algo malo ha pasado', error.message);
+        this.presentAlert('Algo malo ha pasado', 'El valor de Contraseña y Confirmar Contraseña no coinciden');
       }
 
     } else {
