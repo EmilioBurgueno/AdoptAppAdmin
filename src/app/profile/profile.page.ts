@@ -28,7 +28,10 @@ export class ProfilePage implements OnInit {
 
         },
         {
-          text: 'Yes'
+          text: 'Yes',
+          handler: () => {
+            // this.userService.deleteAccount();
+          }
         }]
     });
 
