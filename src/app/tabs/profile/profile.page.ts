@@ -13,6 +13,7 @@ import { EditProfilePage } from '../modals/edit-profile/edit-profile.page';
 export class ProfilePage implements OnInit {
 
   user: any;
+  suser: any;
 
   constructor(private authService: AuthService,
     private modalCtrl: ModalController,
@@ -23,6 +24,13 @@ export class ProfilePage implements OnInit {
   ngOnInit() {
     this.authService.user$.subscribe((user) => {
       this.user = user[0];
+    })
+  }
+
+  getUser(userId: string) {
+    this.userService.getUser(userId).subscribe((suser) => {
+      this.suser = suser;
+      console.log(suser);
     })
   }
 
