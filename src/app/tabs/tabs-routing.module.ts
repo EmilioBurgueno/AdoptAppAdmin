@@ -27,11 +27,12 @@ const routes: Routes = [
     path: '',
     redirectTo: '/tabs/profile',
     pathMatch: 'full'
-  },
-  {
-    path: 'edit-profile',
-    loadChildren: () => import('./modals/edit-profile/edit-profile.module').then( m => m.EditProfilePageModule)
   }
+  // },
+  // {
+  //   path: 'edit-profile',
+  //   loadChildren: () => import('./modals/edit-profile/edit-profile.module').then( m => m.EditProfilePageModule)
+  // }
 ];
 
 @NgModule({

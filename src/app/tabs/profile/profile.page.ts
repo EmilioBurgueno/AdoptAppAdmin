@@ -14,7 +14,6 @@ import { User } from 'src/models/user.model';
 export class ProfilePage implements OnInit {
 
   user: any;
-  suser: any;
 
   constructor(private authService: AuthService,
     private modalCtrl: ModalController,
@@ -24,15 +23,7 @@ export class ProfilePage implements OnInit {
 
   ngOnInit() {
     this.authService.user$.subscribe((user) => {
-      this.user = user[0];
-      this.getUser(this.user.id);
-    })
-  }
-
-  getUser(userId: string) {
-    this.userService.getUser(userId).subscribe((suser) => {
-      this.suser = suser;
-      console.log(this.suser);
+      this.user = user[0]
     })
   }
 
