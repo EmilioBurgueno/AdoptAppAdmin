@@ -28,7 +28,6 @@ export class LoginPage implements OnInit {
     this.initForm();
 
     const navigationId = this.router.getCurrentNavigation().id;
-    console.log(this.router.getCurrentNavigation());
     if (navigationId === 1) {
      await this.presentLoading('Cargando...');
      this.authService.user$.pipe(take(1)).subscribe((user) => {
