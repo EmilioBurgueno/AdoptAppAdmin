@@ -9,6 +9,12 @@ export class UserService {
 
   constructor(private afs: AngularFirestore) { }
 
+  getUser(uId: string){
+    return this.afs.collection('users', ref => ref
+    .where('id', '==',uId))
+    .valueChanges();
+  }
+
   createUser(user: any) {
     return this.afs.doc(`users/${user.username}`).set(user);
   }
