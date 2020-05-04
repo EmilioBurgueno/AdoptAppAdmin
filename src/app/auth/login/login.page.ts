@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { NavController } from '@ionic/angular';
-import { AuthService } from '../services/auth.service';
+import { NavController, AlertController, LoadingController } from '@ionic/angular';
+import { AuthService } from '../../services/auth.service';
+import { Router } from '@angular/router';
+import { take } from 'rxjs/operators';
 
 @Component({
   selector: 'app-login',
@@ -11,40 +13,89 @@ import { AuthService } from '../services/auth.service';
 export class LoginPage implements OnInit {
 
   logInForm: FormGroup;
+  loadingIndicator;
+  loading = false;
+
   constructor(
               private navCtrl: NavController,
-              private authService: AuthService) {
-    if (this.authService.isLoggedIn()) {
-      this.navCtrl.navigateRoot(['']);
-    }
+              private router: Router,
+              private authService: AuthService,
+              private alertCtrl: AlertController,
+              private loadingCtrl: LoadingController) {
   }
 
   ngOnInit() {
     this.initForm();
+
+    const navigationId = this.router.getCurrentNavigation().id;
+    console.log(this.router.getCurrentNavigation());
+    if (navigationId === 1) {
+      this.presentLoading('Cargando...');
+      this.authService.user$.pipe(take(1)).subscribe((user) => {
+        setTimeout(() => {
+          this.dismissLoading();
+        }, 200);
+        if (user) {
+          this.navCtrl.navigateRoot(['']);
+        }
+      });
+    }
   }
 
   initForm() {
     this.logInForm = new FormGroup({
       email: new FormControl(null, [Validators.required, Validators.email]),
-      password: new FormControl(null, [Validators.required])
+      password: new FormControl(null, [Validators.required, Validators.minLength(6)])
     });
   }
 
-  onSubmit(): void {
+  async onSubmit(): Promise<void> {
+    await this.presentLoading('Autenticandote...');
+
     if (this.logInForm.valid) {
       console.log(this.logInForm.value);
 
       const email = this.logInForm.controls.email.value;
       const password = this.logInForm.controls.password.value;
 
-      this.authService.login(email, password);
+      this.authService.login(email, password).then(() => {
+        this.dismissLoading();
+        this.navCtrl.navigateRoot(['']);
+      }).catch((error) => {
+        this.dismissLoading();
+        this.presentAlert('Algo malo ha pasado', error.message);
+      });
 
     } else {
-      console.log('Error');
+      this.dismissLoading();
+      this.presentAlert('Algo malo ha pasado', 'Escribe tu correo electrónico y contraseña, por favor.');
     }
   }
 
   goToSignUp(): void {
     this.navCtrl.navigateForward(['']);
+  }
+
+  async presentLoading(body: string) {
+    this.loadingIndicator = await this.loadingCtrl.create({
+      message: body
+    });
+    this.loading = true;
+    await this.loadingIndicator.present();
+  }
+
+  async dismissLoading() {
+    this.loading = false;
+    await this.loadingIndicator.dismiss();
+  }
+
+  async presentAlert(title: string, body: string) {
+    const alert = await this.alertCtrl.create({
+      header: title,
+      message: body,
+      buttons: ['Listo']
+    });
+
+    await alert.present();
   }
 }
