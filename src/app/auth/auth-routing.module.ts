@@ -6,15 +6,35 @@ import { AuthPage } from './auth.page';
 const routes: Routes = [
   {
     path: '',
-    component: AuthPage
+    children: [
+      {
+        path: 'login',
+        children: [
+          {
+            path: '',
+            loadChildren: () => import('./login/login.module').then(m => m.LoginPageModule)
+          }
+        ]
+      },
+      {
+        path: 'sign-up',
+        loadChildren: () => import('./sign-up/sign-up.module').then(m => m.SignUpPageModule)
+      },
+      {
+        path: 'forgot',
+        loadChildren: () => import('./forgot/forgot.module').then(m => m.ForgotPageModule)
+      },
+      {
+        path: '',
+        redirectTo: '/auth/login',
+        pathMatch: 'full'
+      }
+    ]
   },
   {
-    path: 'sign-up',
-    loadChildren: () => import('./sign-up/sign-up.module').then( m => m.SignUpPageModule)
-  },
-  {
-    path: 'forgot',
-    loadChildren: () => import('./forgot/forgot.module').then( m => m.ForgotPageModule)
+    path: '',
+    redirectTo: '/auth/login',
+    pathMatch: 'full'
   }
 ];
 
@@ -22,4 +42,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],
 })
-export class AuthPageRoutingModule {}
+export class AuthPageRoutingModule { }

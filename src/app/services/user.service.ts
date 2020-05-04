@@ -32,11 +32,15 @@ export class UserService {
     )
   }
 
-  usernameExists(username: string): Promise<boolean> {
-    return this.afs.doc(`users/${username}`).get().pipe(
-      map(doc => {
-        return doc.exists;
-      })
-    ).toPromise();
+  async usernameExists(username: string): Promise<boolean> {
+    return new Promise(async (resolve, reject) => {
+      const user = await this.afs.doc(`users/${username}`).get().toPromise().then((doc) => doc.exists);
+
+      if (user) {
+        reject(new Error('Nombre de usuario ya existe'));
+      } else {
+        resolve(true);
+      }
+    })
   }
 }

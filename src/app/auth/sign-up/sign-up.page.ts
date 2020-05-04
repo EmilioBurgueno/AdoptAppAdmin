@@ -26,14 +26,13 @@ export class SignUpPage implements OnInit {
               private loadingCtrl: LoadingController) {
   }
 
-  ngOnInit() {
+  async ngOnInit() {
     this.initForm();
 
 
     const navigationId = this.router.getCurrentNavigation().id;
-    console.log(this.router.getCurrentNavigation());
     if (navigationId === 1) {
-      this.presentLoading('Cargando...');
+      await this.presentLoading('Cargando...');
       this.authService.user$.pipe(take(1)).subscribe((user) => {
         setTimeout(() => {
           this.dismissLoading();
@@ -60,7 +59,7 @@ export class SignUpPage implements OnInit {
   }
 
   async onSubmit(): Promise<void> {
-    await this.presentLoading('Autenticandote...');
+    await this.presentLoading('Creando tu cuenta...');
     if (this.signUpForm.valid) {
 
       const fname = this.signUpForm.controls.fname.value;
@@ -143,7 +142,7 @@ export class SignUpPage implements OnInit {
         {
           text: 'Listo',
           handler: () => {
-            console.log('Confirm Okay');
+            this.navCtrl.navigateRoot(['']);
           }
         }
       ]
