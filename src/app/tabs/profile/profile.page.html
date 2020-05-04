@@ -1,0 +1,49 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="primary">
+      <ion-button>
+        <ion-icon slot="icon-only" name="exit-outline" (click)="logout()"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>Profile</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid>
+    <ion-row>
+      <ion-col size="12">
+        <ion-avatar>
+          <img src="https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=identicon&f=y">
+        </ion-avatar>
+      </ion-col>
+    </ion-row>
+    
+    <ion-row>
+      <ion-col size ="12" class = "ion-text-center">
+        Jonathan Sanchez
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size ="12" class = "ion-text-center">
+        Usuario
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size ="12" class = "ion-text-center">
+        Edad
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size ="12" class = "ion-text-center">
+        Desripcion
+      </ion-col>
+    </ion-row>
+
+  </ion-grid>
+
+</ion-content>
+
+<ion-footer>
+  <ion-button color="danger" expand="block" fill="solid" (click)="deleteAccountAlert()">Delete Account</ion-button>
+</ion-footer>
