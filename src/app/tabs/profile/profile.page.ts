@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
 import { NavController } from '@ionic/angular';
 import { AlertController } from '@ionic/angular';
- 
+import { UserService } from 'src/app/services/user.service';
+
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.page.html',
@@ -10,25 +11,36 @@ import { AlertController } from '@ionic/angular';
 })
 export class ProfilePage implements OnInit {
 
+  user: any;
+
   constructor(private authService: AuthService,
-              private navCtrl: NavController,
-              private alertCtrl: AlertController) { }
+    private navCtrl: NavController,
+    private alertCtrl: AlertController,
+    private userService: UserService) { }
 
   ngOnInit() {
+    this.authService.user$.subscribe((user) => {
+      this.user = user[0];
+    })
   }
 
 
   async deleteAccountAlert() {
     const alert = await this.alertCtrl.create({
-      header: 'Delete Account',
+      header: 'Are you sure?',
       message: 'Do you really want to delete your account?',
       buttons: [
         {
-          text:'No',
-
+          text: 'No',
+          handler: () => {
+            alert.dismiss();
+          }
         },
         {
-          text: 'Yes'
+          text: 'Yes',
+          handler: () => {
+            this.userService.deleteAccount(this.user);
+          }
         }]
     });
 

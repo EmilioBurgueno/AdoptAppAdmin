@@ -43,4 +43,11 @@ export class UserService {
       }
     })
   }
+
+  deleteAccount(uId: string) {
+    console.log('Account deleted');
+    this.afs.doc(uId).delete().then(() => {
+      console.log("User deleted")
+    });
+  }
 }
