@@ -24,19 +24,19 @@ export class LoginPage implements OnInit {
               private loadingCtrl: LoadingController) {
   }
 
-  ngOnInit() {
+  async ngOnInit() {
     this.initForm();
 
     const navigationId = this.router.getCurrentNavigation().id;
     console.log(this.router.getCurrentNavigation());
     if (navigationId === 1) {
-      this.presentLoading('Cargando...');
-      this.authService.user$.pipe(take(1)).subscribe((user) => {
+     await this.presentLoading('Cargando...');
+     this.authService.user$.pipe(take(1)).subscribe((user) => {
         setTimeout(() => {
           this.dismissLoading();
         }, 200);
         if (user) {
-          this.navCtrl.navigateRoot(['']);
+          this.navCtrl.navigateRoot(['tabs/profile']);
         }
       });
     }
@@ -60,7 +60,7 @@ export class LoginPage implements OnInit {
 
       this.authService.login(email, password).then(() => {
         this.dismissLoading();
-        this.navCtrl.navigateRoot(['']);
+        this.navCtrl.navigateRoot(['tabs/profile']);
       }).catch((error) => {
         this.dismissLoading();
         this.presentAlert('Algo malo ha pasado', error.message);
@@ -73,7 +73,7 @@ export class LoginPage implements OnInit {
   }
 
   goToSignUp(): void {
-    this.navCtrl.navigateForward(['']);
+    this.navCtrl.navigateForward(['auth/signup']);
   }
 
   async presentLoading(body: string) {
