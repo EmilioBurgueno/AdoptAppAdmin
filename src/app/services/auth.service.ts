@@ -4,6 +4,7 @@ import { NavController } from '@ionic/angular';
 import { switchMap } from 'rxjs/operators';
 import { UserService } from './user.service';
 import { Observable, of } from 'rxjs';
+import * as firebase from 'firebase';
 
 @Injectable({
   providedIn: 'root'
@@ -37,4 +38,9 @@ export class AuthService {
   logout(): Promise<void> {
     return this.afa.auth.signOut();
   }
+
+  deleteUser() {
+    const user = firebase.auth().currentUser;
+    user.delete();
+    }
 }

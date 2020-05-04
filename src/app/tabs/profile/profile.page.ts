@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
-import { NavController } from '@ionic/angular';
+import { NavController, ModalController } from '@ionic/angular';
 import { AlertController } from '@ionic/angular';
 import { UserService } from 'src/app/services/user.service';
+import { EditProfilePage } from '../modals/edit-profile/edit-profile.page';
 
 @Component({
   selector: 'app-profile',
@@ -14,6 +15,7 @@ export class ProfilePage implements OnInit {
   user: any;
 
   constructor(private authService: AuthService,
+    private modalCtrl: ModalController,
     private navCtrl: NavController,
     private alertCtrl: AlertController,
     private userService: UserService) { }
@@ -39,7 +41,8 @@ export class ProfilePage implements OnInit {
         {
           text: 'Yes',
           handler: () => {
-            this.userService.deleteAccount(this.user);
+            this.userService.deleteUser(this.user);
+            this.authService.deleteUser();
           }
         }]
     });
@@ -51,6 +54,16 @@ export class ProfilePage implements OnInit {
     this.authService.logout().then(() => {
       this.navCtrl.navigateRoot(['']);
     });
+  }
+
+  async openModalEdit(user: string) {
+    const modal = await this.modalCtrl.create({
+      component: EditProfilePage,
+      componentProps: {
+        uID: user
+      }
+    });
+    return await modal.present();
   }
 
 }
