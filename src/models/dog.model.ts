@@ -1,6 +1,7 @@
 export interface Dog {
     id: String,
-    dname: String,
+    name: String,
+    dogusername: String,
     size: String,
     breed: String,
     age: String,
