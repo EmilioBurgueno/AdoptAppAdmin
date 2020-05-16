@@ -1,9 +1,113 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>create-dog-profile</ion-title>
-  </ion-toolbar>
+    <ion-toolbar>
+        <ion-title>Crear perfil del perro</ion-title>
+    </ion-toolbar>
 </ion-header>
 
 <ion-content>
+    <div class="header-container">
+        <h1>AdoptApp</h1>
+        <p>¡Ingresa los datos de tu perro para poder ser adoptado!</p>
+    </div>
 
+    <form [formGroup]="createDogForm">
+        <ion-grid>
+            <ion-row>
+                <ion-col size="12">
+                    <ion-item>
+                        <ion-label position="floating">Nombre</ion-label>
+                        <ion-input formControlName="name" placeholder="Scooby"></ion-input>
+                    </ion-item>
+                </ion-col>
+            </ion-row>
+
+            <ion-row>
+                <ion-col size="12">
+                    <ion-item>
+                        <ion-label position="floating">Tamaño</ion-label>
+                        <ion-input formControlName="size" placeholder="Grande"></ion-input>
+                    </ion-item>
+                </ion-col>
+            </ion-row>
+
+            <ion-row>
+                <ion-col size="12">
+                    <ion-item>
+                        <ion-label position="floating">Raza</ion-label>
+                        <ion-input formControlName="breed" placeholder="Gran Danes"></ion-input>
+                    </ion-item>
+                </ion-col>
+            </ion-row>
+
+            <ion-row>
+                <ion-col size="12">
+                    <ion-item>
+                        <ion-label position="floating">Edad</ion-label>
+                        <ion-datetime formControlName="age" placeholder="1 año"></ion-datetime>
+                    </ion-item>
+                </ion-col>
+            </ion-row>
+
+            <ion-row>
+                <ion-col size="12">
+                    <ion-item>
+                        <ion-label position="floating">Fecha que fue encontrado(a)</ion-label>
+                        <ion-input formControlName="fplace" displayFormat="DD MM YYYY" placeholder="16/05/2020"></ion-input>
+                    </ion-item>
+                </ion-col>
+            </ion-row>
+
+            <ion-row>
+                <ion-col size="12">
+                    <ion-item>
+                        <ion-label position="floating">Lugar en que fue encontrado(a)</ion-label>
+                        <ion-input formControlName="found" placeholder="Calle Fantasma 123, Crystal Cove"></ion-input>
+                    </ion-item>
+                </ion-col>
+            </ion-row>
+
+            <ion-row>
+                <ion-col size="12">
+                    <ion-item>
+                        <ion-label position="floating">Descripcion</ion-label>
+                        <ion-input formControlName="description" placeholder="Aqui escribe tu descripcion..."></ion-input>
+                    </ion-item>
+                </ion-col>
+            </ion-row>
+
+            <ion-row>
+                <ion-col size="12">
+                    <ion-item>
+                        <ion-label position="floating">Collar</ion-label>
+                        <ion-input formControlName="collar" placeholder="Informacion..."></ion-input>
+                    </ion-item>
+                </ion-col>
+            </ion-row>
+
+            <ion-row>
+                <ion-col size="12">
+                    <ion-item>
+                        <ion-label position="floating">Status</ion-label>
+                        <ion-input formControlName="status" placeholder="Disponible"></ion-input>
+                    </ion-item>
+                </ion-col>
+            </ion-row>
+
+            <ion-row>
+                <ion-col size="12">
+                    <ion-item>
+                        <ion-label position="floating">Foto de perfil</ion-label>
+                        <ion-input formControlName="profilepic"></ion-input>
+                    </ion-item>
+                </ion-col>
+            </ion-row>
+
+            <ion-row>
+                <ion-col size="12">
+                    <ion-button color="primary" expand="block" fill="solid" (click)="onSubmit()">Crear perfil</ion-button>
+                </ion-col>
+            </ion-row>
+
+        </ion-grid>
+    </form>
 </ion-content>
