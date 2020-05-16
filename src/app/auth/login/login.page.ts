@@ -16,8 +16,7 @@ export class LoginPage implements OnInit {
   loadingIndicator;
   loading = false;
 
-  constructor(
-              private navCtrl: NavController,
+  constructor(private navCtrl: NavController,
               private router: Router,
               private authService: AuthService,
               private alertCtrl: AlertController,
