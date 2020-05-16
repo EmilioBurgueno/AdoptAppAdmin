@@ -34,7 +34,7 @@ export class EditProfilePage implements OnInit {
 
   getUser(userId: string) {
     this.userService.getUser(userId).subscribe((user) => {
-      this.user = user[0] as User;
+      this.user = user as User;
       this.patchForm();
     })
   }
@@ -48,7 +48,7 @@ export class EditProfilePage implements OnInit {
       };
 
       try {
-        await this.userService.updateUser(this.user.username.toString(), updatedUser)
+        await this.userService.updateUser(this.user.id.toString(), updatedUser)
         this.dismissLoading();
         this.presentAlertConfirm('¡Exito!', 'Tu perfil ha sido modificado exitosamente.');
       } catch (error) {
@@ -67,7 +67,6 @@ export class EditProfilePage implements OnInit {
       lname: this.user.lname,
       birthday: this.user.birthdate,
       address: this.user.address,
-      username: this.user.username,
       phone: this.user.phone
     })
   }
@@ -78,8 +77,7 @@ export class EditProfilePage implements OnInit {
       lname: new FormControl(null, [Validators.required]),
       address: new FormControl(null, [Validators.required]),
       birthday: new FormControl(null, [Validators.required]),
-      phone: new FormControl(null, [Validators.required]),
-      username: new FormControl(null, [Validators.required, Validators.minLength(6)])
+      phone: new FormControl(null, [Validators.required])
     });
   }
 
