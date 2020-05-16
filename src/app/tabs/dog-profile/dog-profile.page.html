@@ -1,9 +1,21 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>dog-profile</ion-title>
+    <ion-title>AdoptApp</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-
+  <ion-slides pager>
+    <ion-slide>Fotos de perro</ion-slide>
+  </ion-slides>
+  
 </ion-content>
+
+<ion-footer>
+  <ion-icon name="information-circle-outline" (click)='goToDogDetails()'></ion-icon>
+  <ion-icon name="heart-outline"></ion-icon>
+  <ion-icon name="paw-outline"></ion-icon>
+  <h1>Dogs Name</h1>
+  <p>Breed</p>
+  <p>Location</p>
+</ion-footer>
