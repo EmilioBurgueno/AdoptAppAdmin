@@ -22,7 +22,7 @@ export class ProfilePage implements OnInit {
 
   ngOnInit() {
     this.authService.user$.subscribe((user) => {
-      this.user = user[0]
+      this.user = user
     })
   }
 
