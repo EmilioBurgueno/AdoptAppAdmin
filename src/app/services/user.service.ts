@@ -1,22 +1,30 @@
 import { Injectable } from '@angular/core';
 import { map } from 'rxjs/operators'
 import { AngularFirestore } from '@angular/fire/firestore';
+import { AngularFireStorage } from '@angular/fire/storage';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
 
-  constructor(private afs: AngularFirestore) { }
+  constructor(private afs: AngularFirestore,
+              private afStorage: AngularFireStorage) { }
 
-  getUser(uId: string){
-    return this.afs.collection('users', ref => ref
-    .where('id', '==', uId))
-    .valueChanges();
+  getUser(uid: string) {
+    return this.afs.doc(`users/${uid}`).valueChanges();
   }
 
   createUser(user: any) {
-    return this.afs.doc(`users/${user.username}`).set(user);
+    return this.afs.doc(`users/${user.id}`).set(user);
+  }
+
+  createUsername(user: any) {
+    const doc = {
+      username: user.username,
+      uid: user.id
+    }
+    return this.afs.doc(`usernames/${user.username}`).set(doc);
   }
 
   searchUsers(username: string) {
@@ -34,7 +42,7 @@ export class UserService {
 
   async usernameExists(username: string): Promise<boolean> {
     return new Promise(async (resolve, reject) => {
-      const user = await this.afs.doc(`users/${username}`).get().toPromise().then((doc) => doc.exists);
+      const user = await this.afs.doc(`usernames/${username}`).get().toPromise().then((doc) => doc.exists);
 
       if (user) {
         reject(new Error('Nombre de usuario ya existe'));
@@ -49,6 +57,37 @@ export class UserService {
   }
 
   updateUser(userId: string, updatedUser: any) {
-    return this.afs.doc(`user/${userId}`).update(updatedUser);
+    return this.afs.doc(`users/${userId}`).update(updatedUser);
+  }
+
+  async uploadProfilePicture(uid: string, image: File) {
+    return new Promise(async (resolve, reject) => {
+      try {
+        const filePath = `profilePictures/${uid}.jpeg`;
+        const task = this.afStorage.upload(filePath, image);
+        await task.snapshotChanges().toPromise();
+        const pictureUrl = await this.afStorage.ref(filePath).getDownloadURL().toPromise()
+        await this.updateUser(uid, { pictureUrl })
+
+        resolve(true);
+      } catch (error) {
+        reject(error);
+      }
+    })
+  }
+
+  async removeProfilePicture(uid: string) {
+    return new Promise(async (resolve, reject) => {
+      try {
+        const filePath = `profilePictures/${uid}.jpeg`;
+        const task = this.afStorage.ref(filePath).delete();
+        await task.toPromise();
+        await this.updateUser(uid, { pictureUrl: null })
+
+        resolve(true);
+      } catch (error) {
+        reject(error);
+      }
+    })
   }
 }

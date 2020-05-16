@@ -1,11 +1,13 @@
 <ion-header>
   <ion-toolbar>
     <ion-buttons slot="primary">
-      <ion-button (click)="openModalEdit(user?.id)">
-        <ion-icon slot="icon-only" name="create-outline"></ion-icon>
-      </ion-button>
       <ion-button (click)="logout()">
         <ion-icon slot="icon-only" name="exit-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-buttons slot="secondary">
+      <ion-button (click)="openModalEdit(user?.id)">
+        <ion-icon slot="icon-only" name="create-outline"></ion-icon>
       </ion-button>
     </ion-buttons>
     <ion-title>Profile</ion-title>

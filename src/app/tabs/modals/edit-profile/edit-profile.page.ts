@@ -1,8 +1,9 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { User } from 'src/models/user.model';
-import { ModalController, AlertController, NavParams } from '@ionic/angular';
+import { ModalController, AlertController, NavParams, LoadingController } from '@ionic/angular';
 import { UserService } from 'src/app/services/user.service';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-edit-profile',
@@ -17,10 +18,15 @@ export class EditProfilePage implements OnInit {
 
   user: User;
 
+  loadingIndicator;
+  loading = false;
+
   constructor(private modalCtrl: ModalController,
-              private alertCtrl: AlertController,
-              private navParams: NavParams,
-              private userService: UserService) { }
+    private alertCtrl: AlertController,
+    private navParams: NavParams,
+    private userService: UserService,
+    private authService: AuthService,
+    private loadingCtrl: LoadingController) { }
 
   ngOnInit() {
     const uID = this.navParams.get('uID');
@@ -35,17 +41,27 @@ export class EditProfilePage implements OnInit {
     })
   }
 
-  updateItem() {
-    const updatedUser = {
-      ...this.editUserForm.value
-    };
+  async updateUser() {
+    await this.presentLoading('Creando tu cuenta...');
+    if (this.editUserForm.valid) {
+      const updatedUser = {
+        email: this.user.email,
+        ...this.editUserForm.value
+      };
 
-    this.userService.updateUser(this.uID, updatedUser).then(() => {
-      this.editAlert();
-    }).catch((error) => {
-      console.log(error)
-    });
-  }  
+      try {
+        await this.userService.updateUser(this.user.username.toString(), updatedUser)
+        this.dismissLoading();
+        this.presentAlertConfirm('¡Exito!', 'Tu perfil ha sido modificado exitosamente.');
+      } catch (error) {
+        this.dismissLoading();
+        this.presentAlert('Algo malo ha pasado', error.message);
+      }
+    } else {
+      this.dismissLoading();
+      this.presentAlert('Algo malo ha pasado', 'Por favor llena todos los campos correctamente.');
+    }
+  }
 
   patchForm() {
     this.editUserForm.patchValue({
@@ -53,7 +69,6 @@ export class EditProfilePage implements OnInit {
       lname: this.user.lname,
       birthday: this.user.birthdate,
       address: this.user.address,
-      email: this.user.email,
       username: this.user.username,
       phone: this.user.phone
     })
@@ -66,10 +81,7 @@ export class EditProfilePage implements OnInit {
       address: new FormControl(null, [Validators.required]),
       birthday: new FormControl(null, [Validators.required]),
       phone: new FormControl(null, [Validators.required]),
-      username: new FormControl(null, [Validators.required, Validators.minLength(6)]),
-      email: new FormControl(null, [Validators.required, Validators.email]),
-      password: new FormControl(null, [Validators.required, Validators.minLength(6)]),
-      confirmPassword: new FormControl(null, [Validators.required, Validators.minLength(6)])
+      username: new FormControl(null, [Validators.required, Validators.minLength(6)])
     });
   }
 
@@ -77,13 +89,36 @@ export class EditProfilePage implements OnInit {
     await this.modalCtrl.dismiss();
   }
 
-  async editAlert() {
+  async presentLoading(body: string) {
+    this.loadingIndicator = await this.loadingCtrl.create({
+      message: body
+    });
+    this.loading = true;
+    await this.loadingIndicator.present();
+  }
+
+  async dismissLoading() {
+    this.loading = false;
+    await this.loadingIndicator.dismiss();
+  }
+
+  async presentAlert(title: string, body: string) {
     const alert = await this.alertCtrl.create({
-      header: '¡Exito!',
-      message: 'Tu perfil ha sido modificado exitosamente',
+      header: title,
+      message: body,
+      buttons: ['Listo']
+    });
+
+    await alert.present();
+  }
+
+  async presentAlertConfirm(title: string, body: string) {
+    const alert = await this.alertCtrl.create({
+      header: title,
+      message: body,
       buttons: [
         {
-          text: 'OKAY',
+          text: 'Listo',
           handler: () => {
             this.closeModal();
           }

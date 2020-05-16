@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
-import { NavController } from '@ionic/angular';
 import { switchMap } from 'rxjs/operators';
 import { UserService } from './user.service';
 import { Observable, of } from 'rxjs';
@@ -39,8 +38,12 @@ export class AuthService {
     return this.afa.auth.signOut();
   }
 
+  updateEmail(nEmail: string): Promise<void> {
+    return firebase.auth().currentUser.updateEmail(nEmail)
+  }
+
   deleteUser() {
     const user = firebase.auth().currentUser;
     user.delete();
-    }
+  }
 }

@@ -1,5 +1,10 @@
 <ion-header>
   <ion-toolbar>
+    <ion-buttons slot="primary">
+      <ion-button (click)="openModalEdit(user?.id)">
+        <ion-icon name="key-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
     <ion-title>Edita tu perfil</ion-title>
   </ion-toolbar>
 </ion-header>
@@ -24,7 +29,7 @@
 
       <ion-label position="floating">Nombre de usuario</ion-label>
       <ion-input formControlName="username"></ion-input>
-
+<!-- 
       <ion-label position="floating">Email</ion-label>
       <ion-input formControlName="email"></ion-input>
 
@@ -32,7 +37,7 @@
       <ion-input formControlName="password" type="password"></ion-input>
 
       <ion-label position="floating">Confirmar Contraseña</ion-label>
-      <ion-input formControlName="confirmPassword" type="password"></ion-input>
+      <ion-input formControlName="confirmPassword" type="password"></ion-input> -->
     </ion-item>
   </form>
   <ion-button (click)="updateUser()" expand="block">Guardar cambios</ion-button>
