@@ -3,7 +3,6 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { User } from 'src/models/user.model';
 import { ModalController, AlertController, NavParams, LoadingController } from '@ionic/angular';
 import { UserService } from 'src/app/services/user.service';
-import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-edit-profile',
@@ -25,7 +24,6 @@ export class EditProfilePage implements OnInit {
     private alertCtrl: AlertController,
     private navParams: NavParams,
     private userService: UserService,
-    private authService: AuthService,
     private loadingCtrl: LoadingController) { }
 
   ngOnInit() {

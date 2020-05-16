@@ -4,7 +4,6 @@ import { NavController, ModalController } from '@ionic/angular';
 import { AlertController } from '@ionic/angular';
 import { UserService } from 'src/app/services/user.service';
 import { EditProfilePage } from '../modals/edit-profile/edit-profile.page';
-import { User } from 'src/models/user.model';
 
 @Component({
   selector: 'app-profile',
