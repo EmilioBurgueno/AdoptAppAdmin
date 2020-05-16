@@ -15,6 +15,8 @@ export class CreateDogProfilePage implements OnInit {
   loadingIndicator;
   loading = false;
 
+ 
+
   constructor(private dogService: DogService,
     private navCtrl: NavController,
     private router: Router,
