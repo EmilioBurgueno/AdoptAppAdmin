@@ -16,10 +16,10 @@ export class CreateDogProfilePage implements OnInit {
   loading = false;
 
   constructor(private dogService: DogService,
-              private navCtrl: NavController,
-              private router: Router,
-              private alertCtrl: AlertController,
-              private loadingCtrl: LoadingController) { }
+    private navCtrl: NavController,
+    private router: Router,
+    private alertCtrl: AlertController,
+    private loadingCtrl: LoadingController) { }
 
   ngOnInit() {
     this.initForm();
