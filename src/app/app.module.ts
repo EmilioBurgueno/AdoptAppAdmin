@@ -37,4 +37,4 @@ import { EditProfilePageModule } from './tabs/modals/edit-profile/edit-profile.m
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule {}
+export class AppModule { }
