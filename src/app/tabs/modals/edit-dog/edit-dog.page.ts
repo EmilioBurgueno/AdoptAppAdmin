@@ -38,9 +38,9 @@ export class EditDogPage implements OnInit {
   }
 
   async updateDog() {
-    await this.presentLoading('Creando tu cuenta...');
+    await this.presentLoading('Creando el perfil...');
     if (this.editDogForm.valid) {
-      const updatedUser = {
+      const updatedDog = {
         ...this.editDogForm.value
       };
 
