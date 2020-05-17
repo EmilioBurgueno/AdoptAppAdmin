@@ -34,7 +34,7 @@ export class EditDogPage implements OnInit {
     this.dogService.getDog(dogId).subscribe((dog) => {
       this.dog = dog as unknown as Dog;
       this.patchForm();
-    })
+    });
   }
 
   async updateDog() {
@@ -61,6 +61,7 @@ export class EditDogPage implements OnInit {
   patchForm() {
     this.editDogForm.patchValue({
       name: this.dog.name,
+      sex: this.dog.sex,
       size: this.dog.size,
       breed: this.dog.breed,
       age: this.dog.age,
@@ -76,6 +77,7 @@ export class EditDogPage implements OnInit {
   initForm() {
     this.editDogForm = new FormGroup({
       name: new FormControl(null, [Validators.required]),
+      sex: new FormControl(null, [Validators.required]),
       size: new FormControl(null, [Validators.required]),
       breed: new FormControl(null, [Validators.required]),
       age: new FormControl(null, [Validators.required]),

@@ -29,6 +29,7 @@ export class CreateDogProfilePage implements OnInit {
   initForm() {
     this.createDogForm = new FormGroup({
       name: new FormControl(null, [Validators.required]),
+      sex: new FormControl(null, [Validators.required]),
       size: new FormControl(null, [Validators.required]),
       breed: new FormControl(null, [Validators.required]),
       age: new FormControl(null, [Validators.required]),
@@ -46,6 +47,7 @@ export class CreateDogProfilePage implements OnInit {
 
     if (this.createDogForm.valid) {
       const name = this.createDogForm.controls.name.value;
+      const sex = this.createDogForm.controls.sex.value;
       const size = this.createDogForm.controls.size.value;
       const breed = this.createDogForm.controls.breed.value;
       const age = this.createDogForm.controls.age.value;
@@ -59,6 +61,7 @@ export class CreateDogProfilePage implements OnInit {
       try {
         const dog = {
           name,
+          sex,
           size,
           breed,
           age,

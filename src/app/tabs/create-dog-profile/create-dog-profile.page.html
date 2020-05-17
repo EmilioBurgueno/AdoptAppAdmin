@@ -24,6 +24,18 @@
             <ion-row>
                 <ion-col size="12">
                     <ion-item>
+                        <ion-label position="floating">Sexo</ion-label>
+                        <ion-select formControlName="sex" placeholder="Selecciona el sexo">
+                            <ion-select-option value="m">Macho</ion-select-option>
+                            <ion-select-option value="h">Hembra</ion-select-option>
+                        </ion-select>
+                    </ion-item>
+                </ion-col>
+            </ion-row>
+
+            <ion-row>
+                <ion-col size="12">
+                    <ion-item>
                         <ion-label position="floating">Tamaño</ion-label>
                         <ion-select formControlName="size" placeholder="Selecciona el tamaño">
                             <ion-select-option value="s">Chico</ion-select-option>
@@ -74,8 +86,8 @@
                             <ion-select-option value="Pekinés">Pekinés</ion-select-option>
                             <ion-select-option value="Pembroke Welsh Corgi">Pembroke Welsh Corgi</ion-select-option>
                             <ion-select-option value="Perro pastor alemán">Perro pastor alemán</ion-select-option>
-                            <ion-select-option value="Perro pastor de Shetland (Sheltie)">Perro pastor de Shetland
-                                (Sheltie)</ion-select-option>
+                            <ion-select-option value="Perro pastor de Shetland (Sheltie)">Perro pastor de Shetland (Sheltie)
+                            </ion-select-option>
                             <ion-select-option value="Perro tejonero">Perro tejonero</ion-select-option>
                             <ion-select-option value="Pinscher miniatura">Pinscher miniatura</ion-select-option>
                             <ion-select-option value="Pitbull">Pitbull</ion-select-option>
@@ -144,8 +156,7 @@
                 <ion-col size="12">
                     <ion-item>
                         <ion-label position="floating">Descripción</ion-label>
-                        <ion-textarea formControlName="description"
-                            placeholder="Escribe una breve descripcion (ie. presenta maltrato, alguna seña en particular)">
+                        <ion-textarea formControlName="description" placeholder="Escribe una breve descripcion (ie. presenta maltrato, alguna seña en particular)">
                         </ion-textarea>
                     </ion-item>
                 </ion-col>
@@ -157,8 +168,7 @@
                 <ion-col size="12">
                     <ion-item>
                         <ion-label position="floating">Collar</ion-label>
-                        <ion-textarea formControlName="collar"
-                            placeholder="Informacion en collar (telefono, nombre de dueño , dirreccion, etc.">
+                        <ion-textarea formControlName="collar" placeholder="Informacion en collar (telefono, nombre de dueño , dirreccion, etc.">
                         </ion-textarea>
                     </ion-item>
                 </ion-col>
