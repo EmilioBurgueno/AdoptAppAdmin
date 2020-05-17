@@ -15,12 +15,14 @@ export class LoginPage implements OnInit {
   logInForm: FormGroup;
   loadingIndicator;
   loading = false;
+  public showPassword: boolean = false;
+
 
   constructor(private navCtrl: NavController,
-              private router: Router,
-              private authService: AuthService,
-              private alertCtrl: AlertController,
-              private loadingCtrl: LoadingController) {
+    private router: Router,
+    private authService: AuthService,
+    private alertCtrl: AlertController,
+    private loadingCtrl: LoadingController) {
   }
 
   async ngOnInit() {
@@ -28,8 +30,8 @@ export class LoginPage implements OnInit {
 
     const navigationId = this.router.getCurrentNavigation().id;
     if (navigationId === 1) {
-     await this.presentLoading('Cargando...');
-     this.authService.user$.pipe(take(1)).subscribe((user) => {
+      await this.presentLoading('Cargando...');
+      this.authService.user$.pipe(take(1)).subscribe((user) => {
         setTimeout(() => {
           this.dismissLoading();
         }, 200);
@@ -95,5 +97,9 @@ export class LoginPage implements OnInit {
     });
 
     await alert.present();
+  }
+
+  public onPasswordToggle(): void {
+    this.showPassword = !this.showPassword;
   }
 }
