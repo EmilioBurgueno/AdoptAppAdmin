@@ -43,7 +43,8 @@
                 <ion-col size="12">
                     <ion-item>
                         <ion-label position="floating">Fecha de nacimiento</ion-label>
-                        <ion-datetime formControlName="birthday" displayFormat="DD MM YYYY" placeholder="Ingresa una fecha"></ion-datetime>
+                        <ion-datetime formControlName="birthday" displayFormat="DD MM YYYY"
+                            placeholder="Ingresa una fecha"></ion-datetime>
                     </ion-item>
                 </ion-col>
             </ion-row>
@@ -77,30 +78,40 @@
 
             <ion-row>
                 <ion-col size="12">
-                    <ion-item>
-                        <ion-label position="floating">Contraseña</ion-label>
-                        <ion-input formControlName="password" type="password"></ion-input>
+                    <ion-item class="password">
+                        <!-- <ion-label position="floating">Contraseña</ion-label> -->
+                        <ion-input formControlName="password" placeholder="Contraseña"
+                            [type]="showPassword ? 'text' : 'password'" clearOnEdit="false"></ion-input>
+                        <button (click)="onPasswordToggle()" ion-button clear small item-end icon-only>
+                            <ion-icon [name]="showPassword ? 'eye-off-outline' : 'eye-outline'"></ion-icon>
+                        </button>
                     </ion-item>
                 </ion-col>
             </ion-row>
 
             <ion-row>
                 <ion-col size="12">
-                    <ion-item>
-                        <ion-label position="floating">Confirmar Contraseña</ion-label>
-                        <ion-input formControlName="confirmPassword" type="password"></ion-input>
+                    <ion-item class="password">
+                        <!-- <ion-label position="floating">Confirmar Contraseña</ion-label> -->
+                        <ion-input formControlName="confirmPassword" placeholder="Contraseña"
+                            [type]="showPassword ? 'text' : 'confirmPassword'" clearOnEdit="false"></ion-input>
+                            <button (click)="onPasswordToggle()" ion-button clear small item-end icon-only>
+                                <ion-icon [name]="showPassword ? 'eye-off-outline' : 'eye-outline'"></ion-icon>
+                            </button>
                     </ion-item>
                 </ion-col>
             </ion-row>
 
             <ion-row>
                 <ion-col size="12">
-                    <ion-button color="primary" expand="block" fill="solid" (click)="onSubmit()">Registrarse</ion-button>
+                    <ion-button color="primary" expand="block" fill="solid" (click)="onSubmit()">Registrarse
+                    </ion-button>
                 </ion-col>
             </ion-row>
             <ion-row>
                 <ion-col size="12">
-                    <ion-button color="primary" expand="block" fill="none" (click)="goToLogin()">¿Ya tienes una cuenta? ¡Inicia sesión!</ion-button>
+                    <ion-button color="primary" expand="block" fill="none" (click)="goToLogin()">¿Ya tienes una cuenta?
+                        ¡Inicia sesión!</ion-button>
                 </ion-col>
             </ion-row>
         </ion-grid>

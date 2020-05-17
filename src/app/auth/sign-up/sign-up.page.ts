@@ -16,6 +16,8 @@ export class SignUpPage implements OnInit {
   signUpForm: FormGroup;
   loadingIndicator;
   loading = false;
+  public showPassword: boolean = false;
+
 
   constructor(private userService: UserService,
               private navCtrl: NavController,
@@ -150,5 +152,7 @@ export class SignUpPage implements OnInit {
 
     await alert.present();
   }
-
+  public onPasswordToggle(): void {
+    this.showPassword = !this.showPassword;
+  }
 }
