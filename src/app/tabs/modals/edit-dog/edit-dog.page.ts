@@ -32,7 +32,7 @@ export class EditDogPage implements OnInit {
 
   getDog(dogId: string) {
     this.dogService.getDog(dogId).subscribe((dog) => {
-      // this.dog = dog as Dog;
+      this.dog = dog as unknown as Dog;
       this.patchForm();
     })
   }
@@ -45,7 +45,7 @@ export class EditDogPage implements OnInit {
       };
 
       try {
-        // await this.dogService.updateDog(this.dog.id.toString(), updatedDog);
+        await this.dogService.updateDog(this.dog.id.toString(), updatedDog);
         this.dismissLoading();
         this.presentAlertConfirm('¡Exito!', 'El perfil ha sido modificado exitosamente.');
       } catch (error) {
