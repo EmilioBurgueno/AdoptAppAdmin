@@ -17,6 +17,10 @@ export class DogService {
     .where('id','==',dId))
     .valueChanges();
   }
+
+  updateDog(dogId: string, updatedDog: any) {
+    return this.afs.doc(`dogs/${dogId}`).update(updatedDog);
+  }
 }
 
 
