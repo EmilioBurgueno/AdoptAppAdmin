@@ -8,18 +8,16 @@ export class DogService {
 
   constructor(private afs: AngularFirestore) { }
 
-  createDog(dog:any){
+  createDog(dog :any){
     return this.afs.doc(`users/${dog.dogusername}`).set(dog);
   }
 
-  getDog(dId: string){
-    return this.afs.collection('dogs',ref => ref
-    .where('id','==',dId))
-    .valueChanges();
+  getDog(dId: string) {
+    return this.afs.doc(`dogs/${dId}`).valueChanges();
   }
 
-  updateDog(dogId: string, updatedDog: any) {
-    return this.afs.doc(`dogs/${dogId}`).update(updatedDog);
+  updateDog(dId: string, updatedDog: any) {
+    return this.afs.doc(`dogs/${dId}`).update(updatedDog);
   }
 }
 

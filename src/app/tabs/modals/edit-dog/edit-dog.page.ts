@@ -25,14 +25,14 @@ export class EditDogPage implements OnInit {
               private dogService: DogService) { }
 
   ngOnInit() {
-    const nID = this.navParams.get('nID');
-    this.getDog(nID);
+    const dID = this.navParams.get('dID');
+    this.getDog(dID);
     this.initForm();
   }
 
-  getDog(dogId: string) {
-    this.dogService.getDog(dogId).subscribe((dog) => {
-      this.dog = dog as unknown as Dog;
+  getDog(dId: string) {
+    this.dogService.getDog(dId).subscribe((dog) => {
+      this.dog = dog as Dog;
       this.patchForm();
     });
   }
