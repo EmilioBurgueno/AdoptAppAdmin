@@ -3,6 +3,7 @@ import { DogService } from 'src/app/services/dog.service';
 import { NavController, AlertController, LoadingController } from '@ionic/angular';
 import { Router } from '@angular/router';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import {Plugins, CameraResultType , CameraSource} from '@capacitor/core';
 
 @Component({
   selector: 'app-create-dog-profile',
@@ -14,8 +15,6 @@ export class CreateDogProfilePage implements OnInit {
   createDogForm: FormGroup;
   loadingIndicator;
   loading = false;
-
- 
 
   constructor(private dogService: DogService,
     private navCtrl: NavController,
@@ -124,5 +123,33 @@ export class CreateDogProfilePage implements OnInit {
 
     await alert.present();
   }
+
+  // async takePicture() {
+  //   const image = await Plugins.Camera.getPhoto({
+  //     quality: 100,
+  //     allowEditing: false,
+  //     resultType: CameraResultType.Base64,
+  //     source: CameraSource.Prompt
+  //   });
+
+  //   const base64 = `data:image/${image.format};base64, ${image.base64String}`;
+  //   this.displayPhoto = this.sanitizer.bypassSecurityTrustResourceUrl(base64);
+
+  //   const imageBlob = this.base64toBlob(image.base64String);
+  //   this.file = new File([imageBlob], 'test.jpeg', { type: 'image/jpeg' });
+  // }
+
+  base64toBlob(dataURI: string) {
+    const byteString = window.atob(dataURI);
+    const arrayBuffer = new ArrayBuffer(byteString.length);
+    const int8Array = new Uint8Array(arrayBuffer);
+    for (let i = 0; i < byteString.length; i++) {
+      int8Array[i] = byteString.charCodeAt(i);
+    }
+    const blob = new Blob([int8Array], { type: 'image/jpeg' });
+
+    return blob;
+  }
+
 
 }
