@@ -3,7 +3,7 @@ import { DogService } from 'src/app/services/dog.service';
 import { NavController, AlertController, LoadingController } from '@ionic/angular';
 import { Router } from '@angular/router';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import {Plugins, CameraResultType , CameraSource} from '@capacitor/core';
+//import {Plugins, CameraResultType , CameraSource} from '@capacitor/core';
 
 @Component({
   selector: 'app-create-dog-profile',

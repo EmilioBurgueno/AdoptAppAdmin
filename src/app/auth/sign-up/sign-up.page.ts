@@ -93,7 +93,7 @@ export class SignUpPage implements OnInit {
           await this.userService.createUsername(user);
           await this.authService.logout();
           this.dismissLoading();
-          this.presentAlertConfirm('Bienvenido!', 'Tu cuenta ha sido creada exitosamente.');
+          this.presentAlertConfirm('¡Bienvenido!', 'Tu cuenta ha sido creada exitosamente.');
         } catch (error) {
           this.dismissLoading();
           this.presentAlert('Algo malo ha pasado', error.message);

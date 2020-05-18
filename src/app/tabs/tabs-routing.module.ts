@@ -22,6 +22,10 @@ const routes: Routes = [
           {
             path: '',
             loadChildren: () => import('./feed/feed.module').then( m => m.FeedPageModule)
+          },
+          {
+            path: ':id',
+            loadChildren: () => import('./dog-profile/dog-profile.module').then( m => m.DogProfilePageModule)
           }
         ]
       },
@@ -31,15 +35,6 @@ const routes: Routes = [
           {
             path: '',
             loadChildren: () => import('./create-dog-profile/create-dog-profile.module').then( m => m.CreateDogProfilePageModule)
-          }
-        ]
-      },
-      {
-        path: 'dog-profile',
-        children: [
-          {
-            path: '',
-            loadChildren: () => import('./dog-profile/dog-profile.module').then( m => m.DogProfilePageModule)
           }
         ]
       },
