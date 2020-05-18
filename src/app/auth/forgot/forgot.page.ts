@@ -16,7 +16,7 @@ export class ForgotPage implements OnInit {
 
   sendLink() {
     if (this.email != "") {
-      this.afa.resetPasword(this.email).then(() => {
+      this.afa.resetPassword(this.email).then(() => {
         console.log('enviado');
       }).catch(() => {
         console.log('error');

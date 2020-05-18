@@ -47,8 +47,8 @@ export class AuthService {
     user.delete();
   }
 
-  resetPasword(email: string){
+  resetPassword(email: string){
     return this.afa.auth.sendPasswordResetEmail(email);
-
   }
+
 }
