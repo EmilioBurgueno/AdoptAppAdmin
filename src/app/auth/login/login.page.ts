@@ -36,7 +36,7 @@ export class LoginPage implements OnInit {
           this.dismissLoading();
         }, 200);
         if (user) {
-          this.navCtrl.navigateRoot(['tabs/profile']);
+          this.navCtrl.navigateRoot(['tabs/feed']);
         }
       });
     }
@@ -60,7 +60,7 @@ export class LoginPage implements OnInit {
 
       this.authService.login(email, password).then(() => {
         this.dismissLoading();
-        this.navCtrl.navigateRoot(['tabs/profile']);
+        this.navCtrl.navigateRoot(['tabs/feed']);
       }).catch((error) => {
         this.dismissLoading();
         this.presentAlert('Algo malo ha pasado', error.message);
