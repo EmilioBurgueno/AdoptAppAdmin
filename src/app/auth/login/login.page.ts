@@ -102,4 +102,8 @@ export class LoginPage implements OnInit {
   public onPasswordToggle(): void {
     this.showPassword = !this.showPassword;
   }
+
+  public forgotPassword (){
+    this.navCtrl.navigateForward(['auth/forgot']);
+  }
 }
