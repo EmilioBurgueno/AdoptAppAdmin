@@ -1,5 +1,9 @@
 ion-title {
-    text-align: left;
+    font-size: small;
+
+    &.md {
+        margin-left: 52px;
+    }
 }
 ion-content {
 
