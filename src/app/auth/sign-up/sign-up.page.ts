@@ -17,6 +17,7 @@ export class SignUpPage implements OnInit {
   loadingIndicator;
   loading = false;
   public showPassword: boolean = false;
+  public showConfirmedPassword: boolean = false;
 
 
   constructor(private userService: UserService,
@@ -154,5 +155,8 @@ export class SignUpPage implements OnInit {
   }
   public onPasswordToggle(): void {
     this.showPassword = !this.showPassword;
+  }
+  public onConfirmPasswordToggle():void{
+    this.showConfirmedPassword =! this.showConfirmedPassword;
   }
 }

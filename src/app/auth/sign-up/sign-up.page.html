@@ -1,6 +1,9 @@
 <ion-header>
     <ion-toolbar>
         <ion-title>Crear una cuenta</ion-title>
+        <ion-buttons slot="start">
+            <ion-back-button></ion-back-button>
+        </ion-buttons>
     </ion-toolbar>
 </ion-header>
 
@@ -94,10 +97,10 @@
                     <ion-item class="password">
                         <!-- <ion-label position="floating">Confirmar Contraseña</ion-label> -->
                         <ion-input formControlName="confirmPassword" placeholder="Confirmar contraseña"
-                            [type]="showPassword ? 'text' : 'confirmPassword'" clearOnEdit="false"></ion-input>
-                            <button (click)="onPasswordToggle()" ion-button clear small item-end icon-only>
-                                <ion-icon [name]="showPassword ? 'eye-off-outline' : 'eye-outline'"></ion-icon>
-                            </button>
+                            [type]="showConfirmedPassword ? 'text' : 'password'" clearOnEdit="false"></ion-input>
+                        <button (click)="onConfirmPasswordToggle()" ion-button clear small item-end icon-only>
+                            <ion-icon [name]="showConfirmedPassword ? 'eye-off-outline' : 'eye-outline'"></ion-icon>
+                        </button>
                     </ion-item>
                 </ion-col>
             </ion-row>
