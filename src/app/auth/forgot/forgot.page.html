@@ -1,9 +1,26 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>forgot</ion-title>
+    <ion-title>Recuperacion de contraseña</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
+  <div class="header-container">
+    <p>Favor de llenar la siguiente informacion para recuperar tu contraseña
+    <p>
+  </div>
+
+  <form (submit)="sendLink()">
+    <ion-grid>
+      <ion-row>
+        <ion-col size="12">
+          <ion-item>
+            <ion-input type="text" [(ngModel)]="email" placeholder="Correo electrónico"></ion-input>
+          </ion-item>
+          <ion-button size ="small" type="submit" expand="block">Enviar</ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </form>
 
 </ion-content>

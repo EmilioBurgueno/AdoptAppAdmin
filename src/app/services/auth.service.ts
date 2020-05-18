@@ -46,4 +46,9 @@ export class AuthService {
     const user = firebase.auth().currentUser;
     user.delete();
   }
+
+  resetPasword(email: string){
+    return this.afa.auth.sendPasswordResetEmail(email);
+
+  }
 }
