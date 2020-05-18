@@ -32,6 +32,10 @@ export class DogService {
   updateDog(dId: string, updatedDog: any) {
     return this.afs.doc(`dogs/${dId}`).update(updatedDog);
   }
+
+  deleteDog(dId: string) {
+    return this.afs.doc(`dogs/${dId}`).delete();
+  }
 }
 
 
