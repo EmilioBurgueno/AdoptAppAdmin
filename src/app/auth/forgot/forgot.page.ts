@@ -15,10 +15,15 @@ export class ForgotPage implements OnInit {
   }
 
   sendLink() {
-    this.afa.resetPasword(this.email).then(() => {
-      console.log('enviado');
-    }).catch(() => {
-      console.log('error');
-    });
+    if (this.email != "") {
+      this.afa.resetPasword(this.email).then(() => {
+        console.log('enviado');
+      }).catch(() => {
+        console.log('error');
+      });
+    } else {
+      alert('Favor de llenar la informacion requerida')
+    }
+
   }
 }
