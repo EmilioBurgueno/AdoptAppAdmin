@@ -10,8 +10,8 @@ export class DogService {
 
   constructor(private afs: AngularFirestore) { }
 
-  createDog(dog: any) {
-    return this.afs.doc(`dogs/${dog.id}`).set(dog);
+  createDog(dog :any){
+    return this.afs.doc(`usersgit/${dog.dogusername}`).set(dog);
   }
 
   getDog(dId: string) {
