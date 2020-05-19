@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/services/auth.service';
+import { NavController, AlertController, LoadingController } from '@ionic/angular';
 
 @Component({
   selector: 'app-forgot',
@@ -8,22 +9,80 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class ForgotPage implements OnInit {
 
-  public email: string = ""
-  constructor(private afa: AuthService) { }
+  loadingIndicator;
+  loading = false;
+  public email: string = "";
+
+  constructor(private afa: AuthService,
+    private navCtrl: NavController,
+    private alertCtrl: AlertController,
+    private loadingCtrl: LoadingController) { }
 
   ngOnInit() {
   }
 
-  sendLink() {
-    if (this.email != "") {
-      this.afa.resetPassword(this.email).then(() => {
-        console.log('enviado');
-      }).catch(() => {
-        console.log('error');
-      });
-    } else {
-      alert('Favor de llenar la informacion requerida')
-    }
+  async sendLink(): Promise<void> {
+    await this.presentLoading('Procesando petición...')
 
+    if (this.email != "") {
+      try {
+        await this.afa.resetPassword(this.email);
+        this.dismissLoading();
+        this.presentAlertConfirm('Correo enviado!', 'Se ha enviado con exito la informacion para restaurar tu contraseña');
+      } catch (error) {
+        this.dismissLoading();
+        this.presentAlert('Usuario no registrado', 'El usario no se encuentra registrado o puede que haya sido eliminado');
+      }
+
+    }
+    else {
+      this.dismissLoading();
+      this.presentAlert('Informacion incompleta', 'Por favor llena la informacion correctamente.');
+
+
+
+    }
   }
+
+
+  async presentLoading(body: string) {
+    this.loadingIndicator = await this.loadingCtrl.create({
+      message: body
+    });
+    this.loading = true;
+    await this.loadingIndicator.present();
+  }
+
+  async dismissLoading() {
+    this.loading = false;
+    await this.loadingIndicator.dismiss();
+  }
+
+  async presentAlert(title: string, body: string) {
+    const alert = await this.alertCtrl.create({
+      header: title,
+      message: body,
+      buttons: ['Listo']
+    });
+
+    await alert.present();
+  }
+
+  async presentAlertConfirm(title: string, body: string) {
+    const alert = await this.alertCtrl.create({
+      header: title,
+      message: body,
+      buttons: [
+        {
+          text: 'Listo',
+          handler: () => {
+            this.navCtrl.navigateRoot(['']);
+          }
+        }
+      ]
+    });
+
+    await alert.present();
+  }
+
 }
