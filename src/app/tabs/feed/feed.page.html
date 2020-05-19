@@ -16,7 +16,7 @@
         <ion-label class="dogsep">
           <h3>{{ dog.name }}</h3>
           <ion-label>{{ dog.breed }}</ion-label>
-          <ion-note>Male &middot; {{ dog.age }} &middot; {{ dog.size }}</ion-note>
+          <ion-note>{{dog.sex}} &middot; {{ dog.age }} &middot; {{ dog.size }}</ion-note>
           <ion-label>
             <ion-note>
               {{ dog.idPerrera }}
@@ -34,5 +34,19 @@
       </ion-item>
     </div>
   </ion-list>
+
+<!--   
+  <ion-label>Found</ion-label>
+
+  <select [(ngModel)]="found" (change)="filterExact('found',found)">
+    <option value="Si">Si</option>
+    <option value="No">No</option>
+  </select>
+
+  <ion-button *ngIf="found" (click)="removeFilter('found')">
+    Remove Filter
+  </ion-button> -->
+
+
 
 </ion-content>

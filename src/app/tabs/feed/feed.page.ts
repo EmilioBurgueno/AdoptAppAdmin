@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Dog } from 'src/models/dog.model';
 import { DogService } from 'src/app/services/dog.service';
 import { NavController } from '@ionic/angular';
+import * as _ from 'lodash';
 
 @Component({
   selector: 'app-feed',
@@ -11,13 +12,48 @@ import { NavController } from '@ionic/angular';
 export class FeedPage implements OnInit {
 
   Dogs: Dog[] = [];
+  filteredDogs: any;
+  dogList :any;
+
+  sex: string;
+  size: string;
+  breed: string;
+  age: string;
+  found: string;
+
+  filters = {}
 
   constructor(private dogService: DogService,
-              private navCtrl: NavController) {}
+              private navCtrl: NavController,
+              ) {}
 
   ngOnInit() {
    this.getDogs();
+
+  //  this.dogService.getDogs().subscribe(dogs => {
+  //    this.dogList = dogs;
+  //    this.applyFilters();
+  //  });
+
+   this.dogList = this.getDogs();
+   console.log(this.dogList);
   }
+
+  private applyFilters() {
+    this.filteredDogs = _.filter(this.dogList, _.conforms(this.filters) )
+  }
+
+  filterExact( property: string, rule: any) {
+    this.filters[property] = val => val == rule
+    this.applyFilters()
+  }
+
+  removeFilter(property: string) {
+    delete this.filters[property]
+    this[property] = null
+    this.applyFilters();
+  }
+
   // funciones
 
   getDogs() {
@@ -27,8 +63,8 @@ export class FeedPage implements OnInit {
     this.Dogs = [
       {
         id: '001',
-        name: 'Scooby-Doo',
-        sex: 'Masculino',
+        name: 'Scooby-Doo1',
+        sex: 'Femenino',
         size: 'Grande',
         breed: 'Gran Danés',
         age: '7 años',
@@ -42,7 +78,7 @@ export class FeedPage implements OnInit {
       },
       {
         id: '002',
-        name: 'Scooby-Dooo',
+        name: 'Scooby-Doo2',
         sex: 'Masculino',
         size: 'Grande',
         breed: 'Gran Danés',
@@ -57,13 +93,13 @@ export class FeedPage implements OnInit {
       },
       {
         id: '003',
-        name: 'Scooby-Doooo',
+        name: 'Scooby-Doo3',
         sex: 'Masculino',
         size: 'Grande',
         breed: 'Gran Danés',
         age: '7 años',
         fplace: 'Crystal Cove',
-        found: 'Si',
+        found: 'No',
         description: 'Tiene un collar azul, sabe hablar',
         collar: 'SD',
         status: 'Sano y bien alimentado',
@@ -72,13 +108,13 @@ export class FeedPage implements OnInit {
       },
       {
         id: '004',
-        name: 'Scooby-Dooooo',
+        name: 'Scooby-Doo4',
         sex: 'Masculino',
         size: 'Grande',
         breed: 'Gran Danés',
         age: '7 años',
         fplace: 'Crystal Cove',
-        found: 'Si',
+        found: 'No',
         description: 'Tiene un collar azul, sabe hablar',
         collar: 'SD',
         status: 'Sano y bien alimentado',
@@ -87,7 +123,7 @@ export class FeedPage implements OnInit {
       },
       {
         id: '005',
-        name: 'Scooby-Doooooo',
+        name: 'Scooby-Doo5',
         sex: 'Masculino',
         size: 'Grande',
         breed: 'Gran Danés',
@@ -102,7 +138,7 @@ export class FeedPage implements OnInit {
       },
       {
         id: '006',
-        name: 'Scooby-Dooooooo',
+        name: 'Scooby-Doo6',
         sex: 'Masculino',
         size: 'Grande',
         breed: 'Gran Danés',
