@@ -97,16 +97,16 @@ export class SignUpPage implements OnInit {
           this.presentAlertConfirm('¡Bienvenido!', 'Tu cuenta ha sido creada exitosamente.');
         } catch (error) {
           this.dismissLoading();
-          this.presentAlert('Algo malo ha pasado', error.message);
+          this.presentAlert('¡El usuario ya existe!','Intenta otro usuario porfavor');
         }
       } else {
         this.dismissLoading();
-        this.presentAlert('Algo malo ha pasado', 'El valor de Contraseña y Confirmar Contraseña no coinciden');
+        this.presentAlert('¡Contraseñas no coinciden!', 'El valor de Contraseña y Confirmar Contraseña no coinciden');
       }
 
     } else {
       this.dismissLoading();
-      this.presentAlert('Algo malo ha pasado', 'Por favor llena todos los campos correctamente.');
+      this.presentAlert('¡Informacion incompleta!', 'Por favor llena todos los campos correctamente.');
     }
   }
 
