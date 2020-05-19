@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { DogService } from 'src/app/services/dog.service';
-import { AlertController, NavController } from '@ionic/angular';
+import { AlertController, NavController, ModalController } from '@ionic/angular';
 import { ActivatedRoute } from '@angular/router';
+import { EditDogPage } from '../modals/edit-dog/edit-dog.page';
 
 @Component({
   selector: 'app-dog-profile',
@@ -14,9 +15,10 @@ export class DogProfilePage implements OnInit {
   detail: any[];
 
   constructor(private dogService: DogService,
-    private alertCtrl: AlertController,
-    private navCtrl: NavController,
-    private activatedRouter: ActivatedRoute) { }
+              private alertCtrl: AlertController,
+              private navCtrl: NavController,
+              private activatedRouter: ActivatedRoute,
+              private modalCtrl: ModalController) { }
 
   ngOnInit() {
   }
@@ -62,6 +64,16 @@ export class DogProfilePage implements OnInit {
     });
 
     await alert.present();
+  }
+
+  async openModalEdit(dog: string) {
+    const modal = await this.modalCtrl.create({
+      component: EditDogPage,
+      componentProps: {
+        dID: dog
+      }
+    });
+    return await modal.present();
   }
 }
 

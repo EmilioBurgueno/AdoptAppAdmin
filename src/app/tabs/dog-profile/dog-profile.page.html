@@ -1,29 +1,33 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-buttons slot="start">
-      <ion-back-button defaultHref="tabs/feed">Back</ion-back-button>
-    </ion-buttons>
-    <ion-buttons slot="end">
-      <ion-button (click)="deleteDog(dog?.id)">
-        <ion-icon slot="icon-only" name="trash-outline"></ion-icon>
-      </ion-button>
-    </ion-buttons>
-    <ion-title>AdoptApp</ion-title>
-  </ion-toolbar>
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-back-button defaultHref="tabs/feed">Back</ion-back-button>
+        </ion-buttons>
+        <ion-buttons slot="end">
+            <ion-button (click)="deleteDog(dog?.id)">
+                <ion-icon slot="icon-only" name="trash-outline"></ion-icon>
+            </ion-button>
+        </ion-buttons>
+        <ion-title>AdoptApp</ion-title>
+    </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <ion-slides pager>
-    <ion-slide>Fotos de perro</ion-slide>
-  </ion-slides>
-  
+    <ion-slides pager>
+        <ion-slide>Fotos de perro</ion-slide>
+    </ion-slides>
+    <ion-buttons>
+        <ion-button (click)="openModalEdit(dog?.id)">
+            <ion-icon slot="icon-only" name="create-outline"></ion-icon>
+        </ion-button>
+    </ion-buttons>
 </ion-content>
 
 <ion-footer>
-  <ion-icon name="information-circle-outline" (click)='goToDogDetails()'></ion-icon>
-  <ion-icon name="heart-outline"></ion-icon>
-  <ion-icon name="paw-outline"></ion-icon>
-  <h1>Dogs Name</h1>
-  <p>Breed</p>
-  <p>Location</p>
+    <ion-icon name="information-circle-outline" (click)='goToDogDetails()'></ion-icon>
+    <ion-icon name="heart-outline"></ion-icon>
+    <ion-icon name="paw-outline"></ion-icon>
+    <h1>Dogs Name</h1>
+    <p>Breed</p>
+    <p>Location</p>
 </ion-footer>
