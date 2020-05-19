@@ -11,7 +11,7 @@
                 <ion-col size="12">
                     <ion-item>
                         <ion-label position="floating">Nombre</ion-label>
-                        <ion-input formControlName="name">{{ dog?.name }}</ion-input>
+                        <ion-input formControlName="name"></ion-input>
                     </ion-item>
                 </ion-col>
             </ion-row>
@@ -142,7 +142,7 @@
                 <ion-col size="12">
                     <ion-item>
                         <ion-label position="floating">Lugar en que se encontro</ion-label>
-                        <ion-input formControlName="found" placeholder="Calle Fantasma 123, Crystal Cove">{{ dog?.found }}</ion-input>
+                        <ion-input formControlName="found" placeholder="Calle Fantasma 123, Crystal Cove"></ion-input>
                     </ion-item>
                 </ion-col>
             </ion-row>
@@ -152,7 +152,6 @@
                     <ion-item>
                         <ion-label position="floating">Descripción</ion-label>
                         <ion-textarea formControlName="description" placeholder="Escribe una breve descripcion (ie. presenta maltrato, alguna seña en particular)">
-                            {{ dog?.description }}
                         </ion-textarea>
                     </ion-item>
                 </ion-col>
@@ -165,7 +164,7 @@
                     <ion-item>
                         <ion-label position="floating">Collar</ion-label>
                         <ion-textarea formControlName="collar" placeholder="Informacion en collar (telefono, nombre de dueño , dirreccion, etc.">
-                            {{ dog?.collar }}
+
                         </ion-textarea>
                     </ion-item>
                 </ion-col>
@@ -194,7 +193,7 @@
 
             <ion-row>
                 <ion-col size="12">
-                    <ion-button color="primary" expand="block" fill="solid" (click)="updateDog()">Crear perfil</ion-button>
+                    <ion-button color="primary" expand="block" fill="solid" (click)="updateDog()">Guardar Cambios</ion-button>
                 </ion-col>
                 <ion-col size="12">
                     <ion-button (click)="closeModal()" expand="block" fill="outline">Cancelar</ion-button>

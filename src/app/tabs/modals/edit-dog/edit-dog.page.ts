@@ -11,12 +11,12 @@ import { DogService } from 'src/app/services/dog.service';
 })
 export class EditDogPage implements OnInit {
 
-  @Input() nID: string;
+  @Input() dID: string;
 
   editDogForm: FormGroup;
+  dog: Dog;
   loadingIndicator;
   loading = false;
-  dog: Dog;
 
   constructor(private modalCtrl: ModalController,
               private alertCtrl: AlertController,
@@ -26,7 +26,7 @@ export class EditDogPage implements OnInit {
 
   ngOnInit() {
     const dID = this.navParams.get('dID');
-    this.getDog(dID);
+    console.log(this.getDog(dID));
     this.initForm();
   }
 
@@ -38,7 +38,7 @@ export class EditDogPage implements OnInit {
   }
 
   async updateDog() {
-    await this.presentLoading('Creando el perfil...');
+    await this.presentLoading('Guardando el perfil...');
     if (this.editDogForm.valid) {
       const updatedDog = {
         ...this.editDogForm.value
