@@ -96,15 +96,15 @@ export class DogProfilePage implements OnInit {
     if (this.user.favourites.includes(this.dog.id)) {
       this.user.favourites = this.user.favourites.filter((id: string) => id !== this.dog.id)
 
-      this.userService.dislikeDog(this.user, this.dog.id).then(() => {
+      this.userService.unfavDog(this.user, this.dog.id).then(() => {
         console.log('disliked');
       }).catch((error) => {
         console.log(error);
       })
     } else {
-      this.user.favourites.push(this.user.id);
+      this.user.favourites.push(this.dog.id);
 
-      this.userService.likeDog(this.user, this.dog.id).then(() => {
+      this.userService.favDog(this.user, this.dog.id).then(() => {
         console.log('liked');
       }).catch((error) => {
         console.log(error);

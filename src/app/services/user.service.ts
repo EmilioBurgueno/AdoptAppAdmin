@@ -92,7 +92,7 @@ export class UserService {
     })
   }
 
-  likeDog(user: any, did: string) {
+  favDog(user: any, did: string) {
     return this.afs.firestore.runTransaction(async transaction => {
       const userRef = this.afs.doc(`users/${user.id}`).ref;
       const favDog = firestore.FieldValue.arrayUnion(did);
@@ -101,7 +101,7 @@ export class UserService {
     })
   }
 
-  dislikeDog(user: any, did: string) {
+  unfavDog(user: any, did: string) {
     return this.afs.firestore.runTransaction(async transaction => {
       const userRef = this.afs.doc(`users/${user.id}`).ref;
       const unfavDog = firestore.FieldValue.arrayRemove(did);
