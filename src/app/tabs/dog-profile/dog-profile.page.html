@@ -26,7 +26,11 @@
 <ion-footer>
     <ion-icon name="information-circle-outline" (click)='goToDogDetails()'></ion-icon>
     <ion-icon name="heart-outline"></ion-icon>
-    <ion-icon name="paw-outline"></ion-icon>
+    <ion-buttons>
+        <ion-button (click)="openModalContact()">
+            <ion-icon name="paw-outline"></ion-icon>
+        </ion-button>
+    </ion-buttons>
     <h1>Dogs Name</h1>
     <p>Breed</p>
     <p>Location</p>

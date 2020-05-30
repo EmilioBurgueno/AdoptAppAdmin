@@ -3,6 +3,7 @@ import { DogService } from 'src/app/services/dog.service';
 import { AlertController, NavController, ModalController } from '@ionic/angular';
 import { ActivatedRoute } from '@angular/router';
 import { EditDogPage } from '../modals/edit-dog/edit-dog.page';
+import { ContactDogpoundPage } from '../modals/contact-dogpound/contact-dogpound.page';
 
 @Component({
   selector: 'app-dog-profile',
@@ -72,6 +73,13 @@ export class DogProfilePage implements OnInit {
       componentProps: {
         dID: dog
       }
+    });
+    return await modal.present();
+  }
+
+  async openModalContact() {
+    const modal = await this.modalCtrl.create({
+      component: ContactDogpoundPage,
     });
     return await modal.present();
   }

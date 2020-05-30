@@ -49,7 +49,11 @@ const routes: Routes = [
     path: '',
     redirectTo: '/tabs/profile',
     pathMatch: 'full'
+  },  {
+    path: 'contact-dogpound',
+    loadChildren: () => import('./modals/contact-dogpound/contact-dogpound.module').then( m => m.ContactDogpoundPageModule)
   },
+
   
 
   // },
