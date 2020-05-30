@@ -13,7 +13,7 @@ export class FeedPage implements OnInit {
 
   Dogs: Dog[] = [];
   filteredDogs: any;
-  dogList :any;
+  dogList: any;
 
   sex: string;
   size: string;
