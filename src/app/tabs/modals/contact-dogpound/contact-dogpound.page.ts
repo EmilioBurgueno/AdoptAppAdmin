@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ModalController } from '@ionic/angular';
+import { ModalController, LoadingController, AlertController } from '@ionic/angular';
 
 @Component({
   selector: 'app-contact-dogpound',
@@ -8,9 +8,51 @@ import { ModalController } from '@ionic/angular';
 })
 export class ContactDogpoundPage implements OnInit {
 
-  constructor(private modalCtrl: ModalController) { }
+  loadingIndicator;
+  loading = false;
+
+  constructor(private modalCtrl: ModalController,
+              private loadingCtrl: LoadingController,
+              private alertCtrl: AlertController) { }
 
   ngOnInit() {
+  }
+
+  async solicitudFake() {
+    await this.presentLoading('Enviando solicitud...');
+    this.dismissLoading();
+    this.presentAlertConfirm('¡Exito!', 'Tu solicitud de adopción se ha enviado correctamente!');
+
+  }
+
+  async presentLoading(body: string) {
+    this.loadingIndicator = await this.loadingCtrl.create({
+      message: body
+    });
+    this.loading = true;
+    await this.loadingIndicator.present();
+  }
+
+  async dismissLoading() {
+    this.loading = false;
+    await this.loadingIndicator.dismiss();
+  }
+
+  async presentAlertConfirm(title: string, body: string) {
+    const alert = await this.alertCtrl.create({
+      header: title,
+      message: body,
+      buttons: [
+        {
+          text: 'Listo',
+          handler: () => {
+            this.closeModalContact();
+          }
+        }
+      ]
+    });
+
+    await alert.present();
   }
 
   async closeModalContact() {
