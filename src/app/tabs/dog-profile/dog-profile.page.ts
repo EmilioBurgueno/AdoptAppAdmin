@@ -4,6 +4,8 @@ import { AlertController, NavController, ModalController } from '@ionic/angular'
 import { ActivatedRoute } from '@angular/router';
 import { EditDogPage } from '../modals/edit-dog/edit-dog.page';
 import { ContactDogpoundPage } from '../modals/contact-dogpound/contact-dogpound.page';
+import { AuthService } from 'src/app/services/auth.service';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-dog-profile',
@@ -14,14 +16,20 @@ export class DogProfilePage implements OnInit {
 
   dog: any;
   detail: any[];
+  user: any;
 
   constructor(private dogService: DogService,
+              private authService: AuthService,
+              private userService: UserService,
               private alertCtrl: AlertController,
               private navCtrl: NavController,
               private activatedRouter: ActivatedRoute,
               private modalCtrl: ModalController) { }
 
   ngOnInit() {
+    this.authService.user$.subscribe((user) => {
+      this.user = user
+    })
   }
 
   goToDogDetails(dogId: string) {
@@ -82,6 +90,26 @@ export class DogProfilePage implements OnInit {
       component: ContactDogpoundPage,
     });
     return await modal.present();
+  }
+
+  toggleLike() {
+    if (this.user.favourites.includes(this.dog.id)) {
+      this.user.favourites = this.user.favourites.filter((id: string) => id !== this.dog.id)
+
+      this.userService.dislikeDog(this.user, this.dog.id).then(() => {
+        console.log('disliked');
+      }).catch((error) => {
+        console.log(error);
+      })
+    } else {
+      this.user.favourites.push(this.user.id);
+
+      this.userService.likeDog(this.user, this.dog.id).then(() => {
+        console.log('liked');
+      }).catch((error) => {
+        console.log(error);
+      })
+    }
   }
 }
 
