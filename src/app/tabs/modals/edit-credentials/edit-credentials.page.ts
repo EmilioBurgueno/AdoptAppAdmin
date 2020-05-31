@@ -25,7 +25,17 @@ export class EditCredentialsPage implements OnInit {
               private loadingCtrl: LoadingController) { }
 
   async ngOnInit() {
+    this.authService.user$.subscribe((user) => {
+      this.user = user;
+      this.patchForm();
+    });
     this.initForm();
+  }
+
+  patchForm() {
+    this.editUserForm.patchValue({
+      email: this.user.email
+    });
   }
 
   initForm() {
@@ -82,10 +92,18 @@ export class EditCredentialsPage implements OnInit {
 
       } else {
         try {
-          this.authService.changePassword(this.editUserForm.controls.cPassword.value, this.editUserForm.controls.nPassword.value);
-          this.dismissLoading();
-          this.presentAlertConfirm('¡Exito!', 'Tu contraseña ha sido cambiada correctamente.');
-          this.closeModal();
+          console.log(this.editUserForm.controls.email.value);
+          if (this.editUserForm.controls.email.value === this.user.email) {
+            this.authService.changePassword(this.editUserForm.controls.cPassword.value, this.editUserForm.controls.nPassword.value);
+            this.dismissLoading();
+            this.presentAlertConfirm('¡Exito!', 'Tu contraseña ha sido cambiada correctamente.');
+            this.closeModal();
+          } else {
+            this.authService.changePassword(this.editUserForm.controls.cPassword.value, this.editUserForm.controls.nPassword.value);
+            this.dismissLoading();
+            this.presentAlertConfirm('¡Exito!', 'Tu contraseña ha sido cambiada correctamente. Sin embargo, tu email no ha sido cambiado. Para cambiar de email haz click en el boton "Cambiar Email".');
+            this.closeModal();
+          }
         } catch (error) {
           console.log('Se ha producido un error. Intente mas tarde!');
         }
