@@ -51,14 +51,14 @@ export class AuthService {
     return this.afa.auth.sendPasswordResetEmail(email);
   }
 
-  reauthenticate = (currentPassword) => {
+  reauthenticate (currentPassword: string) {
     var user = firebase.auth().currentUser;
     var cred = firebase.auth.EmailAuthProvider.credential(
         user.email, currentPassword);
     return user.reauthenticateWithCredential(cred);
   }
 
-  changePassword = (currentPassword, newPassword) => {
+  changePassword (currentPassword: string, newPassword: string) {
     this.reauthenticate(currentPassword).then(() => {
       var user = firebase.auth().currentUser;
       user.updatePassword(newPassword).then(() => {
@@ -66,7 +66,7 @@ export class AuthService {
       }).catch((error) => { console.log(error); });
     }).catch((error) => { console.log(error); });
   }
-  changeEmail = (currentPassword, newEmail) => {
+  changeEmail (currentPassword: string, newEmail: string) {
     this.reauthenticate(currentPassword).then(() => {
       var user = firebase.auth().currentUser;
       user.updateEmail(newEmail).then(() => {
