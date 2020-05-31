@@ -174,9 +174,10 @@
                 <ion-col size="12">
                     <ion-item>
                         <ion-label position="floating">Status</ion-label>
-                        <ion-input formControlName="status" placeholder="Disponible"></ion-input>
-                        <ion-select>
-
+                        <ion-select formControlName="status" placeholder="Selecciona el Status">
+                            <ion-select-option value="Disponible">Disponible</ion-select-option>
+                            <ion-select-option value="Hogar temporal">Hogar temporal</ion-select-option>
+                            <ion-select-option value="Perdido">Perdido</ion-select-option>
                         </ion-select>
                     </ion-item>
                 </ion-col>
