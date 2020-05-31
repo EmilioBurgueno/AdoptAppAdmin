@@ -107,7 +107,7 @@ export class SignUpPage implements OnInit {
 
     } else {
       this.dismissLoading();
-      this.presentAlert('¡Informacion incompleta!', 'Por favor llena todos los campos correctamente.');
+      this.presentAlert('¡gitInformacion incompleta!', 'Por favor llena todos los campos correctamente.');
     }
   }
 

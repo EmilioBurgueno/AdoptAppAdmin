@@ -10,14 +10,15 @@ import { firestore } from 'firebase';
 export class UserService {
 
   constructor(private afs: AngularFirestore,
-              private afStorage: AngularFireStorage) { }
+    private afStorage: AngularFireStorage) { }
 
-  getUser(uid: string) {
-    return this.afs.doc(`users/${uid}`).valueChanges();
-  }
 
   createUser(user: any) {
     return this.afs.doc(`users/${user.id}`).set(user);
+  }
+  
+  getUser(uid: string) {
+    return this.afs.doc(`users/${uid}`).valueChanges();
   }
 
   createUsername(user: any) {
@@ -38,7 +39,7 @@ export class UserService {
       .pipe(map(actions => actions.map(a => {
         return a.payload.doc.data();
       }))
-    )
+      )
   }
 
   async usernameExists(username: string): Promise<boolean> {

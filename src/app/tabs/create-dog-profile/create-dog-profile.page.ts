@@ -2,8 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { DogService } from 'src/app/services/dog.service';
 import { NavController, AlertController, LoadingController } from '@ionic/angular';
 import { Router } from '@angular/router';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
-//import {Plugins, CameraResultType , CameraSource} from '@capacitor/core';
+import { FormGroup, FormControl, Validators, ControlContainer } from '@angular/forms';
+import { Plugins, CameraResultType, CameraSource } from '@capacitor/core';
+import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-create-dog-profile',
@@ -12,15 +13,20 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 })
 export class CreateDogProfilePage implements OnInit {
 
+  dog: any;
+  displayPhoto: any;
+  file: any;
   createDogForm: FormGroup;
   loadingIndicator;
   loading = false;
+
 
   constructor(private dogService: DogService,
     private navCtrl: NavController,
     private router: Router,
     private alertCtrl: AlertController,
-    private loadingCtrl: LoadingController) { }
+    private loadingCtrl: LoadingController,
+    private sanitizer: DomSanitizer) { }
 
   ngOnInit() {
     this.initForm();
@@ -28,7 +34,7 @@ export class CreateDogProfilePage implements OnInit {
 
   initForm() {
     this.createDogForm = new FormGroup({
-      name: new FormControl(null, [Validators.required]),
+      name: new FormControl(null),
       sex: new FormControl(null, [Validators.required]),
       size: new FormControl(null, [Validators.required]),
       breed: new FormControl(null, [Validators.required]),
@@ -73,9 +79,9 @@ export class CreateDogProfilePage implements OnInit {
           profilepic
         };
 
-        await this.dogService.createDog(dog);
+        await this.dogService.createDog(dog, this.file);
         this.dismissLoading();
-        this.presentAlertConfirm('Felicidades!', 'El perfil ha sido creado exitosamente.');
+        this.presentAlertConfirm('Felicidades!', 'El perro esta listo para ser adoptado!');
       } catch (error) {
         this.dismissLoading();
         this.presentAlert('Algo malo ha pasado', error.message);
@@ -113,7 +119,7 @@ export class CreateDogProfilePage implements OnInit {
   async presentAlertConfirm(title: string, body: string) {
     const alert = await this.alertCtrl.create({
       header: title,
-      message: body,
+      message: body,  
       buttons: [
         {
           text: 'Listo',
@@ -127,20 +133,22 @@ export class CreateDogProfilePage implements OnInit {
     await alert.present();
   }
 
-  // async takePicture() {
-  //   const image = await Plugins.Camera.getPhoto({
-  //     quality: 100,
-  //     allowEditing: false,
-  //     resultType: CameraResultType.Base64,
-  //     source: CameraSource.Prompt
-  //   });
+  async takePicture() {
+    const image = await Plugins.Camera.getPhoto({
+      quality: 100,
+      allowEditing: false,
+      resultType: CameraResultType.Base64,
+      source: CameraSource.Prompt
+    });
 
-  //   const base64 = `data:image/${image.format};base64, ${image.base64String}`;
-  //   this.displayPhoto = this.sanitizer.bypassSecurityTrustResourceUrl(base64);
+    const base64 = `data:image/${image.format};base64, ${image.base64String}`;
+    this.displayPhoto = this.sanitizer.bypassSecurityTrustResourceUrl(base64);
 
-  //   const imageBlob = this.base64toBlob(image.base64String);
-  //   this.file = new File([imageBlob], 'test.jpeg', { type: 'image/jpeg' });
-  // }
+    const imageBlob = this.base64toBlob(image.base64String);
+    this.file = new File([imageBlob], 'test.jpeg', { type: 'image/jpeg' });
+    this.createDogForm.get("profilepic").setValue("Foto tomada!");
+    this.createDogForm.get("profilepic").updateValueAndValidity();
+  }
 
   base64toBlob(dataURI: string) {
     const byteString = window.atob(dataURI);
@@ -152,6 +160,11 @@ export class CreateDogProfilePage implements OnInit {
     const blob = new Blob([int8Array], { type: 'image/jpeg' });
 
     return blob;
+  }
+
+  resetView(): void {
+    this.file = undefined;
+    this.displayPhoto = undefined;
   }
 
 
