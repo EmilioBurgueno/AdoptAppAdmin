@@ -39,19 +39,21 @@ export class EditCredentialsPage implements OnInit {
 
   async updateEmail() {
     await this.presentLoading('Haciendo cambios...');
-    await this.authService.reauthenticate(this.editUserForm.controls.cPassword.value).then(() => {
+    if (this.editUserForm.valid) {
+      await this.authService.reauthenticate(this.editUserForm.controls.cPassword.value).then(() => {
 
-      if (this.editUserForm.valid) {
-        this.authService.changeEmail(this.editUserForm.controls.cPassword.value, this.editUserForm.controls.email.value);
+          this.authService.changeEmail(this.editUserForm.controls.cPassword.value, this.editUserForm.controls.email.value);
+          this.dismissLoading();
+          this.presentAlertConfirm('¡Exito!', 'Tu email ha sido cambiado correctamente.');
+          this.closeModal();
+      }).catch((error) => {
         this.dismissLoading();
-        this.presentAlertConfirm('¡Exito!', 'Tu email ha sido cambiado correctamente.');
-        this.closeModal();
-      }
-    }).catch((error) => {
+        this.presentAlert('¡Lo sentimos!', 'Ha ocurrido un error.');
+      });
+    } else {
       this.dismissLoading();
-      this.presentAlert('¡Lo sentimos!', 'Ha ocurrido un error.');
-    });
-
+      this.presentAlert('¡Error!', 'Tu contraseña actual no es correcta.');
+    }
   }
 
   async updatePassword() {
