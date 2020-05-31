@@ -53,6 +53,7 @@ export class FeedPage implements OnInit {
     this[property] = null
     this.applyFilters();
   }
+  //no jalar todos los perros, jalar por paginacion (ie 20 perros, otros 02 y asi (como los posts)) where
 
   // funciones
 

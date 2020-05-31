@@ -10,6 +10,6 @@ export interface Dog {
     description: String,
     collar: String,
     status: String,
-    profilepic: String
+    profilepic: String,
     idPerrera: String
 }
