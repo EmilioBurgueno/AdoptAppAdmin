@@ -53,6 +53,10 @@ const routes: Routes = [
     path: 'contact-dogpound',
     loadChildren: () => import('./modals/contact-dogpound/contact-dogpound.module').then( m => m.ContactDogpoundPageModule)
   },
+  {
+    path: 'edit-credentials',
+    loadChildren: () => import('./modals/edit-credentials/edit-credentials.module').then( m => m.EditCredentialsPageModule)
+  },
 
   
 

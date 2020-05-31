@@ -3,6 +3,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { User } from 'src/models/user.model';
 import { ModalController, AlertController, NavParams, LoadingController } from '@ionic/angular';
 import { UserService } from 'src/app/services/user.service';
+import { EditCredentialsPage } from '../edit-credentials/edit-credentials.page';
 
 @Component({
   selector: 'app-edit-profile',
@@ -125,4 +126,13 @@ export class EditProfilePage implements OnInit {
     await alert.present();
   }
 
+  async openModalCredentials(user: string) {
+    const modal = await this.modalCtrl.create({
+      component: EditCredentialsPage,
+      componentProps: {
+        uID: user
+      }
+    });
+    return await modal.present();
+  }
 }

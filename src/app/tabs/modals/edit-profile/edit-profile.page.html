@@ -1,32 +1,32 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-buttons slot="primary">
-      <ion-button (click)="openModalEdit(user?.id)">
-        <ion-icon name="key-outline"></ion-icon>
-      </ion-button>
-    </ion-buttons>
-    <ion-title>Edita tu perfil</ion-title>
-  </ion-toolbar>
+    <ion-toolbar>
+        <ion-buttons slot="primary">
+            <ion-button (click)="openModalCredentials(user?.id)">
+                <ion-icon name="key-outline"></ion-icon>
+            </ion-button>
+        </ion-buttons>
+        <ion-title>Edita tu perfil</ion-title>
+    </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <form [formGroup]="editUserForm">
-    <ion-item>
-      <ion-label position="floating">Nombre(s)</ion-label>
-      <ion-input formControlName="fname"></ion-input>
+    <form [formGroup]="editUserForm">
+        <ion-item>
+            <ion-label position="floating">Nombre(s)</ion-label>
+            <ion-input formControlName="fname"></ion-input>
 
-      <ion-label position="floating">Apellidos</ion-label>
-      <ion-input formControlName="lname"></ion-input>
+            <ion-label position="floating">Apellidos</ion-label>
+            <ion-input formControlName="lname"></ion-input>
 
-      <ion-label position="floating">Dirección</ion-label>
-      <ion-input formControlName="address"></ion-input>
+            <ion-label position="floating">Dirección</ion-label>
+            <ion-input formControlName="address"></ion-input>
 
-      <ion-label position="floating">Fecha de nacimiento</ion-label>
-      <ion-datetime formControlName="birthday" displayFormat="DD MM YYYY"></ion-datetime>
+            <ion-label position="floating">Fecha de nacimiento</ion-label>
+            <ion-datetime formControlName="birthday" displayFormat="DD MM YYYY"></ion-datetime>
 
-      <ion-label position="floating">Número de contacto</ion-label>
-      <ion-input formControlName="phone"></ion-input>
-<!-- 
+            <ion-label position="floating">Número de contacto</ion-label>
+            <ion-input formControlName="phone"></ion-input>
+            <!-- 
       <ion-label position="floating">Email</ion-label>
       <ion-input formControlName="email"></ion-input>
 
@@ -35,8 +35,8 @@
 
       <ion-label position="floating">Confirmar Contraseña</ion-label>
       <ion-input formControlName="confirmPassword" type="password"></ion-input> -->
-    </ion-item>
-  </form>
-  <ion-button (click)="updateUser()" expand="block">Guardar cambios</ion-button>
-  <ion-button (click)="closeModal()" expand="block" fill="outline">Cancelar</ion-button>
+        </ion-item>
+    </form>
+    <ion-button (click)="updateUser()" expand="block">Guardar cambios</ion-button>
+    <ion-button (click)="closeModal()" expand="block" fill="outline">Cancelar</ion-button>
 </ion-content>
