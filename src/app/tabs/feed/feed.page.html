@@ -23,9 +23,10 @@
             </ion-note>
           </ion-label>
           <ion-label>
-            <ion-button class="ion-no-padding ion-no-margin" fill="clear">
-              <ion-icon slot="icon-only" name="heart-outline" class="like"></ion-icon>
-            </ion-button>
+            <ion-button (click)="toggleLike(dog.id)" class="ion-no-padding ion-no-margin" fill="clear">
+              <ion-icon *ngIf="!user?.favourites.includes(dog?.id)" slot="icon-only" name="heart-outline"></ion-icon>
+              <ion-icon *ngIf="user?.favourites.includes(dog?.id)" slot="icon-only" name="heart" class="liked"></ion-icon>
+          </ion-button>
           </ion-label>
         </ion-label>
         <ion-note slot="end" class="arrow-icon">

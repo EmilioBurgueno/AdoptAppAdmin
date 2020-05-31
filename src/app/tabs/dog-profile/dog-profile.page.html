@@ -25,8 +25,13 @@
 
 <ion-footer>
     <ion-icon name="information-circle-outline" (click)='goToDogDetails()'></ion-icon>
-    <ion-icon name="heart-outline"></ion-icon>
-    <ion-icon name="paw-outline"></ion-icon>
+    <ion-button (click)="toggleLike()" class="ion-no-padding ion-no-margin" fill="clear">
+        <ion-icon *ngIf="!user?.favourites.includes(dog?.id)" slot="icon-only" name="heart-outline"></ion-icon>
+        <ion-icon *ngIf="user?.favourites.includes(dog?.id)" slot="icon-only" name="heart" class="liked"></ion-icon>
+    </ion-button>
+    <ion-button (click)="openModalContact()" class="ion-no-padding ion-no-margin" fill="clear">
+        <ion-icon name="paw-outline"></ion-icon>
+    </ion-button>
     <h1>Dogs Name</h1>
     <p>Breed</p>
     <p>Location</p>

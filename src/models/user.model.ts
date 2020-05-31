@@ -7,5 +7,6 @@ export interface User {
     username: String,
     address: String,
     phone: String,
-    profilepic: String
+    profilepic: String,
+    favourites: String[]
 }

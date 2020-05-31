@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { map } from 'rxjs/operators'
 import { AngularFirestore } from '@angular/fire/firestore';
 import { AngularFireStorage } from '@angular/fire/storage';
+import { firestore } from 'firebase';
 
 @Injectable({
   providedIn: 'root'
@@ -89,6 +90,24 @@ export class UserService {
       } catch (error) {
         reject(error);
       }
+    })
+  }
+
+  favDog(user: any, did: string) {
+    return this.afs.firestore.runTransaction(async transaction => {
+      const userRef = this.afs.doc(`users/${user.id}`).ref;
+      const favDog = firestore.FieldValue.arrayUnion(did);
+
+      transaction.update(userRef, { favourites: favDog })
+    })
+  }
+
+  unfavDog(user: any, did: string) {
+    return this.afs.firestore.runTransaction(async transaction => {
+      const userRef = this.afs.doc(`users/${user.id}`).ref;
+      const unfavDog = firestore.FieldValue.arrayRemove(did);
+
+      transaction.update(userRef, { favourites: unfavDog })
     })
   }
 }
