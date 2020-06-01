@@ -30,12 +30,12 @@ export class ActiveSubmissionsPage implements OnInit {
     this.actives = this.userService.getActives(this.user)
   }
 
-  async openModalDogProfile(dogId: string) {
+  async openModalDogProfile(dog: string) {
     const modal = await this.modalCtrl.create({
-      component: DogProfilePage,
-      componentProps: {
-        uID: dogId
-      }
+    component: DogProfilePage,
+    componentProps: {
+    dID: dog
+    }
     });
     return await modal.present();
   }
