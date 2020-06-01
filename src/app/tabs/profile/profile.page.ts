@@ -5,7 +5,6 @@ import { EditProfilePage } from '../modals/edit-profile/edit-profile.page';
 import { Dog } from 'src/models/dog.model';
 import { DogService } from 'src/app/services/dog.service';
 import { DogProfilePage } from '../modals/dog-profile/dog-profile.page';
-import { DeleteProfilePage } from '../modals/delete-profile/delete-profile.page';
 import { UserService } from 'src/app/services/user.service';
 import { Plugins, CameraResultType, CameraSource } from '@capacitor/core';
 
@@ -73,15 +72,7 @@ export class ProfilePage implements OnInit {
     return await modal.present();
   }
 
-  async openModalDelete() {
-    const modal = await this.modalCtrl.create({
-      component: DeleteProfilePage,
-      componentProps: {
-        uID: this.user.id
-      }
-    });
-    return await modal.present();
-  }
+  
 
   async getPicture(source: CameraSource): Promise<boolean> {
     const image = await Plugins.Camera.getPhoto({

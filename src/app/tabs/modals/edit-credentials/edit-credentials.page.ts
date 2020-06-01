@@ -191,4 +191,5 @@ export class EditCredentialsPage implements OnInit {
   public onConfirmPasswordToggle(): void {
     this.showConfirmedPassword = ! this.showConfirmedPassword;
   }
+  
 }

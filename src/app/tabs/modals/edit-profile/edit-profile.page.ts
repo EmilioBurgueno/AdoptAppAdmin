@@ -4,6 +4,7 @@ import { User } from 'src/models/user.model';
 import { ModalController, AlertController, NavParams, LoadingController } from '@ionic/angular';
 import { UserService } from 'src/app/services/user.service';
 import { EditCredentialsPage } from '../edit-credentials/edit-credentials.page';
+import { DeleteProfilePage } from '../delete-profile/delete-profile.page';
 
 @Component({
   selector: 'app-edit-profile',
@@ -131,6 +132,16 @@ export class EditProfilePage implements OnInit {
       component: EditCredentialsPage,
       componentProps: {
         uID: user
+      }
+    });
+    return await modal.present();
+  }
+
+  async openModalDelete() {
+    const modal = await this.modalCtrl.create({
+      component: DeleteProfilePage,
+      componentProps: {
+        uID: this.user.id
       }
     });
     return await modal.present();
