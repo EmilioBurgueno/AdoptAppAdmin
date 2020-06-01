@@ -49,32 +49,7 @@ const routes: Routes = [
     path: '',
     redirectTo: '/tabs/profile',
     pathMatch: 'full'
-  },
-  {
-    path: 'contact-dogpound',
-    loadChildren: () => import('./modals/contact-dogpound/contact-dogpound.module').then( m => m.ContactDogpoundPageModule)
-  },
-  {
-    path: 'edit-credentials',
-    loadChildren: () => import('./modals/edit-credentials/edit-credentials.module').then( m => m.EditCredentialsPageModule)
-  },
-  {
-    path: 'active-submissions',
-    loadChildren: () => import('./modals/active-submissions/active-submissions.module').then( m => m.ActiveSubmissionsPageModule)
-  },
-  {
-    path: 'delete-profile',
-    loadChildren: () => import('./modals/delete-profile/delete-profile.module').then( m => m.DeleteProfilePageModule)
-  },
-  // {
-  //   path: 'dogprofile:id',
-  //     loadChildren: () => import('./modals/dog-profile/dog-profile.module').then( m => m.DogProfilePageModule)
-  // }
-  // },
-  // {
-  //   path: 'edit-profile',
-  //   loadChildren: () => import('./modals/edit-profile/edit-profile.module').then( m => m.EditProfilePageModule)
-  // }
+  }
 ];
 
 @NgModule({

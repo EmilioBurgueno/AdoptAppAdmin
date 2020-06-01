@@ -26,7 +26,7 @@ export class EditDogPage implements OnInit {
 
   ngOnInit() {
     const dID = this.navParams.get('dID');
-    console.log(this.getDog(dID));
+    this.getDog(dID)
     this.initForm();
   }
 
@@ -67,7 +67,7 @@ export class EditDogPage implements OnInit {
       age: this.dog.age,
       fplace: this.dog.fplace,
       found: this.dog.found,
-      descripcion: this.dog.description,
+      description: this.dog.description,
       collar: this.dog.collar,
       status: this.dog.status,
       profilepic: this.dog.profilepic

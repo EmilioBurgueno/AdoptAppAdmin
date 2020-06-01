@@ -100,10 +100,6 @@ export class DogProfilePage implements OnInit {
     return await modal.present();
   }
 
-  async closeModalContact() {
-    await this.modalCtrl.dismiss();
-  }
-
   goBack(){
     this.navCtrl.back();
   }
