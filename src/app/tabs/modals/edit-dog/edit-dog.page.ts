@@ -48,6 +48,7 @@ export class EditDogPage implements OnInit {
         await this.dogService.updateDog(this.dog.id.toString(), updatedDog);
         this.dismissLoading();
         this.presentAlertConfirm('¡Exito!', 'El perfil ha sido modificado exitosamente.');
+        this.closeModal();
       } catch (error) {
         this.dismissLoading();
         this.presentAlert('Algo malo ha pasado', error.message);
@@ -83,8 +84,8 @@ export class EditDogPage implements OnInit {
       age: new FormControl(null, [Validators.required]),
       fplace: new FormControl(null, [Validators.required]),
       found: new FormControl(null, [Validators.required]),
-      description: new FormControl(null, [Validators.required]),
-      collar: new FormControl(null, [Validators.required]),
+      description: new FormControl(null,),
+      collar: new FormControl(null,),
       status: new FormControl(null, [Validators.required]),
       profilepic: new FormControl(null, [Validators.required])
     });
