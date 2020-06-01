@@ -9,8 +9,8 @@
 
 <ion-content>
   <div class="header-container">
-    <h2>¿Esta seguro de querer borrar tu cuenta?</h2>
-    <p>Estamos tristes de verte ir, pero si quiere borrar tu cuenta, solo ingresa tu contraseña por última vez.</p>
+    <h4>¿Esta seguro de quieres eliminar tu cuenta?</h4>
+    <p style="font-size: 14px;">Estamos tristes de verte ir, pero si quieres eliminar tu cuenta, solo ingresa tu contraseña por última vez 🥺.</p>
   </div>
 
   <form>
@@ -23,7 +23,7 @@
               <ion-icon [name]="showPassword ? 'eye-off-outline' : 'eye-outline'"></ion-icon>
              </button>
           </ion-item>
-          <ion-button size="small" (click)="deleteAccount()" expand="block">Enviar</ion-button>
+          <ion-button color ="danger" size="small" (click)="deleteAccount()" expand="block">Enviar</ion-button>
           <ion-button size="small" (click)="closeModal()" expand="block" fill="outline">Cancelar</ion-button>
         </ion-col>
       </ion-row>
