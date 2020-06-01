@@ -23,10 +23,7 @@ const routes: Routes = [
             path: '',
             loadChildren: () => import('./feed/feed.module').then( m => m.FeedPageModule)
           },
-          {
-            path: ':id',
-            loadChildren: () => import('./dog-profile/dog-profile.module').then( m => m.DogProfilePageModule)
-          }
+          
         ]
       },
       {
@@ -49,7 +46,8 @@ const routes: Routes = [
     path: '',
     redirectTo: '/tabs/profile',
     pathMatch: 'full'
-  },  {
+  },
+  {
     path: 'contact-dogpound',
     loadChildren: () => import('./modals/contact-dogpound/contact-dogpound.module').then( m => m.ContactDogpoundPageModule)
   },
@@ -65,9 +63,10 @@ const routes: Routes = [
     path: 'delete-profile',
     loadChildren: () => import('./modals/delete-profile/delete-profile.module').then( m => m.DeleteProfilePageModule)
   },
-
-  
-
+  {
+    path: 'dogprofile:id',
+      loadChildren: () => import('./modals/dog-profile/dog-profile.module').then( m => m.DogProfilePageModule)
+  }// Emilio ??? Me preguntaste algo no? Ahh NO
   // },
   // {
   //   path: 'edit-profile',

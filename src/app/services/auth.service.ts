@@ -38,40 +38,48 @@ export class AuthService {
     return this.afa.auth.signOut();
   }
 
-  updateEmail(nEmail: string): Promise<void> {
-    return firebase.auth().currentUser.updateEmail(nEmail)
-  }
-
-  deleteUser() {
-    const user = firebase.auth().currentUser;
-    user.delete();
+  deleteUser(currentPassword) {
+    this.reauthenticate(currentPassword).then(() => {
+      const user = firebase.auth().currentUser;
+      user.delete();
+    }).catch((error) => {
+      console.log(error);
+    });
   }
 
   resetPassword(email: string){
     return this.afa.auth.sendPasswordResetEmail(email);
   }
 
-  reauthenticate (currentPassword: string) {
+  reauthenticate(currentPassword: string) {
     var user = firebase.auth().currentUser;
     var cred = firebase.auth.EmailAuthProvider.credential(
         user.email, currentPassword);
     return user.reauthenticateWithCredential(cred);
   }
 
-  changePassword (currentPassword: string, newPassword: string) {
+  changePassword(currentPassword: string, newPassword: string) {
     this.reauthenticate(currentPassword).then(() => {
       var user = firebase.auth().currentUser;
       user.updatePassword(newPassword).then(() => {
         console.log("Password updated!");
-      }).catch((error) => { console.log(error); });
-    }).catch((error) => { console.log(error); });
+      }).catch((error) => {
+        console.log(error);
+      });
+    }).catch((error) => {
+      console.log(error);
+    });
   }
-  changeEmail (currentPassword: string, newEmail: string) {
+  changeEmail(currentPassword: string, newEmail: string) {
     this.reauthenticate(currentPassword).then(() => {
       var user = firebase.auth().currentUser;
       user.updateEmail(newEmail).then(() => {
         console.log("Email updated!");
-      }).catch((error) => { console.log(error); });
-    }).catch((error) => { console.log(error); });
+      }).catch((error) => {
+        console.log(error);
+      });
+    }).catch((error) => {
+      console.log(error);
+    });
   }
 }

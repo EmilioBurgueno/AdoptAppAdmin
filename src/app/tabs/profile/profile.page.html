@@ -45,7 +45,7 @@
 
   <ion-list>
     <div *ngFor='let dog of favourites'>
-      <ion-item (click)="goToDesc(dog.id)">
+      <ion-item (click)="openModalDogProfile(dog.id)">
         <slot name="start">
           <ion-avatar class="dogpic">
             <img [src]='dog.profilepic'>

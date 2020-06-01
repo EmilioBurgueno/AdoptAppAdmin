@@ -16,6 +16,7 @@ import { AppComponent } from './app.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { environment } from 'src/environments/environment';
 import { EditProfilePageModule } from './tabs/modals/edit-profile/edit-profile.module';
+import { DogProfilePage } from '../modals/dog-profile/dog-profile.page';
 
 @NgModule({
   declarations: [AppComponent],
@@ -30,7 +31,8 @@ import { EditProfilePageModule } from './tabs/modals/edit-profile/edit-profile.m
     AngularFireAuthModule,
     AngularFirestoreModule,
     AngularFireStorageModule,
-    EditProfilePageModule
+    EditProfilePageModule,
+    DogProfilePage
   ],
   providers: [
     StatusBar,

@@ -7,7 +7,6 @@ import { IonicModule } from '@ionic/angular';
 import { CreateDogProfilePageRoutingModule } from './create-dog-profile-routing.module';
 
 import { CreateDogProfilePage } from './create-dog-profile.page';
-import { AngularFireStorageModule } from '@angular/fire/storage';
 
 @NgModule({
   imports: [
@@ -15,8 +14,7 @@ import { AngularFireStorageModule } from '@angular/fire/storage';
     FormsModule,
     ReactiveFormsModule,
     IonicModule,
-    CreateDogProfilePageRoutingModule,
-    AngularFireStorageModule
+    CreateDogProfilePageRoutingModule
   ],
   declarations: [CreateDogProfilePage]
 })

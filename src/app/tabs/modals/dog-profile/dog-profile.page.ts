@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { DogService } from 'src/app/services/dog.service';
 import { AlertController, NavController, ModalController } from '@ionic/angular';
 import { ActivatedRoute } from '@angular/router';
-import { EditDogPage } from '../modals/edit-dog/edit-dog.page';
-import { ContactDogpoundPage } from '../modals/contact-dogpound/contact-dogpound.page';
+import { EditDogPage } from '../edit-dog/edit-dog.page';
+import { ContactDogpoundPage } from '../contact-dogpound/contact-dogpound.page';
 import { AuthService } from 'src/app/services/auth.service';
 import { UserService } from 'src/app/services/user.service';
 

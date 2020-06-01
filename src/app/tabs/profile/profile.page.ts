@@ -6,6 +6,7 @@ import { UserService } from 'src/app/services/user.service';
 import { EditProfilePage } from '../modals/edit-profile/edit-profile.page';
 import { Dog } from 'src/models/dog.model';
 import { DogService } from 'src/app/services/dog.service';
+import { DogProfilePage } from '../modals/dog-profile/dog-profile.page';
 
 @Component({
   selector: 'app-profile',
@@ -71,6 +72,16 @@ export class ProfilePage implements OnInit {
     this.authService.logout().then(() => {
       this.navCtrl.navigateRoot(['']);
     });
+  }
+
+  async openModalDogProfile(dog: string) {
+    const modal = await this.modalCtrl.create({
+      component: DogProfilePage,
+      componentProps: {
+        uID: dog
+      }
+    });
+    return await modal.present();
   }
 
   async openModalEdit(user: string) {

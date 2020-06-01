@@ -4,7 +4,7 @@ import { DogService } from 'src/app/services/dog.service';
 import { NavController, ModalController } from '@ionic/angular';
 import { AuthService } from 'src/app/services/auth.service';
 import { UserService } from 'src/app/services/user.service';
-import { DogProfilePage } from '../dog-profile/dog-profile.page';
+import { DogProfilePage } from '../modals/dog-profile/dog-profile.page';
 
 @Component({
   selector: 'app-feed',
