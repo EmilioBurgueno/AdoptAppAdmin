@@ -1,42 +1,42 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>Adopta</ion-title>
-  </ion-toolbar>
+    <ion-toolbar>
+        <ion-title>Adopta</ion-title>
+    </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <ion-list>
-    <div *ngFor="let dog of Dogs">
-      <ion-item (click)="openModalDogProfile(dog.id)">
-        <slot name="start">
-          <ion-avatar>
-            <img [src]='dog.profilepic'>
-          </ion-avatar>
-        </slot>
-        <ion-label class="dogsep">
-          <h3>{{ dog.name }}</h3>
-          <ion-label>{{ dog.breed }}</ion-label>
-          <ion-note>{{dog.sex}} &middot; {{ dog.age }} &middot; {{ dog.size }}</ion-note>
-          <ion-label>
-            <ion-note>
-              {{ dog.idPerrera }}
-            </ion-note>
-          </ion-label>
-          <ion-label>
-            <ion-button (click)="toggleLike(dog.id)" class="ion-no-padding ion-no-margin" fill="clear">
-              <ion-icon *ngIf="!user?.favourites.includes(dog?.id)" slot="icon-only" name="heart-outline"></ion-icon>
-              <ion-icon *ngIf="user?.favourites.includes(dog?.id)" slot="icon-only" name="heart" class="liked"></ion-icon>
-          </ion-button>
-          </ion-label>
-        </ion-label>
-        <ion-note slot="end" class="arrow-icon">
-          <ion-icon name="chevron-forward-outline"></ion-icon>
-        </ion-note>
-      </ion-item>
-    </div>
-  </ion-list>
+    <ion-list>
+        <div *ngFor="let dog of Dogs">
+            <ion-item (click)="openModalDogProfile(dog.id)">
+                <slot name="start">
+                    <ion-avatar>
+                        <img [src]='dog.profilepic'>
+                    </ion-avatar>
+                </slot>
+                <ion-label class="dogsep">
+                    <h3>{{ dog.name }}</h3>
+                    <ion-label>{{ dog.breed }}</ion-label>
+                    <ion-note>{{dog.sex}} &middot; {{ dog.age }} &middot; {{ dog.size }}</ion-note>
+                    <ion-label>
+                        <ion-note>
+                            {{ dog.idPerrera }}
+                        </ion-note>
+                    </ion-label>
+                    <ion-label>
+                        <ion-button (click)="toggleLike(dog.id)" class="ion-no-padding ion-no-margin" fill="clear">
+                            <ion-icon *ngIf="!user?.favourites.includes(dog?.id)" slot="icon-only" name="heart-outline"></ion-icon>
+                            <ion-icon *ngIf="user?.favourites.includes(dog?.id)" slot="icon-only" name="heart" class="liked"></ion-icon>
+                        </ion-button>
+                    </ion-label>
+                </ion-label>
+                <ion-note slot="end" class="arrow-icon">
+                    <ion-icon name="chevron-forward-outline"></ion-icon>
+                </ion-note>
+            </ion-item>
+        </div>
+    </ion-list>
 
-<!--   
+    <!--   
   <ion-label>Found</ion-label>
 
   <select [(ngModel)]="found" (change)="filterExact('found',found)">

@@ -124,10 +124,14 @@ export class EditCredentialsPage implements OnInit {
             }
           } catch (error) {
             console.log('Se ha producido un error. Intente mas tarde!');
+            this.dismissLoading();
+            this.presentAlert('¡Lo sentimos!', 'Ha ocurrido un error. Intente mas tarde.');
           }
         }
       }).catch((error) => {
         console.log(error);
+        this.dismissLoading();
+        this.presentAlert('¡Error!', 'Tu actual contraseña no es correcta.');
       });
     } else {
       this.dismissLoading();
