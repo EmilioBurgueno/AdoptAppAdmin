@@ -1,7 +1,7 @@
 <ion-header>
     <ion-toolbar>
         <ion-buttons slot="start">
-            <ion-back-button defaultHref="tabs/feed">Back</ion-back-button>
+            <ion-back-button>Back</ion-back-button>
         </ion-buttons>
         <ion-buttons slot="end">
             <ion-button (click)="deleteDog(dog?.id)">
@@ -13,6 +13,7 @@
 </ion-header>
 
 <ion-content>
+    <ion-grid>
     <ion-slides pager>
         <ion-slide>Fotos de perro</ion-slide>
     </ion-slides>
@@ -21,18 +22,36 @@
             <ion-icon slot="icon-only" name="create-outline"></ion-icon>
         </ion-button>
     </ion-buttons>
+
+    <ion-row>
+        <ion-col>
+            <ion-button (click)="toggleLike()" class="ion-no-padding ion-no-margin" fill="clear">
+                <ion-icon *ngIf="!user?.favourites.includes(dog?.id)" slot="icon-only" name="heart-outline"></ion-icon>
+                <ion-icon *ngIf="user?.favourites.includes(dog?.id)" slot="icon-only" name="heart" class="liked"></ion-icon>
+            </ion-button>
+            &nbsp;
+        </ion-col>
+    </ion-row>
+
+    <ion-row>
+        <ion-col>
+            <ion-button (click)="openModalContact()" class="ion-no-padding ion-no-margin" fill="clear">
+                <ion-icon name="paw-outline"></ion-icon>
+            </ion-button>
+        </ion-col>
+    </ion-row>
+    
+    <ion-row>
+        <ion-col>
+            <h1>{{dog?.name}}</h1>
+            <p>{{dog?.breed}}</p>
+            <p>{{dog?.idPerrera}}</p>
+        </ion-col>
+    </ion-row>
+    
+</ion-grid>
 </ion-content>
 
 <ion-footer>
-    <ion-icon name="information-circle-outline" (click)='goToDogDetails()'></ion-icon>
-    <ion-button (click)="toggleLike()" class="ion-no-padding ion-no-margin" fill="clear">
-        <ion-icon *ngIf="!user?.favourites.includes(dog?.id)" slot="icon-only" name="heart-outline"></ion-icon>
-        <ion-icon *ngIf="user?.favourites.includes(dog?.id)" slot="icon-only" name="heart" class="liked"></ion-icon>
-    </ion-button>
-    <ion-button (click)="openModalContact()" class="ion-no-padding ion-no-margin" fill="clear">
-        <ion-icon name="paw-outline"></ion-icon>
-    </ion-button>
-    <h1>Dogs Name</h1>
-    <p>Breed</p>
-    <p>Location</p>
+   
 </ion-footer>

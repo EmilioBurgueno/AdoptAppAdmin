@@ -57,6 +57,14 @@ const routes: Routes = [
     path: 'edit-credentials',
     loadChildren: () => import('./modals/edit-credentials/edit-credentials.module').then( m => m.EditCredentialsPageModule)
   },
+  {
+    path: 'active-submissions',
+    loadChildren: () => import('./modals/active-submissions/active-submissions.module').then( m => m.ActiveSubmissionsPageModule)
+  },
+  {
+    path: 'delete-profile',
+    loadChildren: () => import('./modals/delete-profile/delete-profile.module').then( m => m.DeleteProfilePageModule)
+  },
 
   
 

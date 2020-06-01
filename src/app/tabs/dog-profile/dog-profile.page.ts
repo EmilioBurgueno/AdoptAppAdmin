@@ -32,10 +32,6 @@ export class DogProfilePage implements OnInit {
     })
   }
 
-  goToDogDetails(dogId: string) {
-    this.navCtrl.navigateForward(['tabs', 'dog-profile', 'dog-detail',])
-  }
-
   deleteDog(dogId: string) {
     this.dogService
       .deleteDog(dogId)

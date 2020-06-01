@@ -24,11 +24,11 @@ export class ProfilePage implements OnInit {
     private userService: UserService,
     private dogService: DogService) { }
 
-  ngOnInit() {
-    this.authService.user$.subscribe((user) => {
+  async ngOnInit() {
+    await this.authService.user$.subscribe((user) => {
       this.user = user
     })
-    setTimeout(() => this.getFavourites(), 1000)
+    setTimeout(() => this.getFavourites(), 5000)
   }
 
   getFavourites() {
@@ -38,6 +38,10 @@ export class ProfilePage implements OnInit {
         this.favourites.push(dog);
       })
     });
+  }
+
+  goToDesc(dogId: String) {
+    this.navCtrl.navigateForward(['tabs', 'feed', dogId])
   }
 
   async deleteAccountAlert() {
