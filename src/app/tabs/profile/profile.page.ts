@@ -60,7 +60,7 @@ export class ProfilePage implements OnInit {
           text: 'Yes',
           handler: () => {
             this.userService.deleteUser(this.user);
-            this.authService.deleteUser();
+            //this.authService.deleteUser();
           }
         }]
     });
