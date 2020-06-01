@@ -12,7 +12,8 @@ export class DogService {
   firestore: any;
 
   constructor(private afs: AngularFirestore,
-    private afsStorage: AngularFireStorage) { }
+    private afsStorage: AngularFireStorage,
+    ) { }
 
   async createDog(dog: any, profilepic: File) {
     return new Promise(async (resolve, reject) => {
@@ -42,6 +43,21 @@ export class DogService {
     const task = this.afsStorage.upload(filePath, profilepic);
 
     return task.snapshotChanges().toPromise();
+  }
+
+  async removeProfilePicture(uid: string) {
+    return new Promise(async (resolve, reject) => {
+      try {
+        const filePath = `profilePictures/${uid}.jpeg`;
+        const task = this.afsStorage.ref(filePath).delete();
+        await task.toPromise();
+        await this.updateDog(uid, { pictureUrl: null })
+
+        resolve(true);
+      } catch (error) {
+        reject(error);
+      }
+    })
   }
 
   getDog(dId: string) {

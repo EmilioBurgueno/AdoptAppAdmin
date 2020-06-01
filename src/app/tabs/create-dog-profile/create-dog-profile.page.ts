@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { DogService } from 'src/app/services/dog.service';
 import { NavController, AlertController, LoadingController } from '@ionic/angular';
 import { Router } from '@angular/router';
-import { FormGroup, FormControl, Validators, ControlContainer } from '@angular/forms';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Plugins, CameraResultType, CameraSource } from '@capacitor/core';
 import { DomSanitizer } from '@angular/platform-browser';
 
@@ -79,7 +79,8 @@ export class CreateDogProfilePage implements OnInit {
         await this.dogService.createDog(dog, this.file);
         this.dismissLoading();
         this.presentAlertConfirm('Felicidades!', 'El perro esta listo para ser adoptado!');
-        this.createDogForm.reset()
+        this.createDogForm.reset();
+        this.resetView();
         
       } catch (error)    
       {
