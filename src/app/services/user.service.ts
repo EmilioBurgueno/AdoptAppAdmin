@@ -58,6 +58,10 @@ export class UserService {
     return this.afs.doc(`users/${userId}`).delete();
   }
 
+  deleteUsername(username: string) {
+    return this.afs.doc(`usernames/${username}`).delete();
+  }
+
   updateUser(userId: string, updatedUser: any) {
     return this.afs.doc(`users/${userId}`).update(updatedUser);
   }

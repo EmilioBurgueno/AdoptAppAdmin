@@ -22,12 +22,6 @@
                             {{ dog.idPerrera }}
                         </ion-note>
                     </ion-label>
-                    <ion-label>
-                        <ion-button (click)="toggleLike(dog.id)" class="ion-no-padding ion-no-margin" fill="clear">
-                            <ion-icon *ngIf="!user?.favourites.includes(dog?.id)" slot="icon-only" name="heart-outline"></ion-icon>
-                            <ion-icon *ngIf="user?.favourites.includes(dog?.id)" slot="icon-only" name="heart" class="liked"></ion-icon>
-                        </ion-button>
-                    </ion-label>
                 </ion-label>
                 <ion-note slot="end" class="arrow-icon">
                     <ion-icon name="chevron-forward-outline"></ion-icon>
@@ -35,19 +29,4 @@
             </ion-item>
         </div>
     </ion-list>
-
-    <!--   
-  <ion-label>Found</ion-label>
-
-  <select [(ngModel)]="found" (change)="filterExact('found',found)">
-    <option value="Si">Si</option>
-    <option value="No">No</option>
-  </select>
-
-  <ion-button *ngIf="found" (click)="removeFilter('found')">
-    Remove Filter
-  </ion-button> -->
-
-
-
 </ion-content>

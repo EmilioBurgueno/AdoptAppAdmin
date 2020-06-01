@@ -2,8 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { Dog } from 'src/models/dog.model';
 import { DogService } from 'src/app/services/dog.service';
 import { NavController, ModalController } from '@ionic/angular';
-import { AuthService } from 'src/app/services/auth.service';
-import { UserService } from 'src/app/services/user.service';
 import { DogProfilePage } from '../modals/dog-profile/dog-profile.page';
 
 @Component({
@@ -14,19 +12,13 @@ import { DogProfilePage } from '../modals/dog-profile/dog-profile.page';
 export class FeedPage implements OnInit {
 
   Dogs: Dog[] = [];
-  user: any;
 
   constructor(private dogService: DogService,
-              private authService: AuthService,
-              private userService: UserService,
               private navCtrl: NavController,
               private modalCtrl: ModalController
               ) {}
 
   ngOnInit() {
-    this.authService.user$.subscribe((user) => {
-      this.user = user
-    })
    this.getDogs();
   }
 
@@ -49,25 +41,4 @@ export class FeedPage implements OnInit {
     });
     return await modal.present();
   }
-
-  toggleLike(dogId: string) {
-    if (this.user.favourites.includes(dogId)) {
-      this.user.favourites = this.user.favourites.filter((id: string) => id !== dogId)
-
-      this.userService.unfavDog(this.user, dogId).then(() => {
-        console.log('disliked');
-      }).catch((error) => {
-        console.log(error);
-      })
-    } else {
-      this.user.favourites.push(dogId);
-
-      this.userService.favDog(this.user, dogId).then(() => {
-        console.log('liked');
-      }).catch((error) => {
-        console.log(error);
-      })
-    }
-  }
-
 }

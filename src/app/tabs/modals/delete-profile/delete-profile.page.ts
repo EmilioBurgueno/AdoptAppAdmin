@@ -44,6 +44,7 @@ export class DeleteProfilePage implements OnInit {
 
     if (this.password != "") {
       try {
+        await this.userService.deleteUsername(this.user.username.toString());
         await this.userService.deleteUser(this.user.id.toString());
         await this.afa.deleteUser(this.password);
         this.dismissLoading();
@@ -95,7 +96,7 @@ export class DeleteProfilePage implements OnInit {
         {
           text: 'Listo',
           handler: () => {
-            this.navCtrl.navigateRoot(['auth/login']);
+            //this.navCtrl.navigateRoot(['auth/login']);
             this.closeModal();
           }
         }
