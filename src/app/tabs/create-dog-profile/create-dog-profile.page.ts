@@ -41,10 +41,10 @@ export class CreateDogProfilePage implements OnInit {
       age: new FormControl(null, [Validators.required]),
       fplace: new FormControl(null, [Validators.required]),
       found: new FormControl(null, [Validators.required]),
-      description: new FormControl(null, [Validators.required]),
-      collar: new FormControl(null, [Validators.required]),
+      description: new FormControl(null),
+      collar: new FormControl(null),
       status: new FormControl(null, [Validators.required]),
-      profilepic: new FormControl(null, [Validators.required])
+      //profilepic: new FormControl(null, [Validators.required])
     });
   }
 
@@ -62,7 +62,7 @@ export class CreateDogProfilePage implements OnInit {
       const description = this.createDogForm.controls.description.value;
       const collar = this.createDogForm.controls.collar.value;
       const status = this.createDogForm.controls.status.value;
-      const profilepic = this.createDogForm.controls.profilepic.value;
+      //const profilepic = this.createDogForm.controls.profilepic.value;
 
       try {
         const dog = {
@@ -76,7 +76,7 @@ export class CreateDogProfilePage implements OnInit {
           description,
           collar,
           status,
-          profilepic
+         // profilepic
         };
 
         await this.dogService.createDog(dog, this.file);

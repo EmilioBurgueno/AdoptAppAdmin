@@ -18,15 +18,15 @@ export class DogService {
     return new Promise(async (resolve, reject) => {
       try {
         const dogId = this.afs.createId();
-        const filePath = `dogs/${dogId}.jpeg`;
+       // const filePath = `dogs/${dogId}.jpeg`;
 
         dog.id = dogId;
-        await this.uploadDogImage(dog,profilepic);
+        //await this.uploadDogImage(dog,profilepic);
 
         await this.afs.firestore.runTransaction(async transaction => {
           const dogRef = this.afs.doc(`dogs/${dogId}`).ref;
 
-          dog.pictureUrl = await this.afsStorage.ref(filePath).getDownloadURL().toPromise()
+         // dog.pictureUrl = await this.afsStorage.ref(filePath).getDownloadURL().toPromise()
           transaction.set(dogRef,dog);
         });
         resolve(true);
