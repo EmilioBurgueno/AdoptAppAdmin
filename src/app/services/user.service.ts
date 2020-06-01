@@ -126,4 +126,14 @@ export class UserService {
     });
     return favDogs
   }
+
+  getActives(user: any) {
+    var actDogs: any[] = []
+    user.actives.forEach(actDog => {
+      this.dogService.getDog(actDog).subscribe((dog: any) => {
+        actDogs.push(dog);
+      })
+    });
+    return actDogs
+  }
 }

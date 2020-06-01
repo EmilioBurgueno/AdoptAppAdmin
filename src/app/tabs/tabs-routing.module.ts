@@ -13,6 +13,10 @@ const routes: Routes = [
           {
             path: '',
             loadChildren: () => import('./profile/profile.module').then(m => m.ProfilePageModule)
+          },
+          {
+            path: 'active',
+            loadChildren: () => import('./modals/active-submissions/active-submissions.module').then( m => m.ActiveSubmissionsPageModule)
           }
         ]
       },

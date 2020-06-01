@@ -2,11 +2,14 @@
   <ion-toolbar>
       <ion-title>Adopciones en proceso</ion-title>
   </ion-toolbar>
+  <ion-buttons slot="start">
+    <ion-back-button></ion-back-button>
+  </ion-buttons>
 </ion-header>
 
 <ion-content>
   <ion-list>
-      <div *ngFor="let dog of Dogs">
+      <div *ngFor="let dog of actives">
           <ion-item (click)="goToDesc(dog.id)">
               <slot name="start">
                   <ion-avatar>

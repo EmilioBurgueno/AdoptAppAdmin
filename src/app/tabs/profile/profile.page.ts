@@ -43,6 +43,10 @@ export class ProfilePage implements OnInit {
     this.favourites = this.userService.getFavourites(this.user)
   }
 
+  goToActive() {
+    this.navCtrl.navigateForward(['tabs', 'profile', 'active'])
+  }
+
   logout(): void {
     this.authService.logout().then(() => {
       this.navCtrl.navigateRoot(['']);
