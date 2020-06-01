@@ -8,6 +8,8 @@ import { ProfilePageRoutingModule } from './profile-routing.module';
 
 import { ProfilePage } from './profile.page';
 import { EditCredentialsPage } from '../modals/edit-credentials/edit-credentials.page';
+import { DogProfilePage } from '../modals/dog-profile/dog-profile.page';
+import { DogProfilePageModule } from '../modals/dog-profile/dog-profile.module';
 
 @NgModule({
   imports: [
@@ -15,7 +17,8 @@ import { EditCredentialsPage } from '../modals/edit-credentials/edit-credentials
     FormsModule,
     ReactiveFormsModule,
     IonicModule,
-    ProfilePageRoutingModule
+    ProfilePageRoutingModule,
+    DogProfilePageModule
   ],
   declarations: [ProfilePage, EditCredentialsPage],
   entryComponents: [EditCredentialsPage]

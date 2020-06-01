@@ -88,6 +88,10 @@ export class DogProfilePage implements OnInit {
     return await modal.present();
   }
 
+  async closeModalContact() {
+    await this.modalCtrl.dismiss();
+  }
+
   toggleLike() {
     if (this.user.favourites.includes(this.dog.id)) {
       this.user.favourites = this.user.favourites.filter((id: string) => id !== this.dog.id)
