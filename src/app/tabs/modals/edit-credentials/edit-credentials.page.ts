@@ -97,14 +97,17 @@ export class EditCredentialsPage implements OnInit {
         //   console.log('Tus contraseñas no coinciden.');
         // }
   
-        if (this.editUserForm.controls.nPassword.value !== this.editUserForm.controls.ncPassword.value) {
+       if (this.editUserForm.controls.nPassword.value !== this.editUserForm.controls.ncPassword.value) {
           this.dismissLoading();
           this.presentAlert('¡Error!', 'Tus contraseñas no coinciden.');
-  
+
+        } else if (this.editUserForm.controls.nPassword.value == null) {
+          this.dismissLoading();
+          this.presentAlert('¡Error!', 'Ingresa una nueva contraseña. ');
+
         } else if (this.editUserForm.controls.nPassword.value.length < 6) {
           this.dismissLoading();
           this.presentAlert('¡Error!', 'Tu contraseña tiene que tener al menos 6 caracteres.');
-  
         } else {
           try {
             console.log(this.editUserForm.controls.email.value);
