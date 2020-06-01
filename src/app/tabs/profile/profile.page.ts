@@ -33,6 +33,7 @@ export class ProfilePage implements OnInit {
 
   async ngOnInit() {
     await this.authService.user$.subscribe((user) => {
+      this.profileUser = user;
       this.user = user
       this.getFavourites()
     })
@@ -88,6 +89,7 @@ export class ProfilePage implements OnInit {
     await this.presentLoading('Changing your profile picture...');
 
     this.userService.uploadProfilePicture(this.profileUser.id, file).then(() => {
+      console.log("prueba1")
       this.dismissLoading();
       this.presentAlert('Done!', 'Your profile picture has been changed successfully.');
     }).catch((error) => {
