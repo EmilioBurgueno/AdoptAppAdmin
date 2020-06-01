@@ -19,5 +19,6 @@
 </ion-content>
 
 <ion-footer>
-    <ion-button (click)="solicitudFake()" expand="block" fill="outline">Mandar Solicitud de Adopción</ion-button>
+    <ion-button *ngIf="!user?.actives.includes(dID)" (click)="toggleActive()" expand="block" fill="outline">Mandar Solicitud de Adopción</ion-button>
+    <ion-button *ngIf="user?.actives.includes(dID)" color="danger" (click)="toggleActive()" expand="block" fill="outline">Cancelar Solicitud de Adopción</ion-button>
 </ion-footer>

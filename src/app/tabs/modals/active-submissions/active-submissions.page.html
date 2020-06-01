@@ -1,28 +1,28 @@
 <ion-header>
   <ion-toolbar>
       <ion-title>Adopciones en proceso</ion-title>
+      <ion-buttons slot="start">
+        <ion-back-button defaultHref="tabs/profile"></ion-back-button>
+      </ion-buttons>
   </ion-toolbar>
-  <ion-buttons slot="start">
-    <ion-back-button></ion-back-button>
-  </ion-buttons>
 </ion-header>
 
 <ion-content>
   <ion-list>
       <div *ngFor="let dog of actives">
-          <ion-item (click)="goToDesc(dog.id)">
+          <ion-item (click)="goToDesc(dog?.id)">
               <slot name="start">
                   <ion-avatar>
-                      <img [src]='dog.profilepic'>
+                      <img [src]='dog?.profilepic'>
                   </ion-avatar>
               </slot>
               <ion-label class="dogsep">
-                  <h3>{{ dog.name }}</h3>
-                  <ion-label>{{ dog.breed }}</ion-label>
-                  <ion-note>{{dog.sex}} &middot; {{ dog.age }} &middot; {{ dog.size }}</ion-note>
+                  <h3>{{ dog?.name }}</h3>
+                  <ion-label>{{ dog?.breed }}</ion-label>
+                  <ion-note>{{dog?.sex}} &middot; {{ dog?.age }} &middot; {{ dog?.size }}</ion-note>
                   <ion-label>
                       <ion-note>
-                          {{ dog.idPerrera }}
+                          {{ dog?.idPerrera }}
                       </ion-note>
                   </ion-label>
               </ion-label>

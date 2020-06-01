@@ -88,7 +88,8 @@ export class SignUpPage implements OnInit {
             username,
             address,
             phone,
-            favourites: [] as string[]
+            favourites: [] as string[],
+            actives: [] as string[]
           };
   
           await this.userService.createUser(user);

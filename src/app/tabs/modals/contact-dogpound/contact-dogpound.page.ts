@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { ModalController, LoadingController, AlertController } from '@ionic/angular';
+import { AuthService } from 'src/app/services/auth.service';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-contact-dogpound',
@@ -8,21 +10,49 @@ import { ModalController, LoadingController, AlertController } from '@ionic/angu
 })
 export class ContactDogpoundPage implements OnInit {
 
+  @Input() dID: string;
+
+  user: any;
+
   loadingIndicator;
   loading = false;
 
   constructor(private modalCtrl: ModalController,
+              private authService: AuthService,
+              private userService: UserService,
               private loadingCtrl: LoadingController,
               private alertCtrl: AlertController) { }
 
   ngOnInit() {
+    this.authService.user$.subscribe((user) => {
+      this.user = user
+    })
   }
 
-  async solicitudFake() {
-    await this.presentLoading('Enviando solicitud...');
-    this.dismissLoading();
-    this.presentAlertConfirm('¡Exito!', 'Tu solicitud de adopción se ha enviado correctamente!');
+  async toggleActive() {
+    if (this.user.actives.includes(this.dID)) {
+      await this.presentLoading('Enviando solicitud...');
+      this.user.actives = this.user.actives.filter((id: string) => id !== this.dID)
 
+      this.userService.deactDog(this.user, this.dID).then(() => {
+        this.dismissLoading();
+        this.presentAlertConfirm('¡Exito!', 'Tu solicitud de adopción se ha cancelado correctamente!');
+      }).catch((error) => {
+        this.dismissLoading();
+        this.presentAlert('Algo malo ha pasado', error.message);
+      })
+    } else {
+      await this.presentLoading('Enviando solicitud...');
+      this.user.favourites.push(this.dID);
+
+      this.userService.actDog(this.user, this.dID).then(() => {
+        this.dismissLoading();
+        this.presentAlertConfirm('¡Exito!', 'Tu solicitud de adopción se ha enviado correctamente!');
+      }).catch((error) => {
+        this.dismissLoading();
+        this.presentAlert('Algo malo ha pasado', error.message);
+      })
+    }
   }
 
   async presentLoading(body: string) {
@@ -36,6 +66,16 @@ export class ContactDogpoundPage implements OnInit {
   async dismissLoading() {
     this.loading = false;
     await this.loadingIndicator.dismiss();
+  }
+
+  async presentAlert(title: string, body: string) {
+    const alert = await this.alertCtrl.create({
+      header: title,
+      message: body,
+      buttons: ['Listo']
+    });
+
+    await alert.present();
   }
 
   async presentAlertConfirm(title: string, body: string) {

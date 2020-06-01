@@ -127,6 +127,24 @@ export class UserService {
     return favDogs
   }
 
+  actDog(user: any, did: string) {
+    return this.afs.firestore.runTransaction(async transaction => {
+      const userRef = this.afs.doc(`users/${user.id}`).ref;
+      const actDog = firestore.FieldValue.arrayUnion(did);
+
+      transaction.update(userRef, { actives: actDog })
+    })
+  }
+
+  deactDog(user: any, did: string) {
+    return this.afs.firestore.runTransaction(async transaction => {
+      const userRef = this.afs.doc(`users/${user.id}`).ref;
+      const deactDog = firestore.FieldValue.arrayRemove(did);
+
+      transaction.update(userRef, { actives: deactDog })
+    })
+  }
+
   getActives(user: any) {
     var actDogs: any[] = []
     user.actives.forEach(actDog => {

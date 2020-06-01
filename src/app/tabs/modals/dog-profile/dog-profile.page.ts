@@ -93,9 +93,12 @@ export class DogProfilePage implements OnInit {
     return await modal.present();
   }
 
-  async openModalContact() {
+  async openModalContact(dog: string) {
     const modal = await this.modalCtrl.create({
       component: ContactDogpoundPage,
+      componentProps: {
+        dID: dog
+      }
     });
     return await modal.present();
   }

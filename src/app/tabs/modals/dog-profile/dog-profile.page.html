@@ -31,7 +31,7 @@
             <ion-button (click)="openModalEdit(dog?.id)">
                 <ion-icon slot="icon-only" name="create-outline"></ion-icon>
             </ion-button>
-            <ion-button (click)="openModalContact()" class="ion-no-padding ion-no-margin" fill="clear">
+            <ion-button (click)="openModalContact(dog?.id)" class="ion-no-padding ion-no-margin" fill="clear">
                 <ion-icon name="paw-outline"></ion-icon>
             </ion-button>
             <ion-button (click)="toggleLike()" class="ion-no-padding ion-no-margin" fill="clear">
