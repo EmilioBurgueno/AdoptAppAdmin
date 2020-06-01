@@ -50,7 +50,6 @@ export class CreateDogProfilePage implements OnInit {
 
   async onSubmit(): Promise<void> {
     await this.presentLoading('Creando perfil...');
-    console.log("good")
     if (this.createDogForm.valid) {
       const name = this.createDogForm.controls.name.value;
       const sex = this.createDogForm.controls.sex.value;
@@ -63,7 +62,6 @@ export class CreateDogProfilePage implements OnInit {
       const collar = this.createDogForm.controls.collar.value;
       const status = this.createDogForm.controls.status.value;
       const profilepic = this.createDogForm.controls.profilepic.value;
-      console.log("good1")
       try {
         const dog = {
           name,
@@ -78,21 +76,18 @@ export class CreateDogProfilePage implements OnInit {
           status,
          profilepic
         };
-        console.log("good2")
-
         await this.dogService.createDog(dog, this.file);
         this.dismissLoading();
         this.presentAlertConfirm('Felicidades!', 'El perro esta listo para ser adoptado!');
-        console.log("good3")
+        this.createDogForm.reset()
+        
       } catch (error)    
       {
-        console.log("good4")
         this.dismissLoading();
         this.presentAlert('Algo malo ha pasado', error.message);
       }
 
     } else {
-      console.log("good5")
       this.dismissLoading();
       this.presentAlert('Algo malo ha pasado', 'Por favor llena todos los campos correctamente.');
     }
