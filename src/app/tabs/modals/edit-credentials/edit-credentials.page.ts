@@ -3,6 +3,7 @@ import { ModalController, AlertController, LoadingController } from '@ionic/angu
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { User } from 'src/models/user.model';
 import { AuthService } from 'src/app/services/auth.service';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-edit-credentials',
@@ -22,7 +23,8 @@ export class EditCredentialsPage implements OnInit {
   constructor(private modalCtrl: ModalController,
               private authService: AuthService,
               private alertCtrl: AlertController,
-              private loadingCtrl: LoadingController) { }
+              private loadingCtrl: LoadingController,
+              private userService: UserService) { }
 
   async ngOnInit() {
     this.authService.user$.subscribe((user) => {
@@ -51,11 +53,18 @@ export class EditCredentialsPage implements OnInit {
     await this.presentLoading('Haciendo cambios...');
     if (this.editUserForm.valid) {
       if (this.editUserForm.controls.email.value === this.user.email) {
+
         this.dismissLoading();
         this.presentAlert('¡Error!', 'Este email ya existe. Ingresa uno nuevo.');
       } else {
+        const updatedUser = {
+          email: this.user.email,
+          ...this.editUserForm.value
+        };
+
         await this.authService.reauthenticate(this.editUserForm.controls.cPassword.value).then(() => {
 
+          this.userService.updateUser(this.user.id.toString(), updatedUser);
           this.authService.changeEmail(this.editUserForm.controls.cPassword.value, this.editUserForm.controls.email.value);
           this.dismissLoading();
           this.presentAlertConfirm('¡Exito!', 'Tu email ha sido cambiado correctamente.');
