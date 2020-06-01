@@ -28,6 +28,16 @@ export class FeedPage implements OnInit {
     });
   }
 
+  async openModalDogProfile(dog: string) {
+    const modal = await this.modalCtrl.create({
+    component: DogProfilePage,
+    componentProps: {
+    dID: dog
+    }
+    });
+    return await modal.present();
+  }
+
   goToDesc(dogId: String) {
     this.navCtrl.navigateForward(['tabs', 'feed', 'dogprofile', dogId])
   }

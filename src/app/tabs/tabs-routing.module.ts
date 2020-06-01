@@ -27,10 +27,6 @@ const routes: Routes = [
             path: '',
             loadChildren: () => import('./feed/feed.module').then( m => m.FeedPageModule)
           },
-          {
-            path: 'dogprofile/:dogId',
-            loadChildren: () => import('./modals/dog-profile/dog-profile.module').then( m => m.DogProfilePageModule)
-          }
         ]
       },
       {
@@ -53,6 +49,10 @@ const routes: Routes = [
     path: '',
     redirectTo: '/tabs/profile',
     pathMatch: 'full'
+  },
+  {
+    path: 'dogprofile/:dogId',
+    loadChildren: () => import('./modals/dog-profile/dog-profile.module').then( m => m.DogProfilePageModule)
   }
 ];
 

@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { DogService } from 'src/app/services/dog.service';
-import { AlertController, NavController, ModalController } from '@ionic/angular';
+import { AlertController, NavController, ModalController, NavParams } from '@ionic/angular';
 import { ActivatedRoute } from '@angular/router';
 import { EditDogPage } from '../edit-dog/edit-dog.page';
 import { ContactDogpoundPage } from '../contact-dogpound/contact-dogpound.page';
@@ -14,6 +14,8 @@ import { UserService } from 'src/app/services/user.service';
 })
 export class DogProfilePage implements OnInit {
 
+
+  @Input() dID: string;
   dog: any;
   detail: any[];
   user: any;
@@ -25,11 +27,14 @@ export class DogProfilePage implements OnInit {
               private alertCtrl: AlertController,
               private navCtrl: NavController,
               private activatedRouter: ActivatedRoute,
-              private modalCtrl: ModalController) { }
+              private modalCtrl: ModalController,
+              private navParams: NavParams) { }
 
   ngOnInit() {
-    this.dogId = this.activatedRouter.snapshot.paramMap.get('dogId');
-    this.getDog(this.dogId);
+    // this.dogId = this.activatedRouter.snapshot.paramMap.get('dogId');
+    // this.getDog(this.dogId);
+    const dID = this.navParams.get('dID');
+    this.getDog(dID)
     this.authService.user$.subscribe((user) => {
       this.user = user
     })
@@ -103,8 +108,8 @@ export class DogProfilePage implements OnInit {
     return await modal.present();
   }
 
-  goBack(){
-    this.navCtrl.back();
+  async goBack(){
+    await this.modalCtrl.dismiss();
   }
 
   toggleLike() {

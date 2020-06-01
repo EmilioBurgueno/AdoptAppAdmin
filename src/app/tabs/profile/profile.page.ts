@@ -46,20 +46,20 @@ export class ProfilePage implements OnInit {
     this.navCtrl.navigateForward(['tabs', 'profile', 'active'])
   }
 
+  async openModalDogProfile(dog: string) {
+    const modal = await this.modalCtrl.create({
+    component: DogProfilePage,
+    componentProps: {
+    dID: dog
+    }
+    });
+    return await modal.present();
+  }
+
   logout(): void {
     this.authService.logout().then(() => {
       this.navCtrl.navigateRoot(['']);
     });
-  }
-
-  async openModalDogProfile(dog: string) {
-    const modal = await this.modalCtrl.create({
-      component: DogProfilePage,
-      componentProps: {
-        uID: dog
-      }
-    });
-    return await modal.present();
   }
 
   async openModalEdit(user: string) {
