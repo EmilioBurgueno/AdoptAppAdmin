@@ -96,7 +96,7 @@ export class DeleteProfilePage implements OnInit {
         {
           text: 'Listo',
           handler: () => {
-            //this.navCtrl.navigateRoot(['auth/login']);
+            this.navCtrl.navigateRoot(['auth/login']);
             this.closeModal();
           }
         }
