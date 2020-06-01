@@ -73,49 +73,54 @@ export class EditCredentialsPage implements OnInit {
 
   async updatePassword() {
     await this.presentLoading('Haciendo cambios...');
-    await this.authService.reauthenticate(this.editUserForm.controls.cPassword.value).then(() => {
+    if (this.editUserForm.valid) {
+      await this.authService.reauthenticate(this.editUserForm.controls.cPassword.value).then(() => {
 
-      // if (this.editUserForm.controls.nPassword.value === this.editUserForm.controls.ncPassword.value) {
-      //   try {
-      //     this.authService.changePassword(this.editUserForm.controls.cPassword.value, this.editUserForm.controls.nPassword.value);
-      //     this.closeModal();
-      //   } catch (error) {
-      //     console.log('Se ha producido un error. Intente mas tarde!');
-      //   }
-
-      // } else {
-      //   console.log('Tus contraseñas no coinciden.');
-      // }
-
-      if (this.editUserForm.controls.nPassword.value !== this.editUserForm.controls.ncPassword.value) {
-        this.dismissLoading();
-        this.presentAlert('¡Error!', 'Tus contraseñas no coinciden.');
-
-      } else if (this.editUserForm.controls.nPassword.value.length < 6) {
-        this.dismissLoading();
-        this.presentAlert('¡Error!', 'Tu contraseña tiene que tener al menos 6 caracteres.');
-
-      } else {
-        try {
-          console.log(this.editUserForm.controls.email.value);
-          if (this.editUserForm.controls.email.value === this.user.email) {
-            this.authService.changePassword(this.editUserForm.controls.cPassword.value, this.editUserForm.controls.nPassword.value);
-            this.dismissLoading();
-            this.presentAlertConfirm('¡Exito!', 'Tu contraseña ha sido cambiada correctamente.');
-            this.closeModal();
-          } else {
-            this.authService.changePassword(this.editUserForm.controls.cPassword.value, this.editUserForm.controls.nPassword.value);
-            this.dismissLoading();
-            this.presentAlertConfirm('¡Exito!', 'Tu contraseña ha sido cambiada correctamente. Sin embargo, tu email no ha sido cambiado. Para cambiar de email haz click en el boton "Cambiar Email".');
-            this.closeModal();
+        // if (this.editUserForm.controls.nPassword.value === this.editUserForm.controls.ncPassword.value) {
+        //   try {
+        //     this.authService.changePassword(this.editUserForm.controls.cPassword.value, this.editUserForm.controls.nPassword.value);
+        //     this.closeModal();
+        //   } catch (error) {
+        //     console.log('Se ha producido un error. Intente mas tarde!');
+        //   }
+  
+        // } else {
+        //   console.log('Tus contraseñas no coinciden.');
+        // }
+  
+        if (this.editUserForm.controls.nPassword.value !== this.editUserForm.controls.ncPassword.value) {
+          this.dismissLoading();
+          this.presentAlert('¡Error!', 'Tus contraseñas no coinciden.');
+  
+        } else if (this.editUserForm.controls.nPassword.value.length < 6) {
+          this.dismissLoading();
+          this.presentAlert('¡Error!', 'Tu contraseña tiene que tener al menos 6 caracteres.');
+  
+        } else {
+          try {
+            console.log(this.editUserForm.controls.email.value);
+            if (this.editUserForm.controls.email.value === this.user.email) {
+              this.authService.changePassword(this.editUserForm.controls.cPassword.value, this.editUserForm.controls.nPassword.value);
+              this.dismissLoading();
+              this.presentAlertConfirm('¡Exito!', 'Tu contraseña ha sido cambiada correctamente.');
+              this.closeModal();
+            } else {
+              this.authService.changePassword(this.editUserForm.controls.cPassword.value, this.editUserForm.controls.nPassword.value);
+              this.dismissLoading();
+              this.presentAlertConfirm('¡Exito!', 'Tu contraseña ha sido cambiada correctamente. Sin embargo, tu email no ha sido cambiado. Para cambiar de email haz click en el boton "Cambiar Email".');
+              this.closeModal();
+            }
+          } catch (error) {
+            console.log('Se ha producido un error. Intente mas tarde!');
           }
-        } catch (error) {
-          console.log('Se ha producido un error. Intente mas tarde!');
         }
-      }
-    }).catch((error) => {
-      console.log(error);
-    });
+      }).catch((error) => {
+        console.log(error);
+      });
+    } else {
+      this.dismissLoading();
+      this.presentAlert('¡Error!', 'Tu actual contraseña no es correcta.');
+    }
   }
 
   async presentLoading(body: string) {
