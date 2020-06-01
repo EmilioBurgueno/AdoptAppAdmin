@@ -191,8 +191,8 @@
                 <ion-col size="12">
                     <ion-item>
                         <ion-label position="floating">Foto de perfil</ion-label>
-                        <img src="https://support.apple.com/library/content/dam/edam/applecare/images/en_US/macos/photo-3nav-button-icon.png" (click)="takePicture()">
-                        <ion-input formControlName="profilepic"></ion-input>
+                        <img [src]="displayPhoto || 'https://support.apple.com/library/content/dam/edam/applecare/images/en_US/macos/photo-3nav-button-icon.png' " (click)="takePicture()" >
+                        <ion-input readonly formControlName="profilepic"></ion-input>
                    
                     </ion-item>
                 </ion-col>
