@@ -44,13 +44,13 @@ export class CreateDogProfilePage implements OnInit {
       description: new FormControl(null),
       collar: new FormControl(null),
       status: new FormControl(null, [Validators.required]),
-      //profilepic: new FormControl(null, [Validators.required])
+      profilepic: new FormControl(null, [Validators.required])
     });
   }
 
   async onSubmit(): Promise<void> {
     await this.presentLoading('Creando perfil...');
-
+    console.log("good")
     if (this.createDogForm.valid) {
       const name = this.createDogForm.controls.name.value;
       const sex = this.createDogForm.controls.sex.value;
@@ -62,8 +62,8 @@ export class CreateDogProfilePage implements OnInit {
       const description = this.createDogForm.controls.description.value;
       const collar = this.createDogForm.controls.collar.value;
       const status = this.createDogForm.controls.status.value;
-      //const profilepic = this.createDogForm.controls.profilepic.value;
-
+      const profilepic = this.createDogForm.controls.profilepic.value;
+      console.log("good1")
       try {
         const dog = {
           name,
@@ -76,18 +76,23 @@ export class CreateDogProfilePage implements OnInit {
           description,
           collar,
           status,
-         // profilepic
+         profilepic
         };
+        console.log("good2")
 
         await this.dogService.createDog(dog, this.file);
         this.dismissLoading();
         this.presentAlertConfirm('Felicidades!', 'El perro esta listo para ser adoptado!');
-      } catch (error) {
+        console.log("good3")
+      } catch (error)    
+      {
+        console.log("good4")
         this.dismissLoading();
         this.presentAlert('Algo malo ha pasado', error.message);
       }
 
     } else {
+      console.log("good5")
       this.dismissLoading();
       this.presentAlert('Algo malo ha pasado', 'Por favor llena todos los campos correctamente.');
     }
@@ -124,7 +129,7 @@ export class CreateDogProfilePage implements OnInit {
         {
           text: 'Listo',
           handler: () => {
-            this.navCtrl.navigateRoot(['']);
+            this.navCtrl.navigateRoot(['tabs/feed']);
           }
         }
       ]
