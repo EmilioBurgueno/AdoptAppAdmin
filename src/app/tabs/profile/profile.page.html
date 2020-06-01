@@ -17,7 +17,7 @@
 <ion-content>
   <ion-grid>
     <ion-row>
-      <ion-col size="12">
+      <ion-col size="2" offset="5">
         <ion-avatar>
           <img src="https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=identicon&f=y">
         </ion-avatar>
@@ -25,27 +25,22 @@
     </ion-row>
     
     <ion-row>
-      <ion-col size ="12" class = "ion-text-center">
+      <ion-col size ="12">
         {{user?.fname}} {{user?.lname}}
       </ion-col>
     </ion-row>
     <ion-row>
-      <ion-col size ="12" class = "ion-text-center">
+      <ion-col size ="12">
         {{user?.username}}
-      </ion-col>
-    </ion-row>
-    <ion-row>
-      <ion-col size ="12" class = "ion-text-center">
-        {{user?.age}}
       </ion-col>
     </ion-row>
   </ion-grid>
 
-  <ion-label class="fav">Lista de favoritos</ion-label>
+  <ion-label class="fav">Favoritos</ion-label>
 
   <ion-list>
     <div *ngFor='let dog of favourites'>
-      <ion-item (click)="openModalDogProfile(dog?.id)">
+      <ion-item (click)="goToDesc(dog?.id)">
         <slot name="start">
           <ion-avatar class="dogpic">
             <img [src]='dog?.profilepic'>

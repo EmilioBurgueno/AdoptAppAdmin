@@ -105,7 +105,7 @@ export class DogProfilePage implements OnInit {
   }
 
   goBack(){
-    this.navCtrl.navigateRoot(['tabs/feed']);
+    this.navCtrl.back();
   }
 
   toggleLike() {

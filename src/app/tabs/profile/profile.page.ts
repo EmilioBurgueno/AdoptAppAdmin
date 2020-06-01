@@ -39,7 +39,7 @@ export class ProfilePage implements OnInit {
   }
 
   goToDesc(dogId: String) {
-    this.navCtrl.navigateForward(['tabs', 'feed', dogId])
+    this.navCtrl.navigateForward(['tabs', 'feed', 'dogprofile', dogId])
   }
 
   logout(): void {
