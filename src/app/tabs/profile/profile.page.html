@@ -26,18 +26,19 @@
     </ion-row>
 
     <ion-row>
-      <ion-col size="12">
+      <ion-col size="12" style="text-align: center;font-size: 14px;">
         {{user?.fname}} {{user?.lname}}
       </ion-col>
     </ion-row>
     <ion-row>
-      <ion-col size="12">
+      <ion-col size="12" style="text-align: center; font-size: 14px;">
         {{user?.username}}
       </ion-col>
     </ion-row>
   </ion-grid>
 
-  <ion-button expand="block" fill="solid" (click)="goToActive()">Ver solicitudes de adopción activas</ion-button>
+  <ion-button size="small" expand="full" fill="solid" (click)="goToActive()">Ver solicitudes de adopción activas
+  </ion-button>
 
   <ion-label class="fav">Favoritos</ion-label>
 
