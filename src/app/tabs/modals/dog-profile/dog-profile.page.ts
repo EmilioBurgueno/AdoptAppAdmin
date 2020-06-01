@@ -17,6 +17,7 @@ export class DogProfilePage implements OnInit {
   dog: any;
   detail: any[];
   user: any;
+  dogId: string;
 
   constructor(private dogService: DogService,
               private authService: AuthService,
@@ -27,6 +28,8 @@ export class DogProfilePage implements OnInit {
               private modalCtrl: ModalController) { }
 
   ngOnInit() {
+    this.dogId = this.activatedRouter.snapshot.paramMap.get('dogId');
+    this.getDog(this.dogId);
     this.authService.user$.subscribe((user) => {
       this.user = user
     })
@@ -42,6 +45,15 @@ export class DogProfilePage implements OnInit {
       .catch((error) => {
         this.presentAlert('Algo malo ha pasado', error.message);
       });
+  }
+
+  getDog(dogId: string) {
+    this.dogService.getDog(dogId).subscribe((dogprofile: any) => {
+      if (!dogprofile) {
+        this.navCtrl.navigateRoot(['tabs/feed']);
+      }
+      this.dog = dogprofile;
+    });
   }
 
   async presentAlert(title: string, body: string) {
@@ -90,6 +102,10 @@ export class DogProfilePage implements OnInit {
 
   async closeModalContact() {
     await this.modalCtrl.dismiss();
+  }
+
+  goBack(){
+    this.navCtrl.navigateRoot(['tabs/feed']);
   }
 
   toggleLike() {

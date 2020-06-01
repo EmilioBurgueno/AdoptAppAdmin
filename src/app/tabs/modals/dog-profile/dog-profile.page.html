@@ -1,7 +1,7 @@
 <ion-header>
     <ion-toolbar>
         <ion-buttons slot="start">
-            <ion-button (click)="closeModalContact()">Cerrar</ion-button>
+            <ion-button (click)="goBack()">Cerrar</ion-button>
         </ion-buttons>
         <ion-buttons slot="end">
             <ion-button (click)="deleteDog(dog?.id)">
@@ -13,38 +13,45 @@
 </ion-header>
 
 <ion-content>
-    <ion-grid>
-    <ion-slides pager>
-        <ion-slide>Fotos de perro</ion-slide>
-    </ion-slides>
+    <ion-grid>  
+    <ion-row>
+        <ion-col>
+            <h1>{{dog?.name}}'s profile</h1>
+        </ion-col>
+    </ion-row>
+    
+    
+    <ion-row>
+        <ion-col>
+            <img [src]='dog?.profilepic'>
+        </ion-col>
+    </ion-row>
+
     <ion-buttons>
         <ion-button (click)="openModalEdit(dog?.id)">
             <ion-icon slot="icon-only" name="create-outline"></ion-icon>
         </ion-button>
+        <ion-button (click)="openModalContact()" class="ion-no-padding ion-no-margin" fill="clear">
+            <ion-icon name="paw-outline"></ion-icon>
+        </ion-button>
+        <ion-button (click)="toggleLike()" class="ion-no-padding ion-no-margin" fill="clear">
+            <ion-icon *ngIf="!user?.favourites.includes(dog?.id)" slot="icon-only" name="heart-outline"></ion-icon>
+            <ion-icon *ngIf="user?.favourites.includes(dog?.id)" slot="icon-only" name="heart" class="liked"></ion-icon>
+        </ion-button>
+        &nbsp;
     </ion-buttons>
-
-    <ion-row>
-        <ion-col>
-            <ion-button (click)="toggleLike()" class="ion-no-padding ion-no-margin" fill="clear">
-                <ion-icon *ngIf="!user?.favourites.includes(dog?.id)" slot="icon-only" name="heart-outline"></ion-icon>
-                <ion-icon *ngIf="user?.favourites.includes(dog?.id)" slot="icon-only" name="heart" class="liked"></ion-icon>
-            </ion-button>
-            &nbsp;
-        </ion-col>
-    </ion-row>
-
-    <ion-row>
-        <ion-col>
-            <ion-button (click)="openModalContact()" class="ion-no-padding ion-no-margin" fill="clear">
-                <ion-icon name="paw-outline"></ion-icon>
-            </ion-button>
-        </ion-col>
-    </ion-row>
-    
+ 
     <ion-row>
         <ion-col>
             <h1>{{dog?.name}}</h1>
             <p>{{dog?.breed}}</p>
+            <p>{{dog?.sex}}</p>
+            <p>{{dog?.size}}</p>
+            <p>{{dog?.age}}</p>
+            <p>Encontrado: {{dog?.fplace | date:"MM/dd/yy" }}</p>
+            <p>{{dog?.description}}</p>
+            <p>{{dog?. collar}}</p>
+            <p>Status: {{dog?.status}}</p>
             <p>{{dog?.idPerrera}}</p>
         </ion-col>
     </ion-row>

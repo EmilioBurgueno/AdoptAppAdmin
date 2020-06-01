@@ -23,7 +23,10 @@ const routes: Routes = [
             path: '',
             loadChildren: () => import('./feed/feed.module').then( m => m.FeedPageModule)
           },
-          
+          {
+            path: 'dogprofile/:dogId',
+            loadChildren: () => import('./modals/dog-profile/dog-profile.module').then( m => m.DogProfilePageModule)
+          }
         ]
       },
       {
@@ -63,10 +66,10 @@ const routes: Routes = [
     path: 'delete-profile',
     loadChildren: () => import('./modals/delete-profile/delete-profile.module').then( m => m.DeleteProfilePageModule)
   },
-  {
-    path: 'dogprofile:id',
-      loadChildren: () => import('./modals/dog-profile/dog-profile.module').then( m => m.DogProfilePageModule)
-  }// Emilio ??? Me preguntaste algo no? Ahh NO
+  // {
+  //   path: 'dogprofile:id',
+  //     loadChildren: () => import('./modals/dog-profile/dog-profile.module').then( m => m.DogProfilePageModule)
+  // }
   // },
   // {
   //   path: 'edit-profile',
