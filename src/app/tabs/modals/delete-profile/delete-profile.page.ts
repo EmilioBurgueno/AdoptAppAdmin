@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { AuthService } from 'src/app/services/auth.service';
-import { NavController, AlertController, LoadingController } from '@ionic/angular';
+import { NavController, AlertController, LoadingController, NavParams, ModalController } from '@ionic/angular';
+import { UserService } from 'src/app/services/user.service';
+import { User } from 'src/models/user.model';
 
 @Component({
   selector: 'app-delete-profile',
@@ -9,6 +11,10 @@ import { NavController, AlertController, LoadingController } from '@ionic/angula
 })
 export class DeleteProfilePage implements OnInit {
 
+  @Input() uID: string;
+
+  user: User;
+
   loadingIndicator;
   loading = false;
   public password: string = "";
@@ -16,10 +22,21 @@ export class DeleteProfilePage implements OnInit {
 
   constructor(private afa: AuthService,
     private navCtrl: NavController,
+    private navParams: NavParams,
     private alertCtrl: AlertController,
-    private loadingCtrl: LoadingController) { }
+    private loadingCtrl: LoadingController,
+    private modalCtrl: ModalController,
+    private userService: UserService) { }
 
   ngOnInit() {
+    const uID = this.navParams.get('uID');
+    this.getUser(uID);
+  }
+
+  getUser(userId: string) {
+    this.userService.getUser(userId).subscribe((user) => {
+      this.user = user as User;
+    })
   }
 
   async deleteAccount(): Promise<void> {
@@ -27,6 +44,7 @@ export class DeleteProfilePage implements OnInit {
 
     if (this.password != "") {
       try {
+        await this.userService.deleteUser(this.user.id.toString());
         await this.afa.deleteUser(this.password);
         this.dismissLoading();
         this.presentAlertConfirm('La cuenta ha sido eliminada', 'Regresaras a la pagina de inicio de sesión');
@@ -37,8 +55,12 @@ export class DeleteProfilePage implements OnInit {
     }
     else {
       this.dismissLoading();
-      this.presentAlert('Informacion incompleta', 'Por favor llena la informacion correctamente.');
+      this.presentAlert('Información incompleta', 'Por favor llena la informacion correctamente.');
     }
+  }
+
+  async closeModal() {
+    await this.modalCtrl.dismiss();
   }
 
 
@@ -74,6 +96,7 @@ export class DeleteProfilePage implements OnInit {
           text: 'Listo',
           handler: () => {
             this.navCtrl.navigateRoot(['auth/login']);
+            this.closeModal();
           }
         }
       ]

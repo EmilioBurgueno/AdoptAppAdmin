@@ -58,8 +58,7 @@ export class EditCredentialsPage implements OnInit {
         this.presentAlert('¡Error!', 'Este email ya existe. Ingresa uno nuevo.');
       } else {
         const updatedUser = {
-          email: this.user.email,
-          ...this.editUserForm.value
+          email: this.editUserForm.controls.email.value
         };
 
         await this.authService.reauthenticate(this.editUserForm.controls.cPassword.value).then(() => {
