@@ -8,5 +8,6 @@ export interface User {
     address: String,
     phone: String,
     profilepic: String,
-    favourites: String[]
+    favourites: String[],
+    actives: String[]
 }

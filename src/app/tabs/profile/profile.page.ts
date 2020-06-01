@@ -28,7 +28,6 @@ export class ProfilePage implements OnInit {
     private userService: UserService,
     private modalCtrl: ModalController,
     private navCtrl: NavController,
-    private dogService: DogService,
     private actionSheetCtrl: ActionSheetController,
     private alertCtrl: AlertController,
     private loadingCtrl: LoadingController) { }
@@ -36,21 +35,12 @@ export class ProfilePage implements OnInit {
   async ngOnInit() {
     await this.authService.user$.subscribe((user) => {
       this.user = user
+      this.getFavourites()
     })
-    setTimeout(() => this.getFavourites(), 5000)
   }
 
   getFavourites() {
-    const favDogs = this.user.favourites;
-    favDogs.forEach(favDog => {
-      this.dogService.getDog(favDog).subscribe((dog: any) => {
-        this.favourites.push(dog);
-      })
-    });
-  }
-
-  goToDesc(dogId: String) {
-    this.navCtrl.navigateForward(['tabs', 'feed', 'dogprofile', dogId])
+    this.favourites = this.userService.getFavourites(this.user)
   }
 
   logout(): void {

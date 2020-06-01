@@ -31,14 +31,4 @@ export class FeedPage implements OnInit {
   goToDesc(dogId: String) {
     this.navCtrl.navigateForward(['tabs', 'feed', 'dogprofile', dogId])
   }
-
-  async openModalDogProfile(dogId: string) {
-    const modal = await this.modalCtrl.create({
-      component: DogProfilePage,
-      componentProps: {
-        uID: dogId
-      }
-    });
-    return await modal.present();
-  }
 }

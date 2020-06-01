@@ -3,6 +3,7 @@ import { map } from 'rxjs/operators'
 import { AngularFirestore } from '@angular/fire/firestore';
 import { AngularFireStorage } from '@angular/fire/storage';
 import { firestore } from 'firebase';
+import { DogService } from './dog.service';
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +11,8 @@ import { firestore } from 'firebase';
 export class UserService {
 
   constructor(private afs: AngularFirestore,
-    private afStorage: AngularFireStorage) { }
+    private afStorage: AngularFireStorage,
+    private dogService: DogService) { }
 
 
   createUser(user: any) {
@@ -113,5 +115,15 @@ export class UserService {
 
       transaction.update(userRef, { favourites: unfavDog })
     })
+  }
+
+  getFavourites(user: any) {
+    var favDogs: any[] = []
+    user.favourites.forEach(favDog => {
+      this.dogService.getDog(favDog).subscribe((dog: any) => {
+        favDogs.push(dog);
+      })
+    });
+    return favDogs
   }
 }
