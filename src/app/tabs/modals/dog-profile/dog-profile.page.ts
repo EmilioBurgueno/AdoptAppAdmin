@@ -90,7 +90,7 @@ export class DogProfilePage implements OnInit {
         {
           text: 'Listo',
           handler: () => {
-            this.navCtrl.navigateRoot(['tabs/feed']);
+            this.goBack();
           }
         }
       ]

@@ -18,7 +18,7 @@ export class UserService {
   createUser(user: any) {
     return this.afs.doc(`users/${user.id}`).set(user);
   }
-  
+
   getUser(uid: string) {
     return this.afs.doc(`users/${uid}`).valueChanges();
   }
@@ -122,7 +122,12 @@ export class UserService {
     var favDogs: any[] = []
     user.favourites.forEach(favDog => {
       this.dogService.getDog(favDog).subscribe((dog: any) => {
-        favDogs.push(dog);
+        if (dog != undefined) {
+          favDogs.push(dog);
+        } else {
+          user.favourites.splice(user.favourites.indexOf(favDog), 1)
+          this.updateUser(user.id, { favourites: user.favourites })
+        }
       })
     });
     return favDogs
@@ -150,7 +155,12 @@ export class UserService {
     var actDogs: any[] = []
     user.actives.forEach(actDog => {
       this.dogService.getDog(actDog).subscribe((dog: any) => {
-        actDogs.push(dog);
+        if (dog != undefined) {
+          actDogs.push(dog);
+        } else {
+          user.favourites.splice(user.favourites.indexOf(actDog), 1)
+          this.updateUser(user.id, { favourites: user.favourites })
+        }
       })
     });
     return actDogs
