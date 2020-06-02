@@ -75,6 +75,7 @@ export class UserService {
         const task = this.afStorage.upload(filePath, image);
         await task.snapshotChanges().toPromise();
         const pictureUrl = await this.afStorage.ref(filePath).getDownloadURL().toPromise()
+        console.log(pictureUrl);
         await this.updateUser(uid, { pictureUrl })
 
         resolve(true);

@@ -45,13 +45,13 @@ export class DogService {
     return task.snapshotChanges().toPromise();
   }
 
-  async removeProfilePicture(uid: string) {
+  async removeProfilePicture(dId: string) {
     return new Promise(async (resolve, reject) => {
       try {
-        const filePath = `profilePictures/${uid}.jpeg`;
+        const filePath = `dogs/${dId}/profilepic.jpeg`;
         const task = this.afsStorage.ref(filePath).delete();
         await task.toPromise();
-        await this.updateDog(uid, { pictureUrl: null })
+        await this.updateDog(dId, { pictureUrl: null });
 
         resolve(true);
       } catch (error) {

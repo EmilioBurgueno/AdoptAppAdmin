@@ -41,6 +41,7 @@ export class DogProfilePage implements OnInit {
   }
 
   deleteDog(dogId: string) {
+    this.removePicture();
     this.dogService
       .deleteDog(dogId)
       .then(() => {
@@ -50,6 +51,16 @@ export class DogProfilePage implements OnInit {
       .catch((error) => {
         this.presentAlert('Algo malo ha pasado', error.message);
       });
+  }
+
+  removePicture(): Promise<boolean> {
+
+    this.dogService.removeProfilePicture(this.dog.id.toString()).then(() => {
+      console.log('Se ha removido exitosamente.');
+    }).catch((error) => {
+      console.log('Error');
+    });
+    return;
   }
 
   getDog(dogId: string) {

@@ -19,7 +19,6 @@ export class ProfilePage implements OnInit {
   user: any;
   favourites: Dog[] = [];
 
-  profileUser: any;
   loadingIndicator: any;
   loading = false
 
@@ -33,8 +32,7 @@ export class ProfilePage implements OnInit {
 
   async ngOnInit() {
     await this.authService.user$.subscribe((user) => {
-      this.profileUser = user;
-      this.user = user
+      this.user = user;
       this.getFavourites()
     })
   }
@@ -86,11 +84,11 @@ export class ProfilePage implements OnInit {
     const imageBlob = this.base64toBlob(image.base64String);
     const file = new File([imageBlob], 'test.jpeg', { type: 'image/jpeg' });
 
-    await this.presentLoading('Changing your profile picture...');
+    await this.presentLoading('Cambiando tu Foto de Perfil...');
 
-    this.userService.uploadProfilePicture(this.profileUser.id, file).then(() => {
+    this.userService.uploadProfilePicture(this.user.id, file).then(() => {
       this.dismissLoading();
-      this.presentAlert('Done!', 'Your profile picture has been changed successfully.');
+      this.presentAlert('Hecho!', 'Tu foto de perfil ha sido cambiada con exito.');
     }).catch((error) => {
       this.dismissLoading();
       this.presentAlert('Error', error.message);
@@ -112,19 +110,19 @@ export class ProfilePage implements OnInit {
   }
 
   async removePicture(): Promise<boolean> {
-    await this.presentLoading('Removing your profile picture...');
+    await this.presentLoading('Removiendo tu Foto de Perfil...');
 
-    if (this.profileUser.pictureUrl) {
-      this.userService.removeProfilePicture(this.profileUser.id).then(() => {
+    if (this.user.pictureUrl) {
+      this.userService.removeProfilePicture(this.user.id).then(() => {
         this.dismissLoading();
-        this.presentAlert('Done!', 'Your profile picture has been removed successfully.');
+        this.presentAlert('Hecho!', 'Tu foto de perfil ha sido removida con exito!');
       }).catch((error) => {
         this.dismissLoading();
         this.presentAlert('Error', error.message);
       });
     } else {
       this.dismissLoading();
-      this.presentAlert('Error', `You don't have a profile picture yet.`);
+      this.presentAlert('Error', `No tienes foto de perfil.`);
     }
 
     return;
@@ -132,22 +130,22 @@ export class ProfilePage implements OnInit {
 
   async presentActionSheet() {
     const actionSheet = await this.actionSheetCtrl.create({
-      header: 'Change Profile Photo',
+      header: 'Cambiar Foto de Perfil',
       buttons: [
         {
-          text: 'Remove Current Photo',
+          text: 'Remover Foto Actual',
           handler: () => this.removePicture()
         },
         {
-          text: 'Take Photo',
+          text: 'Tomar Foto',
           handler: () => this.getPicture(CameraSource.Camera)
         },
         {
-          text: 'Choose from Library',
+          text: 'Elegir de Galeria',
           handler: () => this.getPicture(CameraSource.Photos)
         },
         {
-          text: 'Cancel',
+          text: 'Cancelar',
           role: 'cancel'
         }
       ]
@@ -172,7 +170,7 @@ export class ProfilePage implements OnInit {
     const alert = await this.alertCtrl.create({
       header: title,
       message: body,
-      buttons: ['Got It']
+      buttons: ['Listo!']
     });
 
     await alert.present();
