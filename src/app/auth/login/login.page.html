@@ -6,16 +6,16 @@
 
 <ion-content>
     <div class="header-container">
-        <h1>AdoptApp</h1>
-       <div class="logo">
-        <img src="https://i.ibb.co/h9M02BT/AdoptApp.jpg"  width="250" height="250">
-       </div>
+        <!-- <h1>AdoptApp</h1> -->
+        <div class="logo">
+            <img src="https://i.ibb.co/h9M02BT/AdoptApp.jpg" width="250" height="250">
+        </div>
         <p>¡Entra ya para para comenzar tu búsqueda de un nuevo compañero!
-        <p>
+            <p>
     </div>
 
-   
-  
+
+
 
     <form [formGroup]="logInForm">
         <ion-grid>
@@ -31,8 +31,7 @@
                 <ion-col size="12">
                     <ion-item class="password">
                         <!-- <ion-label position="floating">Contraseña</ion-label> -->
-                        <ion-input formControlName="password" placeholder= "Contraseña" [type]="showPassword ? 'text' : 'password'"
-                            clearOnEdit="false"></ion-input>
+                        <ion-input formControlName="password" placeholder="Contraseña" [type]="showPassword ? 'text' : 'password'" clearOnEdit="false"></ion-input>
                         <button (click)="onPasswordToggle()" ion-button clear small item-end icon-only>
                             <ion-icon [name]="showPassword ? 'eye-off-outline' : 'eye-outline'"></ion-icon>
                         </button>
@@ -41,9 +40,9 @@
             </ion-row>
             <ion-row class="login">
                 <ion-col size="12">
-                        <ion-button size= "small"  expand="block" fill="solid" color="primary" (click)="onSubmit()">Iniciar Sesión
-                        </ion-button>
-                        <ion-button size= "small" class="forget" expand="block" fill="none" color="primary" (click)="forgotPassword()">¿Olvidaste tu Contraseña?</ion-button>
+                    <ion-button size="small" expand="block" fill="solid" color="primary" (click)="onSubmit()">Iniciar Sesión
+                    </ion-button>
+                    <ion-button size="small" class="forget" expand="block" fill="none" color="primary" (click)="forgotPassword()">¿Olvidaste tu Contraseña?</ion-button>
                 </ion-col>
             </ion-row>
         </ion-grid>
