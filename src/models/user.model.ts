@@ -1,13 +1,10 @@
 export interface User {
     id: String,
-    fname: String,
-    lname: String,
-    birthdate: String,
+    nameDogPound: String,
     email: String,
     username: String,
     address: String,
-    phone: String,
+    phone: String
     profilepic: String,
-    favourites: String[],
-    actives: String[]
+    myDogs: String[]
 }

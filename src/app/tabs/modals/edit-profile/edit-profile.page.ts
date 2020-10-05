@@ -65,9 +65,7 @@ export class EditProfilePage implements OnInit {
 
   patchForm() {
     this.editUserForm.patchValue({
-      fname: this.user.fname,
-      lname: this.user.lname,
-      birthday: this.user.birthdate,
+      nameDogPound: this.user.nameDogPound,
       address: this.user.address,
       phone: this.user.phone
     })
@@ -75,10 +73,8 @@ export class EditProfilePage implements OnInit {
 
   initForm() {
     this.editUserForm = new FormGroup({
-      fname: new FormControl(null, [Validators.required]),
-      lname: new FormControl(null, [Validators.required]),
+      nameDogPound: new FormControl(null, [Validators.required]),
       address: new FormControl(null, [Validators.required]),
-      birthday: new FormControl(null, [Validators.required]),
       phone: new FormControl(null, [Validators.required])
     });
   }

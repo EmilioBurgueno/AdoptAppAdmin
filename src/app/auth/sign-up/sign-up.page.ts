@@ -48,10 +48,8 @@ export class SignUpPage implements OnInit {
 
   initForm() {
     this.signUpForm = new FormGroup({
-      fname: new FormControl(null, [Validators.required]),
-      lname: new FormControl(null, [Validators.required]),
+      nameDogPound: new FormControl(null, [Validators.required]),
       address: new FormControl(null, [Validators.required]),
-      birthday: new FormControl(null, [Validators.required]),
       phone: new FormControl(null, [Validators.required]),
       username: new FormControl(null, [Validators.required, Validators.minLength(6)]),
       email: new FormControl(null, [Validators.required, Validators.email]),
@@ -64,10 +62,8 @@ export class SignUpPage implements OnInit {
     await this.presentLoading('Creando tu cuenta...');
     if (this.signUpForm.valid) {
 
-      const fname = this.signUpForm.controls.fname.value;
-      const lname = this.signUpForm.controls.lname.value;
+      const nameDogPound = this.signUpForm.controls.fname.value;
       const address = this.signUpForm.controls.address.value;
-      const birthdate = this.signUpForm.controls.birthday.value;
       const phone = this.signUpForm.controls.phone.value;
       const username = this.signUpForm.controls.username.value;
       const email = this.signUpForm.controls.email.value;
@@ -81,15 +77,12 @@ export class SignUpPage implements OnInit {
   
           const user = {
             id: credentials.user.uid,
-            fname,
-            lname,
-            birthdate,
+            nameDogPound,
             email,
             username,
             address,
-            phone,
-            favourites: [] as string[],
-            actives: [] as string[]
+            phone
+            //myDogs: [] as string[],
           };
   
           await this.userService.createUser(user);

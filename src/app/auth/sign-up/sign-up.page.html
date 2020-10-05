@@ -10,7 +10,7 @@
 <ion-content>
     <div class="header-container">
         <!-- <h1>AdoptApp</h1> -->
-        <p>¡Registrate para comenzar tu búsqueda de un nuevo compañero!</p>
+        <p>¡Registrate para ayudar a darle un hogar a todos esos perros!</p>
     </div>
 
     <form [formGroup]="signUpForm">
@@ -18,17 +18,8 @@
             <ion-row>
                 <ion-col size="12">
                     <ion-item>
-                        <ion-label position="floating">Nombre(s)</ion-label>
-                        <ion-input formControlName="fname" placeholder="Shaggy"></ion-input>
-                    </ion-item>
-                </ion-col>
-            </ion-row>
-
-            <ion-row>
-                <ion-col size="12">
-                    <ion-item>
-                        <ion-label position="floating">Apellidos</ion-label>
-                        <ion-input formControlName="lname" placeholder="Rogers"></ion-input>
+                        <ion-label position="floating">Nombre de Perrera</ion-label>
+                        <ion-input formControlName="nameDogPound" placeholder="Perrera Municipal"></ion-input>
                     </ion-item>
                 </ion-col>
             </ion-row>
@@ -37,16 +28,7 @@
                 <ion-col size="12">
                     <ion-item>
                         <ion-label position="floating">Dirección</ion-label>
-                        <ion-input formControlName="address" placeholder="Calle Fantasma 123, Crystal Cove"></ion-input>
-                    </ion-item>
-                </ion-col>
-            </ion-row>
-
-            <ion-row>
-                <ion-col size="12">
-                    <ion-item>
-                        <ion-label position="floating">Fecha de nacimiento</ion-label>
-                        <ion-datetime formControlName="birthday" displayFormat="DD MM YYYY" placeholder="Ingresa una fecha"></ion-datetime>
+                        <ion-input formControlName="address" placeholder="Calle Alvaro Obregon 123, Blvd. Rosas Magallon"></ion-input>
                     </ion-item>
                 </ion-col>
             </ion-row>
@@ -64,7 +46,7 @@
                 <ion-col size="12">
                     <ion-item>
                         <ion-label position="floating">Nombre de usuario</ion-label>
-                        <ion-input formControlName="username" placeholder="Zoinks01"></ion-input>
+                        <ion-input formControlName="username" placeholder="Perrera01"></ion-input>
                     </ion-item>
                 </ion-col>
             </ion-row>
@@ -73,7 +55,7 @@
                 <ion-col size="12">
                     <ion-item>
                         <ion-label position="floating">Email</ion-label>
-                        <ion-input formControlName="email" placeholder="shaggyr@mystery.com"></ion-input>
+                        <ion-input formControlName="email" placeholder="perrera@tijuana.com"></ion-input>
                     </ion-item>
                 </ion-col>
             </ion-row>
