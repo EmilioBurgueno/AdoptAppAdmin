@@ -62,7 +62,7 @@ export class SignUpPage implements OnInit {
     await this.presentLoading('Creando tu cuenta...');
     if (this.signUpForm.valid) {
 
-      const nameDogPound = this.signUpForm.controls.fname.value;
+      const nameDogPound = this.signUpForm.controls.nameDogPound.value;
       const address = this.signUpForm.controls.address.value;
       const phone = this.signUpForm.controls.phone.value;
       const username = this.signUpForm.controls.username.value;

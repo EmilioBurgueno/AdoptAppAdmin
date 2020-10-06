@@ -4,7 +4,7 @@ export interface User {
     email: String,
     username: String,
     address: String,
-    phone: String
+    phone: String,
     profilepic: String,
     myDogs: String[]
 }
