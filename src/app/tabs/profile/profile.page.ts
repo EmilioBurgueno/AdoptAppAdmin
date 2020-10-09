@@ -33,13 +33,13 @@ export class ProfilePage implements OnInit {
   async ngOnInit() {
     await this.authService.user$.subscribe((user) => {
       this.user = user;
-      this.getFavourites()
+      //this.getFavourites()
     })
   }
 
-  getFavourites() {
-    this.favourites = this.userService.getFavourites(this.user)
-  }
+  // getFavourites() {
+  //   this.favourites = this.userService.getFavourites(this.user)
+  // }
 
   goToActive() {
     this.navCtrl.navigateForward(['tabs', 'profile', 'active'])

@@ -118,20 +118,20 @@ export class UserService {
     })
   }
 
-  getFavourites(user: any) {
-    var favDogs: any[] = []
-    user.favourites.forEach(favDog => {
-      this.dogService.getDog(favDog).subscribe((dog: any) => {
-        if (dog != undefined) {
-          favDogs.push(dog);
-        } else {
-          user.favourites.splice(user.favourites.indexOf(favDog), 1)
-          this.updateUser(user.id, { favourites: user.favourites })
-        }
-      })
-    });
-    return favDogs
-  }
+  // getFavourites(user: any) {
+  //   var favDogs: any[] = []
+  //   user.favourites.forEach(favDog => {
+  //     this.dogService.getDog(favDog).subscribe((dog: any) => {
+  //       if (dog != undefined) {
+  //         favDogs.push(dog);
+  //       } else {
+  //         user.favourites.splice(user.favourites.indexOf(favDog), 1)
+  //         this.updateUser(user.id, { favourites: user.favourites })
+  //       }
+  //     })
+  //   });
+  //   return favDogs
+  // }
 
   actDog(user: any, did: string) {
     return this.afs.firestore.runTransaction(async transaction => {
