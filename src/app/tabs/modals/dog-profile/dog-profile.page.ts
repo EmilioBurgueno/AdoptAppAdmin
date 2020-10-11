@@ -16,10 +16,12 @@ export class DogProfilePage implements OnInit {
 
 
   @Input() dID: string;
+  @Input() uID: string;
   dog: any;
   detail: any[];
   user: any;
   dogId: string;
+  userId: string;
 
   constructor(private dogService: DogService,
               private authService: AuthService,
@@ -31,10 +33,10 @@ export class DogProfilePage implements OnInit {
               private navParams: NavParams) { }
 
   ngOnInit() {
-    // this.dogId = this.activatedRouter.snapshot.paramMap.get('dogId');
-    // this.getDog(this.dogId);
     const dID = this.navParams.get('dID');
     this.getDog(dID)
+    const uID = this.navParams.get('uID');
+    this.getUser(uID)
     this.authService.user$.subscribe((user) => {
       this.user = user
     })
@@ -69,6 +71,15 @@ export class DogProfilePage implements OnInit {
         this.navCtrl.navigateRoot(['tabs/feed']);
       }
       this.dog = dogprofile;
+    });
+  }
+
+  getUser(userId: string) {
+    this.userService.getUser(userId).subscribe((userprofile: any) => {
+      if (!userprofile) {
+        this.navCtrl.navigateRoot(['tabs/feed']);
+      }
+      this.user = userprofile;
     });
   }
 

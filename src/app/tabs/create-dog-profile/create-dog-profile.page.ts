@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Plugins, CameraResultType, CameraSource } from '@capacitor/core';
 import { DomSanitizer } from '@angular/platform-browser';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-create-dog-profile',
@@ -22,6 +23,7 @@ export class CreateDogProfilePage implements OnInit {
 
 
   constructor(private dogService: DogService,
+    
     private navCtrl: NavController,
     private router: Router,
     private alertCtrl: AlertController,
@@ -30,6 +32,7 @@ export class CreateDogProfilePage implements OnInit {
 
   ngOnInit() {
     this.initForm();
+    
   }
 
   initForm() {
@@ -74,7 +77,7 @@ export class CreateDogProfilePage implements OnInit {
           description,
           collar,
           status,
-         profilepic
+          profilepic
         };
         await this.dogService.createDog(dog, this.file);
         this.dismissLoading();

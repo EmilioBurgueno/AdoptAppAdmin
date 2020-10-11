@@ -36,11 +36,13 @@
         </ion-row>
     </ion-grid>
 
-    <ion-button size="small" expand="full" fill="solid" (click)="goToActive()">Ver solicitudes de adopción activas
-    </ion-button>
+     <!--  Aqui esta el listado de favoritos y las adopciones activas. Fueron removidas ya que no se necesitan en esta App
+    <ion-button size="small" expand="full" fill="solid" (click)="goToActive()">Ver solicitudes de adopción activas </ion-button>
 
+   
     <ion-label class="fav">Favoritos</ion-label>
 
+    
     <ion-list>
         <div *ngFor='let dog of favourites'>
             <ion-item (click)="openModalDogProfile(dog?.id)">
@@ -65,5 +67,6 @@
             </ion-item>
         </div>
     </ion-list>
+    -->
 
 </ion-content>
