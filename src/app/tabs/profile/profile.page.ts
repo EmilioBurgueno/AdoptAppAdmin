@@ -20,21 +20,21 @@ export class ProfilePage implements OnInit {
   favourites: Dog[] = [];
 
   loadingIndicator: any;
-  loading = false
+  loading = false;
 
   constructor(private authService: AuthService,
-    private userService: UserService,
-    private modalCtrl: ModalController,
-    private navCtrl: NavController,
-    private actionSheetCtrl: ActionSheetController,
-    private alertCtrl: AlertController,
-    private loadingCtrl: LoadingController) { }
+              private userService: UserService,
+              private modalCtrl: ModalController,
+              private navCtrl: NavController,
+              private actionSheetCtrl: ActionSheetController,
+              private alertCtrl: AlertController,
+              private loadingCtrl: LoadingController) { }
 
   async ngOnInit() {
     await this.authService.user$.subscribe((user) => {
       this.user = user;
-      //this.getFavourites()
-    })
+      // this.getFavourites()
+    });
   }
 
   // getFavourites() {
@@ -42,7 +42,7 @@ export class ProfilePage implements OnInit {
   // }
 
   goToActive() {
-    this.navCtrl.navigateForward(['tabs', 'profile', 'active'])
+    this.navCtrl.navigateForward(['tabs', 'profile', 'active']);
   }
 
   async openModalDogProfile(dog: string) {
@@ -70,8 +70,6 @@ export class ProfilePage implements OnInit {
     });
     return await modal.present();
   }
-
-  
 
   async getPicture(source: CameraSource): Promise<boolean> {
     const image = await Plugins.Camera.getPhoto({

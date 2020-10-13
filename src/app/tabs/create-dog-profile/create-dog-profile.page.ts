@@ -23,16 +23,14 @@ export class CreateDogProfilePage implements OnInit {
 
 
   constructor(private dogService: DogService,
-    
-    private navCtrl: NavController,
-    private router: Router,
-    private alertCtrl: AlertController,
-    private loadingCtrl: LoadingController,
-    private sanitizer: DomSanitizer) { }
+              private navCtrl: NavController,
+              private router: Router,
+              private alertCtrl: AlertController,
+              private loadingCtrl: LoadingController,
+              private sanitizer: DomSanitizer) { }
 
   ngOnInit() {
     this.initForm();
-    
   }
 
   initForm() {
@@ -84,9 +82,7 @@ export class CreateDogProfilePage implements OnInit {
         this.presentAlertConfirm('Felicidades!', 'El perro esta listo para ser adoptado!');
         this.createDogForm.reset();
         this.resetView();
-        
-      } catch (error)    
-      {
+      } catch (error) {
         this.dismissLoading();
         this.presentAlert('Algo malo ha pasado', error.message);
       }
@@ -123,7 +119,7 @@ export class CreateDogProfilePage implements OnInit {
   async presentAlertConfirm(title: string, body: string) {
     const alert = await this.alertCtrl.create({
       header: title,
-      message: body,  
+      message: body,
       buttons: [
         {
           text: 'Listo',
@@ -150,8 +146,8 @@ export class CreateDogProfilePage implements OnInit {
 
     const imageBlob = this.base64toBlob(image.base64String);
     this.file = new File([imageBlob], 'test.jpeg', { type: 'image/jpeg' });
-    this.createDogForm.get("profilepic").setValue("Foto tomada!");
-    this.createDogForm.get("profilepic").updateValueAndValidity();
+    this.createDogForm.get('profilepic').setValue('Foto tomada!');
+    this.createDogForm.get('profilepic').updateValueAndValidity();
   }
 
   base64toBlob(dataURI: string) {

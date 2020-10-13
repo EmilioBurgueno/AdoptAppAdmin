@@ -38,7 +38,7 @@ export class EditDogPage implements OnInit {
 
   ngOnInit() {
     const dID = this.navParams.get('dID');
-    this.getDog(dID)
+    this.getDog(dID);
     this.initForm();
   }
 
@@ -83,7 +83,7 @@ export class EditDogPage implements OnInit {
       description: this.dog.description,
       collar: this.dog.collar,
       status: this.dog.status,
-      //profilepic: this.dog.profilepic
+      profilepic: this.dog.profilepic
     });
   }
 
@@ -96,10 +96,10 @@ export class EditDogPage implements OnInit {
       age: new FormControl(null, [Validators.required]),
       fplace: new FormControl(null, [Validators.required]),
       found: new FormControl(null, [Validators.required]),
-      description: new FormControl(null,),
-      collar: new FormControl(null,),
+      description: new FormControl(null, ) ,
+      collar: new FormControl(null, ) ,
       status: new FormControl(null, [Validators.required]),
-      //profilepic: new FormControl(null, [Validators.required])
+      profilepic: new FormControl(null, [Validators.required])
     });
   }
 
@@ -147,88 +147,83 @@ export class EditDogPage implements OnInit {
     await alert.present();
   }
 
-  // async getPicture(source: CameraSource): Promise<boolean> {
-  //   const image = await Plugins.Camera.getPhoto({
-  //     quality: 100,
-  //     allowEditing: false,
-  //     resultType: CameraResultType.Base64,
-  //     source
-  //   });
+  async takePicture(source: CameraSource): Promise<boolean> {
+    const image = await Plugins.Camera.getPhoto({
+      quality: 100,
+      allowEditing: false,
+      resultType: CameraResultType.Base64,
+      source
+    });
 
-  //   const base64 = `data:image/${image.format};base64, ${image.base64String}`;
-  //   this.displayPhoto = this.sanitizer.bypassSecurityTrustResourceUrl(base64);
+    const base64 = `data:image/${image.format};base64, ${image.base64String}`;
+    this.displayPhoto = this.sanitizer.bypassSecurityTrustResourceUrl(base64);
 
-  //   const imageBlob = this.base64toBlob(image.base64String);
-  //   const file = new File([imageBlob], 'test.jpeg', { type: 'image/jpeg' });
+    const imageBlob = this.base64toBlob(image.base64String);
+    this.file = new File([imageBlob], 'test.jpeg', { type: 'image/jpeg' });
+    this.editDogForm.get('profilepic').setValue('Foto tomada!');
+    this.editDogForm.get('profilepic').updateValueAndValidity();
 
-  //   this.editDogForm.get("profilepic").setValue("Foto tomada!");
-  //   this.editDogForm.get("profilepic").updateValueAndValidity();
+    return;
+  }
 
-  //   await this.presentLoading('Cambiando la foto de perfil del perro...');
+  base64toBlob(dataURI: string) {
+    const byteString = window.atob(dataURI);
+    const arrayBuffer = new ArrayBuffer(byteString.length);
+    const int8Array = new Uint8Array(arrayBuffer);
+    for (let i = 0; i < byteString.length; i++) {
+      int8Array[i] = byteString.charCodeAt(i);
+    }
+    const blob = new Blob([int8Array], { type: 'image/jpeg' });
 
-  //   this.dogService.uploadDogImage(this.dog.id, file).then(() => {
-  //     //this.afStorage.ref(`dogs/${this.dog.id}/profilepic.jpeg`).getDownloadURL().toPromise();
-  //     //this.dog.profilepic = this.afStorage.ref(`dogs/${this.dog.id}/profilepic.jpeg`).getDownloadURL().toPromise();
-  //     console.log(this.afStorage.ref(`dogs/${this.dog.id}/profilepic.jpeg`).getDownloadURL().toPromise());
-  //     this.dismissLoading();
-  //     this.presentAlert('Hecho!', 'La foto de perfil del perro ha sido cambiada con exito.');
-  //     console.log(this.dog.profilepic)});
-  //   // }).catch((error) => {
-  //   //   this.dismissLoading();
-  //   //   console.log(error);
-  //   //   //this.presentAlert('Error', error.message);
-  //   // });
+    return blob;
+  }
 
-  //   return;
-  // }
+  resetView(): void {
+    this.file = undefined;
+    this.displayPhoto = undefined;
+  }
 
-  // base64toBlob(dataURI: string) {
-  //   const byteString = window.atob(dataURI);
-  //   const arrayBuffer = new ArrayBuffer(byteString.length);
-  //   const int8Array = new Uint8Array(arrayBuffer);
-  //   for (let i = 0; i < byteString.length; i++) {
-  //     int8Array[i] = byteString.charCodeAt(i);
-  //   }
-  //   const blob = new Blob([int8Array], { type: 'image/jpeg' });
+  async removePicture(): Promise<boolean> {
+    await this.presentLoading('Removiendo tu Foto de Perfil...');
 
-  //   return blob;
-  // }
+    if (this.dog.profilepic) {
+      this.dogService.removeProfilePicture(this.dog.id.toString()).then(() => {
+        this.dismissLoading();
+        this.presentAlert('Hecho!', 'Tu foto de perfil ha sido removida con exito!');
+      }).catch((error) => {
+        this.dismissLoading();
+        this.presentAlert('Error', error.message);
+      });
+    } else {
+      this.dismissLoading();
+      this.presentAlert('Error', `No tienes foto de perfil.`);
+    }
 
-  // removePicture(): Promise<boolean> {
+    return;
+  }
 
-  //   this.dogService.removeProfilePicture(this.dog.id.toString()).then(() => {
-  //     console.log('Se ha removido exitosamente.');
-  //   }).catch((error) => {
-  //     console.log('Error');
-  //   });
-
-
-  //   return;
-  // }
-
-  // async presentActionSheet() {
-  //   const actionSheet = await this.actionSheetCtrl.create({
-  //     header: 'Cambiar Foto de Perfil',
-  //     buttons: [
-  //       {
-  //         text: 'Remover Foto Actual',
-  //         handler: () => this.removePicture()
-  //       },
-  //       {
-  //         text: 'Tomar Foto',
-  //         handler: () => this.getPicture(CameraSource.Camera)
-  //       },
-  //       {
-  //         text: 'Escoger de Galeria',
-  //         handler: () => this.getPicture(CameraSource.Photos)
-  //       },
-  //       {
-  //         text: 'Cancelar',
-  //         role: 'cancel'
-  //       }
-  //     ]
-  //   });
-  //   await actionSheet.present();
-  // }
-
+  async presentActionSheet() {
+    const actionSheet = await this.actionSheetCtrl.create({
+      header: 'Cambiar Foto de Perfil',
+      buttons: [
+        {
+          text: 'Remover Foto Actual',
+          handler: () => this.removePicture()
+        },
+        {
+          text: 'Tomar Foto',
+          handler: () => this.takePicture(CameraSource.Camera)
+        },
+        {
+          text: 'Elegir de Galeria',
+          handler: () => this.takePicture(CameraSource.Photos)
+        },
+        {
+          text: 'Cancelar',
+          role: 'cancel'
+        }
+      ]
+    });
+    await actionSheet.present();
+  }
 }

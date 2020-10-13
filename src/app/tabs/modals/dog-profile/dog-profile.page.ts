@@ -34,12 +34,12 @@ export class DogProfilePage implements OnInit {
 
   ngOnInit() {
     const dID = this.navParams.get('dID');
-    this.getDog(dID)
+    this.getDog(dID);
     const uID = this.navParams.get('uID');
-    this.getUser(uID)
+    this.getUser(uID);
     this.authService.user$.subscribe((user) => {
-      this.user = user
-    })
+      this.user = user;
+    });
   }
 
   deleteDog(dogId: string) {
@@ -130,19 +130,19 @@ export class DogProfilePage implements OnInit {
     return await modal.present();
   }
 
-  async goBack(){
+  async goBack() {
     await this.modalCtrl.dismiss();
   }
 
   toggleLike() {
     if (this.user.favourites.includes(this.dog.id)) {
-      this.user.favourites = this.user.favourites.filter((id: string) => id !== this.dog.id)
+      this.user.favourites = this.user.favourites.filter((id: string) => id !== this.dog.id);
 
       this.userService.unfavDog(this.user, this.dog.id).then(() => {
         console.log('disliked');
       }).catch((error) => {
         console.log(error);
-      })
+      });
     } else {
       this.user.favourites.push(this.dog.id);
 
@@ -150,7 +150,7 @@ export class DogProfilePage implements OnInit {
         console.log('liked');
       }).catch((error) => {
         console.log(error);
-      })
+      });
     }
   }
 }

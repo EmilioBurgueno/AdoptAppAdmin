@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore, associateQuery } from '@angular/fire/firestore';
-import { map } from 'rxjs/operators'
+import { map } from 'rxjs/operators';
 import { Dog } from 'src/models/dog.model';
 import { AngularFireStorage } from '@angular/fire/storage';
 
@@ -12,8 +12,8 @@ export class DogService {
   firestore: any;
 
   constructor(private afs: AngularFirestore,
-    private afsStorage: AngularFireStorage,
-    ) { }
+              private afsStorage: AngularFireStorage,
+  ) { }
 
   async createDog(dog: any, profilepic: File) {
     return new Promise(async (resolve, reject) => {
@@ -22,14 +22,14 @@ export class DogService {
         const filePath = `dogs/${dogId}/profilepic.jpeg`;
 
         dog.id = dogId;
-        await this.uploadDogImage(dog,profilepic);
+        await this.uploadDogImage(dog, profilepic);
         await this.afs.firestore.runTransaction(async transaction => {
           const dogRef = this.afs.doc(`dogs/${dogId}`).ref;
-          console.log(filePath)
+          console.log(filePath);
 
-         dog.profilepic = await this.afsStorage.ref(filePath).getDownloadURL().toPromise()
+          dog.profilepic = await this.afsStorage.ref(filePath).getDownloadURL().toPromise();
 
-          transaction.set(dogRef,dog);
+          transaction.set(dogRef, dog);
         });
         resolve(true);
       } catch (error) {
@@ -38,12 +38,30 @@ export class DogService {
     });
   }
 
-  uploadDogImage(dog: any, profilepic: File) {
-    const filePath = `dogs/${dog.id}/profilepic.jpeg`;
-    const task = this.afsStorage.upload(filePath, profilepic);
+  async uploadDogImage(dog: any, profilepic: File) {
+    return new Promise(async (resolve, reject) => {
+      try {
+        // ERROR POR EL PATH?
+        const filePath = `dogs/${dog.id}/profilepic.jpeg`;
+        const task = this.afsStorage.upload(filePath, profilepic);
+        await task.snapshotChanges().toPromise();
+        const pictureUrl = await this.afsStorage.ref(filePath).getDownloadURL().toPromise();
+        console.log(pictureUrl);
+        await this.updateDog(dog, { pictureUrl });
 
-    return task.snapshotChanges().toPromise();
+        resolve(true);
+      } catch (error) {
+        reject(error);
+      }
+    });
   }
+
+  // uploadDogImage(dog: any, profilepic: File) {
+  //   const filePath = `dogs/${dog.id}/profilepic.jpeg`;
+  //   const task = this.afsStorage.upload(filePath, profilepic);
+
+  //   return task.snapshotChanges().toPromise();
+  // }
 
   async removeProfilePicture(dId: string) {
     return new Promise(async (resolve, reject) => {
@@ -57,7 +75,7 @@ export class DogService {
       } catch (error) {
         reject(error);
       }
-    })
+    });
   }
 
   getDog(dId: string) {
@@ -72,7 +90,7 @@ export class DogService {
 
         return { id, ...dog } as Dog;
       }))
-    )
+    );
   }
 
   updateDog(dId: string, updatedDog: any) {

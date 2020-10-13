@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { map } from 'rxjs/operators'
+import { map } from 'rxjs/operators';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { AngularFireStorage } from '@angular/fire/storage';
 import { firestore } from 'firebase';
@@ -11,8 +11,8 @@ import { DogService } from './dog.service';
 export class UserService {
 
   constructor(private afs: AngularFirestore,
-    private afStorage: AngularFireStorage,
-    private dogService: DogService) { }
+              private afStorage: AngularFireStorage,
+              private dogService: DogService) { }
 
 
   createUser(user: any) {
@@ -27,7 +27,7 @@ export class UserService {
     const doc = {
       username: user.username,
       uid: user.id
-    }
+    };
     return this.afs.doc(`usernames/${user.username}`).set(doc);
   }
 
@@ -41,7 +41,7 @@ export class UserService {
       .pipe(map(actions => actions.map(a => {
         return a.payload.doc.data();
       }))
-      )
+      );
   }
 
   async usernameExists(username: string): Promise<boolean> {
@@ -53,7 +53,7 @@ export class UserService {
       } else {
         resolve(true);
       }
-    })
+    });
   }
 
   deleteUser(userId: string) {
@@ -74,15 +74,15 @@ export class UserService {
         const filePath = `profilePictures/${uid}.jpeg`;
         const task = this.afStorage.upload(filePath, image);
         await task.snapshotChanges().toPromise();
-        const pictureUrl = await this.afStorage.ref(filePath).getDownloadURL().toPromise()
+        const pictureUrl = await this.afStorage.ref(filePath).getDownloadURL().toPromise();
         console.log(pictureUrl);
-        await this.updateUser(uid, { pictureUrl })
+        await this.updateUser(uid, { pictureUrl });
 
         resolve(true);
       } catch (error) {
         reject(error);
       }
-    })
+    });
   }
 
   async removeProfilePicture(uid: string) {
@@ -91,13 +91,13 @@ export class UserService {
         const filePath = `profilePictures/${uid}.jpeg`;
         const task = this.afStorage.ref(filePath).delete();
         await task.toPromise();
-        await this.updateUser(uid, { pictureUrl: null })
+        await this.updateUser(uid, { pictureUrl: null });
 
         resolve(true);
       } catch (error) {
         reject(error);
       }
-    })
+    });
   }
 
   favDog(user: any, did: string) {
@@ -105,8 +105,8 @@ export class UserService {
       const userRef = this.afs.doc(`users/${user.id}`).ref;
       const favDog = firestore.FieldValue.arrayUnion(did);
 
-      transaction.update(userRef, { favourites: favDog })
-    })
+      transaction.update(userRef, { favourites: favDog });
+    });
   }
 
   unfavDog(user: any, did: string) {
@@ -114,8 +114,8 @@ export class UserService {
       const userRef = this.afs.doc(`users/${user.id}`).ref;
       const unfavDog = firestore.FieldValue.arrayRemove(did);
 
-      transaction.update(userRef, { favourites: unfavDog })
-    })
+      transaction.update(userRef, { favourites: unfavDog });
+    });
   }
 
   // getFavourites(user: any) {
@@ -138,8 +138,8 @@ export class UserService {
       const userRef = this.afs.doc(`users/${user.id}`).ref;
       const actDog = firestore.FieldValue.arrayUnion(did);
 
-      transaction.update(userRef, { actives: actDog })
-    })
+      transaction.update(userRef, { actives: actDog });
+    });
   }
 
   deactDog(user: any, did: string) {
@@ -147,22 +147,22 @@ export class UserService {
       const userRef = this.afs.doc(`users/${user.id}`).ref;
       const deactDog = firestore.FieldValue.arrayRemove(did);
 
-      transaction.update(userRef, { actives: deactDog })
-    })
+      transaction.update(userRef, { actives: deactDog });
+    });
   }
 
   getActives(user: any) {
-    var actDogs: any[] = []
+    const actDogs: any[] = [];
     user.actives.forEach(actDog => {
       this.dogService.getDog(actDog).subscribe((dog: any) => {
-        if (dog != undefined) {
+        if (dog !== undefined) {
           actDogs.push(dog);
         } else {
-          user.favourites.splice(user.favourites.indexOf(actDog), 1)
-          this.updateUser(user.id, { favourites: user.favourites })
+          user.favourites.splice(user.favourites.indexOf(actDog), 1);
+          this.updateUser(user.id, { favourites: user.favourites });
         }
-      })
+      });
     });
-    return actDogs
+    return actDogs;
   }
 }

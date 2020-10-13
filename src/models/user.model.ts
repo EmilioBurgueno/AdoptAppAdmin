@@ -7,4 +7,5 @@ export interface User {
     phone: String,
     profilepic: String,
     myDogs: String[]
+    //actives: String[]
 }
