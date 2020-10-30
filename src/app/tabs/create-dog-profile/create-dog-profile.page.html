@@ -86,7 +86,8 @@
                             <ion-select-option value="Pekinés">Pekinés</ion-select-option>
                             <ion-select-option value="Pembroke Welsh Corgi">Pembroke Welsh Corgi</ion-select-option>
                             <ion-select-option value="Perro pastor alemán">Perro pastor alemán</ion-select-option>
-                            <ion-select-option value="Perro pastor de Shetland (Sheltie)">Perro pastor de Shetland (Sheltie)
+                            <ion-select-option value="Perro pastor de Shetland (Sheltie)">Perro pastor de Shetland
+                                (Sheltie)
                             </ion-select-option>
                             <ion-select-option value="Perro tejonero">Perro tejonero</ion-select-option>
                             <ion-select-option value="Pinscher miniatura">Pinscher miniatura</ion-select-option>
@@ -122,12 +123,70 @@
                     <ion-item>
                         <ion-label position="floating">Edad (aprox.)</ion-label>
                         <ion-select formControlName="age" placeholder="Selecciona la edad">
-                            <ion-select-option value="1 mes - 2 meses">1 - 2 (meses)</ion-select-option>
-                            <ion-select-option value="2 meses - 6 meses">2 - 6 (meses)</ion-select-option>
-                            <ion-select-option value="6 meses - 1 año">5 - 12 (meses)</ion-select-option>
-                            <ion-select-option value="1 año - 2 años">1 - 2 (años)</ion-select-option>
-                            <ion-select-option value="2 años - 5 años">2 -5 (años)</ion-select-option>
-                            <ion-select-option value="Senior">Senior (5+ años)</ion-select-option>
+                            <ion-select-option value="Cachorro">Cachorro</ion-select-option>
+                            <ion-select-option value="Joven">Joven</ion-select-option>
+                            <ion-select-option value="Adulto">Adulto</ion-select-option>
+                            <ion-select-option value="Senior">Senior</ion-select-option>
+                        </ion-select>
+                    </ion-item>
+                </ion-col>
+            </ion-row>
+
+            <ion-row>
+                <ion-col size="12">
+                    <ion-item>
+                        <ion-label position="floating">Pelaje</ion-label>
+                        <ion-select formControlName="coat" placeholder="Selecciona el tipo de pelaje">
+                            <ion-select-option value="Corto">Corto</ion-select-option>
+                            <ion-select-option value="Largo">Largo</ion-select-option>
+                            <ion-select-option value="Medio-Largo">Medio-Largo</ion-select-option>
+                            <ion-select-option value="Duro">Duro</ion-select-option>
+                            <ion-select-option value="Grueso / Denso">Grueso / Denso</ion-select-option>
+                        </ion-select>
+                    </ion-item>
+                </ion-col>
+            </ion-row>
+
+            <ion-row>
+                <ion-col size="12">
+                    <ion-item>
+                        <ion-label position="floating">Compatible con adultos Mayores</ion-label>
+                        <ion-select formControlName="behaviourSenior" placeholder="¿Es compatible con adultos Mayores?">
+                            <ion-select-option value="Si">Si</ion-select-option>
+                            <ion-select-option value="No">No</ion-select-option>
+                        </ion-select>
+                    </ion-item>
+                </ion-col>
+            </ion-row>
+            <ion-row>
+                <ion-col size="12">
+                    <ion-item>
+                        <ion-label position="floating">Compatible con Niños</ion-label>
+                        <ion-select formControlName="behaviourKids" placeholder="¿Es compatible con adultos Niños?">
+                            <ion-select-option value="Si">Si</ion-select-option>
+                            <ion-select-option value="No">No</ion-select-option>
+                        </ion-select>
+                    </ion-item>
+                </ion-col>
+            </ion-row>
+            <ion-row>
+                <ion-col size="12">
+                    <ion-item>
+                        <ion-label position="floating">Compatible con otros Perros</ion-label>
+                        <ion-select formControlName="behaviourDogs" placeholder="¿Es compatible con otros Perros?">
+                            <ion-select-option value="Si">Si</ion-select-option>
+                            <ion-select-option value="No">No</ion-select-option>
+                        </ion-select>
+                    </ion-item>
+                </ion-col>
+            </ion-row>
+            <ion-row>
+                <ion-col size="12">
+                    <ion-item>
+                        <ion-label position="floating">Compatible con gatos</ion-label>
+                        <ion-select formControlName="behaviourCats" placeholder="¿Es compatible con Gatos?">
+                            <ion-select-option value="Si">Si</ion-select-option>
+                            <ion-select-option value="No">No</ion-select-option>
                         </ion-select>
                     </ion-item>
                 </ion-col>
@@ -156,7 +215,8 @@
                 <ion-col size="12">
                     <ion-item>
                         <ion-label position="floating">Descripción</ion-label>
-                        <ion-textarea formControlName="description" placeholder="Escribe una breve descripcion (ie. presenta maltrato, alguna seña en particular)">
+                        <ion-textarea formControlName="description"
+                            placeholder="Escribe una breve descripcion (ie. presenta maltrato, alguna seña en particular)">
                         </ion-textarea>
                     </ion-item>
                 </ion-col>
@@ -168,7 +228,8 @@
                 <ion-col size="12">
                     <ion-item>
                         <ion-label position="floating">Collar</ion-label>
-                        <ion-textarea formControlName="collar" placeholder="Informacion en collar (telefono, nombre de dueño , dirreccion, etc.">
+                        <ion-textarea formControlName="collar"
+                            placeholder="Informacion en collar (telefono, nombre de dueño , dirreccion, etc.">
                         </ion-textarea>
                     </ion-item>
                 </ion-col>
@@ -191,7 +252,8 @@
                 <ion-col size="12">
                     <ion-item>
                         <ion-label position="floating">Foto de perfil</ion-label>
-                        <img [src]="displayPhoto || 'https://support.apple.com/library/content/dam/edam/applecare/images/en_US/macos/photo-3nav-button-icon.png' " (click)="takePicture()">
+                        <img [src]="displayPhoto || 'https://support.apple.com/library/content/dam/edam/applecare/images/en_US/macos/photo-3nav-button-icon.png' "
+                            (click)="takePicture()">
                         <ion-input readonly formControlName="profilepic"></ion-input>
 
                     </ion-item>

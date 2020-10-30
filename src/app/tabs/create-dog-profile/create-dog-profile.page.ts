@@ -23,11 +23,11 @@ export class CreateDogProfilePage implements OnInit {
 
 
   constructor(private dogService: DogService,
-              private navCtrl: NavController,
-              private router: Router,
-              private alertCtrl: AlertController,
-              private loadingCtrl: LoadingController,
-              private sanitizer: DomSanitizer) { }
+    private navCtrl: NavController,
+    private router: Router,
+    private alertCtrl: AlertController,
+    private loadingCtrl: LoadingController,
+    private sanitizer: DomSanitizer) { }
 
   ngOnInit() {
     this.initForm();
@@ -42,6 +42,11 @@ export class CreateDogProfilePage implements OnInit {
       age: new FormControl(null, [Validators.required]),
       fplace: new FormControl(null, [Validators.required]),
       found: new FormControl(null, [Validators.required]),
+      coat: new FormControl(null),
+      behaviourSenior: new FormControl(null),
+      behaviourKids: new FormControl(null),
+      behaviourDogs: new FormControl(null),
+      behaviourCats: new FormControl(null),
       description: new FormControl(null),
       collar: new FormControl(null),
       status: new FormControl(null, [Validators.required]),
@@ -61,6 +66,11 @@ export class CreateDogProfilePage implements OnInit {
       const found = this.createDogForm.controls.found.value;
       const description = this.createDogForm.controls.description.value;
       const collar = this.createDogForm.controls.collar.value;
+      const coat = this.createDogForm.controls.coat.value;
+      const behaviourSenior = this.createDogForm.controls.behaviourSenior.value;
+      const behaviourKids = this.createDogForm.controls.behaviourKids.value;
+      const behaviourDogs = this.createDogForm.controls.behaviourDogs.value;
+      const behaviourCats = this.createDogForm.controls.behaviourCats.value;
       const status = this.createDogForm.controls.status.value;
       const profilepic = this.createDogForm.controls.profilepic.value;
       try {
@@ -74,6 +84,11 @@ export class CreateDogProfilePage implements OnInit {
           found,
           description,
           collar,
+          coat,
+          behaviourSenior,
+          behaviourKids,
+          behaviourDogs,
+          behaviourCats,
           status,
           profilepic
         };
