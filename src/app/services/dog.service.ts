@@ -38,30 +38,30 @@ export class DogService {
     });
   }
 
-  async uploadDogImage(dog: any, profilepic: File) {
-    return new Promise(async (resolve, reject) => {
-      try {
-        // ERROR POR EL PATH?
-        const filePath = `dogs/${dog.id}/profilepic.jpeg`;
-        const task = this.afsStorage.upload(filePath, profilepic);
-        await task.snapshotChanges().toPromise();
-        const pictureUrl = await this.afsStorage.ref(filePath).getDownloadURL().toPromise();
-        console.log(pictureUrl);
-        await this.updateDog(dog, { pictureUrl });
+  // async uploadDogImage(dog: any, profilepic: File) {
+  //   return new Promise(async (resolve, reject) => {
+  //     try {
+  //       // ERROR POR EL PATH?
+  //       const filePath = `dogs/${dog.id}/profilepic.jpeg`;
+  //       const task = this.afsStorage.upload(filePath, profilepic);
+  //       await task.snapshotChanges().toPromise();
+  //       const pictureUrl = await this.afsStorage.ref(filePath).getDownloadURL().toPromise();
+  //       console.log(pictureUrl);
+  //       await this.updateDog(dog, { pictureUrl });
 
-        resolve(true);
-      } catch (error) {
-        reject(error);
-      }
-    });
-  }
-
-  // uploadDogImage(dog: any, profilepic: File) {
-  //   const filePath = `dogs/${dog.id}/profilepic.jpeg`;
-  //   const task = this.afsStorage.upload(filePath, profilepic);
-
-  //   return task.snapshotChanges().toPromise();
+  //       resolve(true);
+  //     } catch (error) {
+  //       reject(error);
+  //     }
+  //   });
   // }
+
+  uploadDogImage(dog: any, profilepic: File) {
+    const filePath = `dogs/${dog.id}/profilepic.jpeg`;
+    const task = this.afsStorage.upload(filePath, profilepic);
+
+    return task.snapshotChanges().toPromise();
+  }
 
   async removeProfilePicture(dId: string) {
     return new Promise(async (resolve, reject) => {
