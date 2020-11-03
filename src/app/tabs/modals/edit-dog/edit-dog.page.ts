@@ -40,6 +40,11 @@ export class EditDogPage implements OnInit {
     const dID = this.navParams.get('dID');
     this.getDog(dID);
     this.initForm();
+    function delay(ms: number) {
+      return new Promise( resolve => setTimeout(resolve, ms) );
+    }
+    delay(10000);
+    console.log(this.dog);
   }
 
   getDog(dId: string) {
@@ -80,11 +85,16 @@ export class EditDogPage implements OnInit {
       age: this.dog.age,
       fplace: this.dog.fplace,
       found: this.dog.found,
+      behaviourSenior: this.dog.behaviourSenior,
+      behaviourKids: this.dog.behaviourKids,
+      behaviourDogs: this.dog.behaviourDogs,
+      behaviourCats: this.dog.behaviourCats,
       description: this.dog.description,
       collar: this.dog.collar,
       status: this.dog.status,
       profilepic: this.dog.profilepic
     });
+    console.log(this.dog);
   }
 
   initForm() {
@@ -96,6 +106,10 @@ export class EditDogPage implements OnInit {
       age: new FormControl(null, [Validators.required]),
       fplace: new FormControl(null, [Validators.required]),
       found: new FormControl(null, [Validators.required]),
+      behaviourSenior: new FormControl(null, [Validators.required]),
+      behaviourKids: new FormControl(null, [Validators.required]),
+      behaviourDogs: new FormControl(null, [Validators.required]),
+      behaviourCats: new FormControl(null, [Validators.required]),
       description: new FormControl(null, ) ,
       collar: new FormControl(null, ) ,
       status: new FormControl(null, [Validators.required]),
@@ -154,19 +168,20 @@ export class EditDogPage implements OnInit {
       resultType: CameraResultType.Base64,
       source
     });
-
+    console.log('1');
     const base64 = `data:image/${image.format};base64, ${image.base64String}`;
     this.displayPhoto = this.sanitizer.bypassSecurityTrustResourceUrl(base64);
-
+    console.log('2');
     const imageBlob = this.base64toBlob(image.base64String);
     this.file = new File([imageBlob], 'test.jpeg', { type: 'image/jpeg' });
     this.editDogForm.get('profilepic').setValue('Foto tomada!');
     this.editDogForm.get('profilepic').updateValueAndValidity();
-
+    console.log('3');
     return;
   }
 
   base64toBlob(dataURI: string) {
+    console.log('4');
     const byteString = window.atob(dataURI);
     const arrayBuffer = new ArrayBuffer(byteString.length);
     const int8Array = new Uint8Array(arrayBuffer);
@@ -175,6 +190,7 @@ export class EditDogPage implements OnInit {
     }
     const blob = new Blob([int8Array], { type: 'image/jpeg' });
 
+    console.log('5');
     return blob;
   }
 
