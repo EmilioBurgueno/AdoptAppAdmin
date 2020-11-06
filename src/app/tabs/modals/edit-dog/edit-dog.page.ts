@@ -50,19 +50,21 @@ export class EditDogPage implements OnInit {
   getDog(dId: string) {
     this.dogService.getDog(dId).subscribe((dog) => {
       this.dog = dog as Dog;
+      this.displayPhoto = this.dog.profilepic;
       this.patchForm();
     });
   }
 
   async updateDog() {
     await this.presentLoading('Guardando el perfil...');
+    console.log(this.editDogForm);
     if (this.editDogForm.valid) {
       const updatedDog = {
         ...this.editDogForm.value
       };
 
       try {
-        await this.dogService.updateDog(this.dog.id.toString(), updatedDog);
+        await this.dogService.updateDog(this.dog.id.toString(), updatedDog, this.file);
         this.dismissLoading();
         this.presentAlertConfirm('¡Exito!', 'El perfil ha sido modificado exitosamente.');
         this.closeModal();
@@ -174,7 +176,7 @@ export class EditDogPage implements OnInit {
     console.log('2');
     const imageBlob = this.base64toBlob(image.base64String);
     this.file = new File([imageBlob], 'test.jpeg', { type: 'image/jpeg' });
-    this.editDogForm.get('profilepic').setValue('Foto tomada!');
+    this.editDogForm.get('profilepic').setValue('Foto Tomada!');
     this.editDogForm.get('profilepic').updateValueAndValidity();
     console.log('3');
     return;

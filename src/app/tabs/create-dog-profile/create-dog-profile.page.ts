@@ -161,8 +161,11 @@ export class CreateDogProfilePage implements OnInit {
 
     const imageBlob = this.base64toBlob(image.base64String);
     this.file = new File([imageBlob], 'test.jpeg', { type: 'image/jpeg' });
+    console.log('1.1');
     this.createDogForm.get('profilepic').setValue('Foto tomada!');
+    console.log('1.2');
     this.createDogForm.get('profilepic').updateValueAndValidity();
+    console.log('1.3');
   }
 
   base64toBlob(dataURI: string) {

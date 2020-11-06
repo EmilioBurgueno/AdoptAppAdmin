@@ -69,7 +69,7 @@ export class DogService {
         const filePath = `dogs/${dId}/profilepic.jpeg`;
         const task = this.afsStorage.ref(filePath).delete();
         await task.toPromise();
-        await this.updateDog(dId, { pictureUrl: null });
+        await this.updateDog(dId, { profilepic: null }, null);
 
         resolve(true);
       } catch (error) {
@@ -93,8 +93,27 @@ export class DogService {
     );
   }
 
-  updateDog(dId: string, updatedDog: any) {
-    return this.afs.doc(`dogs/${dId}`).update(updatedDog);
+  updateDog(dId: string, updatedDog: any, profilepic: File) {
+    return new Promise(async (resolve, reject) => {
+      try {
+        const filePath = `dogs/${dId}/profilepic.jpeg`;
+
+        updatedDog.id = dId;
+        await this.uploadDogImage(updatedDog, profilepic);
+        await this.afs.firestore.runTransaction(async transaction => {
+          const dogRef = this.afs.doc(`dogs/${dId}`).ref;
+          console.log(filePath);
+
+          updatedDog.profilepic = await this.afsStorage.ref(filePath).getDownloadURL().toPromise();
+
+          transaction.set(dogRef, updatedDog);
+        });
+        this.afs.doc(`dogs/${dId}`).update(updatedDog);
+        resolve(true);
+      } catch (error) {
+        reject(error);
+      }
+    });
   }
 
   deleteDog(dId: string) {
