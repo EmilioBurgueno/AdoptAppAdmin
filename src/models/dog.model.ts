@@ -5,6 +5,7 @@ export interface Dog {
     size: string;
     breed: string;
     age: string;
+    color: string;
     fplace: string;
     found: string;
     description: string;

@@ -40,6 +40,7 @@ export class CreateDogProfilePage implements OnInit {
       size: new FormControl(null, [Validators.required]),
       breed: new FormControl(null, [Validators.required]),
       age: new FormControl(null, [Validators.required]),
+      color: new FormControl (null,[Validators.required]),
       fplace: new FormControl(null, [Validators.required]),
       found: new FormControl(null, [Validators.required]),
       coat: new FormControl(null),
@@ -62,6 +63,7 @@ export class CreateDogProfilePage implements OnInit {
       const size = this.createDogForm.controls.size.value;
       const breed = this.createDogForm.controls.breed.value;
       const age = this.createDogForm.controls.age.value;
+      const color = this.createDogForm.controls.color.value;
       const fplace = this.createDogForm.controls.fplace.value;
       const found = this.createDogForm.controls.found.value;
       const description = this.createDogForm.controls.description.value;
@@ -80,6 +82,7 @@ export class CreateDogProfilePage implements OnInit {
           size,
           breed,
           age,
+          color,
           fplace,
           found,
           description,
