@@ -84,5 +84,8 @@ export class ForgotPage implements OnInit {
 
     await alert.present();
   }
+  goToSignUp(): void {
+    this.navCtrl.navigateForward(['auth/sign-up']);
+  }
 
 }
