@@ -1,80 +1,86 @@
 <ion-content>
-<ion-grid>
-  <ion-row>
-    <ion-col class ="headTitle" size = 12>
-      <ion-text class = "title">Configuracion</ion-text>
-    </ion-col>
-  </ion-row>
-  <ion-row>
-    <ion-col class ="headText" size=12>
-      <ion-text>Cambia la configuracion de tu aplicacion y perfil</ion-text>
-    </ion-col>
-  </ion-row>
-  <ion-row>
-    <ion-col class="card" size = 10>
-      <ion-card (click)="gotoEditProfile()">
-        <ion-item no-lines>
-          <ion-label>Editar Perfil</ion-label>
-        </ion-item>
-      
-        <ion-card-content no-lines>
-          Cambia las caracteristicas de tu perfil
-        </ion-card-content>
-      </ion-card>
-    </ion-col>
-  </ion-row>
-  <ion-row>
-    <ion-col class="card" size = 10>
-      <ion-card (click)="gotoSeeProfile()">
-        <ion-item no-lines>
-          <ion-label>Ver Perfil</ion-label>
-        </ion-item>
-      
-        <ion-card-content no-lines>
-          Ver las caracteristicas de tu perfil
-        </ion-card-content>
-      </ion-card>
-    </ion-col>
-  </ion-row>
-  <ion-row>
-    <ion-col class="card" size = 10>
-      <ion-card (click)="gotoChangePass()">
-        <ion-item no-lines>
-          <ion-label>Cambiar contraseña</ion-label>
-        </ion-item>
-      
-        <ion-card-content no-lines>
-          Cambia las contraseña de tu perfil
-        </ion-card-content>
-      </ion-card>
-    </ion-col>
-  </ion-row>
-  <ion-row>
-    <ion-col class="card" size = 10>
-      <ion-card (click)="gotoLogout()">
-        <ion-item no-lines>
-          <ion-label>Logout</ion-label>
-        </ion-item>
-      
-        <ion-card-content no-lines>
-          Salir de tu cuenta
-        </ion-card-content>
-      </ion-card>
-    </ion-col>
-  </ion-row>
-  <ion-row>
-    <ion-col class="card" size = 10>
-      <ion-card>
-        <ion-item no-lines>
-          <ion-label>Borrar tu cuenta</ion-label>
-        </ion-item>
-      
-        <ion-card-content no-lines>
-          Borra tu cuenta de administrador
-        </ion-card-content>
-      </ion-card>
-    </ion-col>
-  </ion-row>
-</ion-grid>
+
+    <ion-grid>
+
+        <ion-row>
+            <ion-col class="headTitle" size="12">
+                <ion-text class="title">Configuracion</ion-text>
+            </ion-col>
+        </ion-row>
+
+        <ion-row>
+            <ion-col class="headText" size="12">
+                <ion-text>Cambia la configuracion de tu aplicacion y perfil</ion-text>
+            </ion-col>
+        </ion-row>
+
+        <ion-row>
+            <ion-col class="card" size="10">
+                <ion-card (click)="gotoEditProfile()">
+                    <ion-item no-lines>
+                        <ion-label>Editar Perfil</ion-label>
+                    </ion-item>
+                    <ion-card-content no-lines>
+                        Cambia las caracteristicas de tu perfil
+                    </ion-card-content>
+                </ion-card>
+            </ion-col>
+        </ion-row>
+
+        <ion-row>
+            <ion-col class="card" size="10">
+                <ion-card (click)="gotoSeeProfile()">
+                    <ion-item no-lines>
+                        <ion-label>Ver Perfil</ion-label>
+                    </ion-item>
+                    <ion-card-content no-lines>
+                        Ver las caracteristicas de tu perfil
+                    </ion-card-content>
+                </ion-card>
+            </ion-col>
+        </ion-row>
+
+        <ion-row>
+            <ion-col class="card" size="10">
+                <ion-card (click)="gotoChangePass()">
+                    <ion-item no-lines>
+                        <ion-label>Cambiar contraseña</ion-label>
+                    </ion-item>
+                    <ion-card-content no-lines>
+                        Cambia las contraseña de tu perfil
+                    </ion-card-content>
+                </ion-card>
+            </ion-col>
+        </ion-row>
+
+        <ion-row>
+            <ion-col class="card" size="10">
+                <ion-card (click)="gotoLogout()">
+                    <ion-item no-lines>
+                        <ion-label>Logout</ion-label>
+                    </ion-item>
+
+                    <ion-card-content no-lines>
+                        Salir de tu cuenta
+                    </ion-card-content>
+                </ion-card>
+            </ion-col>
+        </ion-row>
+
+        <ion-row>
+            <ion-col class="card" size="10">
+                <ion-card>
+                    <ion-item no-lines>
+                        <ion-label>Borrar tu cuenta</ion-label>
+                    </ion-item>
+
+                    <ion-card-content no-lines>
+                        Borra tu cuenta de administrador
+                    </ion-card-content>
+                </ion-card>
+            </ion-col>
+        </ion-row>
+
+    </ion-grid>
 
 </ion-content>

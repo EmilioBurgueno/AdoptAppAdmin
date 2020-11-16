@@ -25,15 +25,15 @@ export class SettingsPage implements OnInit {
   }
 
   gotoEditProfile(){
-    this.navCtrl.navigateForward(['tabs','settings','editprofile']);
+    this.navCtrl.navigateForward(['tabs','settings','editprofile',this.user.id]);
   }
 
   gotoSeeProfile(){
-    this.navCtrl.navigateForward(['tabs','settings','seeprofile']);
+    this.navCtrl.navigateForward(['tabs','settings','seeprofile',this.user.id]);
   }
 
   gotoChangePass(){
-    this.navCtrl.navigateForward(['tabs','settings','changepass']);
+    this.navCtrl.navigateForward(['tabs','settings','changepass',this.user.id]);
   }
 
   gotoLogout(){

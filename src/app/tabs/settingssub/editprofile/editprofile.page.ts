@@ -1,6 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
 import { AlertController, LoadingController, NavController, NavParams } from '@ionic/angular';
+import { AuthService } from 'src/app/services/auth.service';
 import { UserService } from 'src/app/services/user.service';
 import { User } from 'src/models/user.model';
 
@@ -12,33 +14,30 @@ import { User } from 'src/models/user.model';
 })
 export class EditprofilePage implements OnInit {
 
-  @Input() uID: string;
-
   editUserForms: FormGroup;
-
-  user: User;
+  user: any;
+  userId: string;
 
   loadingIndicator;
   loading = false;
 
   constructor( private alertCtrl: AlertController,
+               private authService: AuthService,
                private userService: UserService,
                private navParams: NavParams,
                private loadingCtrl: LoadingController,
-              private navCtrl: NavController
+              private navCtrl: NavController,
+              private activatedRoute: ActivatedRoute
   ) { }
 
   ngOnInit() {
-    const uID = this.navParams.get('uID');
-    console.log("Here 1?");
-    this.getUser(uID);
-    console.log("Here 2?");
-    console.log("Here 3?");
+    this.userId = this.activatedRoute.snapshot.paramMap.get('userId');
+    this.getUser(this.userId);
     this.initForm();
   }
 
-  getUser(userId: string) {
-    this.userService.getUser(userId).subscribe((user) => {
+  getUser(uID: string) {
+    this.userService.getUser(uID).subscribe((user) => {
       this.user = user as User;
       this.patchForm();
     })
@@ -123,7 +122,7 @@ export class EditprofilePage implements OnInit {
   }
 
   goBack(){
-    this.navCtrl.navigateBack;
+    this.navCtrl.navigateRoot(['tabs/settings']);
   }
 
 }
