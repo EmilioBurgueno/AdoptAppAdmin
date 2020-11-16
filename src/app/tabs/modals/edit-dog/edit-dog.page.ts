@@ -203,18 +203,25 @@ export class EditDogPage implements OnInit {
 
   async removePicture(): Promise<boolean> {
     await this.presentLoading('Removiendo tu Foto de Perfil...');
-
+    console.log('1');
     if (this.dog.profilepic) {
+      console.log(this.dog.profilepic);
+      console.log(this.dog.id);
+      console.log('posible problema1');
       this.dogService.removeProfilePicture(this.dog.id.toString()).then(() => {
+        console.log('posible problema2');
         this.dismissLoading();
         this.presentAlert('Hecho!', 'Tu foto de perfil ha sido removida con exito!');
+        console.log('2');
       }).catch((error) => {
         this.dismissLoading();
         this.presentAlert('Error', error.message);
+        console.log('3');
       });
     } else {
       this.dismissLoading();
       this.presentAlert('Error', `No tienes foto de perfil.`);
+      console.log('4');
     }
 
     return;

@@ -67,9 +67,13 @@ export class DogService {
     return new Promise(async (resolve, reject) => {
       try {
         const filePath = `dogs/${dId}/profilepic.jpeg`;
+        console.log('5');
         const task = this.afsStorage.ref(filePath).delete();
+        console.log('6');
         await task.toPromise();
+        console.log('7');
         await this.updateDog(dId, { profilepic: null }, null);
+        console.log('8');
 
         resolve(true);
       } catch (error) {
@@ -99,16 +103,22 @@ export class DogService {
         const filePath = `dogs/${dId}/profilepic.jpeg`;
 
         updatedDog.id = dId;
+        console.log('9');
         await this.uploadDogImage(updatedDog, profilepic);
+        console.log('10');
         await this.afs.firestore.runTransaction(async transaction => {
+          console.log('11');
           const dogRef = this.afs.doc(`dogs/${dId}`).ref;
           console.log(filePath);
 
           updatedDog.profilepic = await this.afsStorage.ref(filePath).getDownloadURL().toPromise();
+          console.log('12');
 
           transaction.set(dogRef, updatedDog);
+          console.log('13');
         });
         this.afs.doc(`dogs/${dId}`).update(updatedDog);
+        console.log('14');
         resolve(true);
       } catch (error) {
         reject(error);
