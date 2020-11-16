@@ -31,7 +31,7 @@
 
         <ion-row>
             <ion-col>
-                <img class="picture" [src]='dog?.profilepic'>
+                <img class="picture" [src]="dog?.profilepic || 'https://support.apple.com/library/content/dam/edam/applecare/images/en_US/macos/photo-3nav-button-icon.png'">
             </ion-col>
         </ion-row>
 
@@ -55,6 +55,8 @@
             </ion-col>
             <ion-col size="2">
                 <ion-buttons>
+                    <!-- meter un if dog.dueno.id == user.id, en el create dog, agregar un nuevo parametro que al
+                    crear perro se asocie el id de la perrera-->
                     <ion-button (click)="openModalEdit(dog?.id)">
                         <ion-icon slot="icon-only" name="create-outline"></ion-icon>
                     </ion-button> &nbsp;
