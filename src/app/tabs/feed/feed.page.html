@@ -23,7 +23,7 @@
         <div *ngFor="let dog of Dogs">
             <ion-item (click)="openModalDogProfile(dog?.id)">
                 <ion-thumbnail slot="start">
-                    <img [src]='dog.profilepic'>
+                    <img [src]="dog?.profilepic || 'https://support.apple.com/library/content/dam/edam/applecare/images/en_US/macos/photo-3nav-button-icon.png'">
                 </ion-thumbnail>
                 <ion-label class="dogsep">
                     <h3>{{ dog.name }}</h3>

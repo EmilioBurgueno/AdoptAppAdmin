@@ -31,7 +31,7 @@
 
         <ion-row>
             <ion-col>
-                <img class="picture" [src]='dog?.profilepic'>
+                <img class="picture" [src]="dog?.profilepic || 'https://support.apple.com/library/content/dam/edam/applecare/images/en_US/macos/photo-3nav-button-icon.png'">
             </ion-col>
         </ion-row>
 
@@ -77,9 +77,7 @@
                 <h5 class="profile-header">ORGANIZACIÓN</h5>
                 <p class="profile-description">Rescue Me Tijuana</p>
                 <h5 class="profile-header">PROCESO DE ADOPCIÓN</h5>
-                <p class="profile-description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta neque,
-                    nesciunt possimus minus consectetur aliquam sunt repellat architecto voluptas ullam recusandae,
-                    fugiat quod nisi. Natus vero quod ex dicta saepe.</p>
+                <p class="profile-description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta neque, nesciunt possimus minus consectetur aliquam sunt repellat architecto voluptas ullam recusandae, fugiat quod nisi. Natus vero quod ex dicta saepe.</p>
 
 
             </ion-col>

@@ -112,10 +112,10 @@ export class EditDogPage implements OnInit {
       behaviourKids: new FormControl(null, [Validators.required]),
       behaviourDogs: new FormControl(null, [Validators.required]),
       behaviourCats: new FormControl(null, [Validators.required]),
-      description: new FormControl(null, ) ,
-      collar: new FormControl(null, ) ,
+      description: new FormControl(null, ),
+      collar: new FormControl(null, ),
       status: new FormControl(null, [Validators.required]),
-      profilepic: new FormControl(null, [Validators.required])
+      profilepic: new FormControl(null,)
     });
   }
 

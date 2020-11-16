@@ -20,6 +20,7 @@ export class FeedPage implements OnInit {
 
   ngOnInit() {
    this.getDogs();
+   //this.displayPhoto = this.dog.profilepic;
   }
 
   getDogs() {
