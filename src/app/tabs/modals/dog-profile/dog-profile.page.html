@@ -31,7 +31,7 @@
 
         <ion-row>
             <ion-col>
-                <img class="picture" [src]="dog?.profilepic || 'https://support.apple.com/library/content/dam/edam/applecare/images/en_US/macos/photo-3nav-button-icon.png'">
+                <img class="picture" [src]='dog?.profilepic'>
             </ion-col>
         </ion-row>
 
@@ -51,7 +51,7 @@
 
             </ion-col>
             <ion-col size="8">
-                <h5 class="dog-name">{{dog.name}}</h5>
+                <h5 class="dog-name">{{dog?.name}}</h5>
             </ion-col>
             <ion-col size="2">
                 <ion-buttons>
