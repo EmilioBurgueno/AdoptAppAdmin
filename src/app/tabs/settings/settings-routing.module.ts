@@ -8,10 +8,6 @@ const routes: Routes = [
     path: '',
     component: SettingsPage
   },
-  {
-    path: 'delete',
-    loadChildren: () => import('./settingssub/delete/delete.module').then( m => m.DeletePageModule)
-  }
 ];
 
 @NgModule({
