@@ -37,7 +37,11 @@ export class SettingsPage implements OnInit {
   }
 
   gotoLogout(){
-    this.navCtrl.navigateForward(['tabs','settings','logout']);
+    this.navCtrl.navigateForward(['tabs','settings','logout',this.user.id]);
+  }
+
+  gotoDelete(){
+    this.navCtrl.navigateForward(['tabs','settings','delete',this.user.id]);
   }
 
 }

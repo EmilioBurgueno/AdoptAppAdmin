@@ -25,12 +25,12 @@ export class ChangepassPage implements OnInit {
   public showConfirmedPassword: boolean = false;
 
   constructor(private modalCtrl: ModalController,
-    private authService: AuthService,
-    private alertCtrl: AlertController,
-    private loadingCtrl: LoadingController,
-    private userService: UserService,
-    private navCtrl: NavController,
-    private activatedRoute: ActivatedRoute
+              private authService: AuthService,
+              private alertCtrl: AlertController,
+              private loadingCtrl: LoadingController,
+              private userService: UserService,
+              private navCtrl: NavController,
+              private activatedRoute: ActivatedRoute
   ) { }
 
   ngOnInit() {
@@ -79,7 +79,7 @@ export class ChangepassPage implements OnInit {
           this.authService.changeEmail(this.editUserForm.controls.cPassword.value, this.editUserForm.controls.email.value);
           this.dismissLoading();
           this.presentAlertConfirm('¡Exito!', 'Tu email ha sido cambiado correctamente.');
-          this.closeModal();
+          this.goBack();
         }).catch((error) => {
           this.dismissLoading();
           this.presentAlert('¡Error!', 'Tu contraseña no es correcta.');
@@ -94,20 +94,7 @@ export class ChangepassPage implements OnInit {
   async updatePassword() {
     await this.presentLoading('Haciendo cambios...');
     if (this.editUserForm.valid) {
-      await this.authService.reauthenticate(this.editUserForm.controls.cPassword.value).then(() => {
-
-        // if (this.editUserForm.controls.nPassword.value === this.editUserForm.controls.ncPassword.value) {
-        //   try {
-        //     this.authService.changePassword(this.editUserForm.controls.cPassword.value, this.editUserForm.controls.nPassword.value);
-        //     this.closeModal();
-        //   } catch (error) {
-        //     console.log('Se ha producido un error. Intente mas tarde!');
-        //   }
-  
-        // } else {
-        //   console.log('Tus contraseñas no coinciden.');
-        // }
-  
+      await this.authService.reauthenticate(this.editUserForm.controls.cPassword.value).then(() => {  
        if (this.editUserForm.controls.nPassword.value !== this.editUserForm.controls.ncPassword.value) {
           this.dismissLoading();
           this.presentAlert('¡Error!', 'Tus contraseñas no coinciden.');
@@ -126,12 +113,12 @@ export class ChangepassPage implements OnInit {
               this.authService.changePassword(this.editUserForm.controls.cPassword.value, this.editUserForm.controls.nPassword.value);
               this.dismissLoading();
               this.presentAlertConfirm('¡Exito!', 'Tu contraseña ha sido cambiada correctamente.');
-              this.closeModal();
+              this.goBack();
             } else {
               this.authService.changePassword(this.editUserForm.controls.cPassword.value, this.editUserForm.controls.nPassword.value);
               this.dismissLoading();
               this.presentAlertConfirm('¡Exito!', 'Tu contraseña ha sido cambiada correctamente. Sin embargo, tu email no ha sido cambiado. Para cambiar de email haz click en el boton "Cambiar Email".');
-              this.closeModal();
+              this.goBack();
             }
           } catch (error) {
             console.log('Se ha producido un error. Intente mas tarde!');
@@ -181,7 +168,7 @@ export class ChangepassPage implements OnInit {
         {
           text: 'Listo',
           handler: () => {
-            this.closeModal();
+            this.goBack();
           }
         }
       ]
@@ -190,8 +177,8 @@ export class ChangepassPage implements OnInit {
     await alert.present();
   }
 
-  async closeModal() {
-    await this.modalCtrl.dismiss();
+  goBack(){
+    this.navCtrl.navigateRoot(['tabs/settings']);
   }
 
   public onCurrentPasswordToggle(): void {

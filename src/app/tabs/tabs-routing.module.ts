@@ -29,7 +29,8 @@ const routes: Routes = [
           {path: 'editprofile/:userId',loadChildren: () => import('./settingssub/editprofile/editprofile.module').then( m => m.EditprofilePageModule)},
           {path: 'seeprofile/:userId', loadChildren: ()=> import('./settingssub/seeprofile/seeprofile.module').then(m => m.SeeprofilePageModule)},
           {path: 'changepass/:userId', loadChildren: ()=> import('./settingssub/changepass/changepass.module').then(m => m.ChangepassPageModule)},
-          {path: 'logout', loadChildren: ()=> import('./settingssub/logout/logout.module').then(m => m.LogoutPageModule)}
+          {path: 'logout/:userId', loadChildren: ()=> import('./settingssub/logout/logout.module').then(m => m.LogoutPageModule)},
+          {path: 'delete/:userId',loadChildren: () => import('./settingssub/delete/delete.module').then( m => m.DeletePageModule)}
         ]
     },
       {path: '',redirectTo: '/tabs/profile',pathMatch: 'full'}
@@ -39,7 +40,7 @@ const routes: Routes = [
   {
     path: 'dogprofile/:dogId', 
     loadChildren: () => import('./modals/dog-profile/dog-profile.module').then( m => m.DogProfilePageModule)
-  }
+  },
 ];
 
 @NgModule({

@@ -25,6 +25,14 @@ const routes: Routes = [
       }
     ]
   },
+  {
+    path: 'deleteaccount',
+    loadChildren: () => import('./settingssub/deleteaccount/deleteaccount.module').then( m => m.DeleteaccountPageModule)
+  },
+  {
+    path: 'delete',
+    loadChildren: () => import('./settingssub/delete/delete.module').then( m => m.DeletePageModule)
+  },
   // {
   //   path: 'editprofile',
   //   loadChildren: () => import('./settings/editprofile/editprofile.module').then( m => m.EditprofilePageModule)

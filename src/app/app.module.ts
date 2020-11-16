@@ -14,7 +14,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { environment } from 'src/environments/environment';
-import { EditProfilePageModule } from './tabs/modals/edit-profile/edit-profile.module';
 import { DogProfilePageModule } from './tabs/modals/dog-profile/dog-profile.module';
 import { EditprofilePageModule } from './tabs/settingssub/editprofile/editprofile.module';
 import { ChangepassPageModule } from './tabs/settingssub/changepass/changepass.module';
@@ -34,6 +33,7 @@ import { ChangepassPageModule } from './tabs/settingssub/changepass/changepass.m
     AngularFirestoreModule,
     AngularFireStorageModule,
     DogProfilePageModule,
+    ChangepassPageModule,
     EditprofilePageModule,
   ],
   providers: [
