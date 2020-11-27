@@ -17,5 +17,5 @@ export interface Dog {
     behaviourCats: string;
     status: string;
     profilepic: string;
-    idPerrera: string;
+    idDogPound: string;
 }

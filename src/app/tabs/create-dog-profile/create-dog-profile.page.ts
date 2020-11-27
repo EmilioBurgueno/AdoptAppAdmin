@@ -1,11 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { DogService } from 'src/app/services/dog.service';
-import { NavController, AlertController, LoadingController } from '@ionic/angular';
-import { Router } from '@angular/router';
+import { NavController, AlertController, LoadingController, NavParams } from '@ionic/angular';
+import { ActivatedRoute, Router } from '@angular/router';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Plugins, CameraResultType, CameraSource } from '@capacitor/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { UserService } from 'src/app/services/user.service';
+import { User } from 'src/models/user.model';
+import { AuthService } from 'src/app/services/auth.service';
+
 
 @Component({
   selector: 'app-create-dog-profile',
@@ -17,20 +20,27 @@ export class CreateDogProfilePage implements OnInit {
   dog: any;
   displayPhoto: any;
   file: any;
+  user: any;
+  userId: string;
   createDogForm: FormGroup;
   loadingIndicator;
   loading = false;
 
 
   constructor(private dogService: DogService,
-    private navCtrl: NavController,
-    private router: Router,
-    private alertCtrl: AlertController,
-    private loadingCtrl: LoadingController,
-    private sanitizer: DomSanitizer) { }
+              private navCtrl: NavController,
+              private router: Router,
+              private alertCtrl: AlertController,
+              private loadingCtrl: LoadingController,
+              private sanitizer: DomSanitizer,
+              private userService: UserService,
+              private navParams: NavParams,
+              private activatedRoute: ActivatedRoute) { }
 
   ngOnInit() {
     this.initForm();
+    this.userId = this.activatedRoute.snapshot.paramMap.get('userId');
+    this.getUser(this.userId);
   }
 
   initForm() {
@@ -55,6 +65,12 @@ export class CreateDogProfilePage implements OnInit {
     });
   }
 
+  getUser(userId: string) {
+    this.userService.getUser(userId).subscribe((user) => {
+      this.user = user as User;
+    });
+  }
+
   async onSubmit(): Promise<void> {
     await this.presentLoading('Creando perfil...');
     if (this.createDogForm.valid) {
@@ -75,6 +91,10 @@ export class CreateDogProfilePage implements OnInit {
       const behaviourCats = this.createDogForm.controls.behaviourCats.value;
       const status = this.createDogForm.controls.status.value;
       const profilepic = this.createDogForm.controls.profilepic.value;
+
+      console.log(this.user);
+      const IdDogPound = this.user.id;
+      const idDogPound = IdDogPound;
       try {
         const dog = {
           name,
@@ -93,13 +113,16 @@ export class CreateDogProfilePage implements OnInit {
           behaviourDogs,
           behaviourCats,
           status,
-          profilepic
+          profilepic,
+          idDogPound
         };
+
         await this.dogService.createDog(dog, this.file);
         this.dismissLoading();
         this.presentAlertConfirm('Felicidades!', 'El perro esta listo para ser adoptado!');
         this.createDogForm.reset();
         this.resetView();
+        console.log(this.dog);
       } catch (error) {
         this.dismissLoading();
         this.presentAlert('Algo malo ha pasado', error.message);
@@ -164,11 +187,11 @@ export class CreateDogProfilePage implements OnInit {
 
     const imageBlob = this.base64toBlob(image.base64String);
     this.file = new File([imageBlob], 'test.jpeg', { type: 'image/jpeg' });
-    console.log('1.1');
+
     this.createDogForm.get('profilepic').setValue('Foto tomada!');
-    console.log('1.2');
+
     this.createDogForm.get('profilepic').updateValueAndValidity();
-    console.log('1.3');
+
   }
 
   base64toBlob(dataURI: string) {

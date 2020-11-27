@@ -3,6 +3,7 @@ import { AngularFirestore, associateQuery } from '@angular/fire/firestore';
 import { map } from 'rxjs/operators';
 import { Dog } from 'src/models/dog.model';
 import { AngularFireStorage } from '@angular/fire/storage';
+import { NavParams } from '@ionic/angular';
 
 
 @Injectable({
@@ -12,8 +13,7 @@ export class DogService {
   firestore: any;
 
   constructor(private afs: AngularFirestore,
-              private afsStorage: AngularFireStorage,
-  ) { }
+              private afsStorage: AngularFireStorage) { }
 
   async createDog(dog: any, profilepic: File) {
     return new Promise(async (resolve, reject) => {
@@ -22,6 +22,7 @@ export class DogService {
         const filePath = `dogs/${dogId}/profilepic.jpeg`;
 
         dog.id = dogId;
+
         await this.uploadDogImage(dog, profilepic);
         await this.afs.firestore.runTransaction(async transaction => {
           const dogRef = this.afs.doc(`dogs/${dogId}`).ref;
