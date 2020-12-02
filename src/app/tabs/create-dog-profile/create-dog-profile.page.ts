@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { DogService } from 'src/app/services/dog.service';
 import { NavController, AlertController, LoadingController, NavParams } from '@ionic/angular';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -16,12 +16,13 @@ import { AuthService } from 'src/app/services/auth.service';
   styleUrls: ['./create-dog-profile.page.scss'],
 })
 export class CreateDogProfilePage implements OnInit {
+  @Input() uID: string;
 
   dog: any;
   displayPhoto: any;
   file: any;
   user: any;
-  userId: string;
+  //userId: string;
   createDogForm: FormGroup;
   loadingIndicator;
   loading = false;
@@ -38,9 +39,11 @@ export class CreateDogProfilePage implements OnInit {
               private activatedRoute: ActivatedRoute) { }
 
   ngOnInit() {
+    //this.uID = this.activatedRoute.snapshot.paramMap.get('uID');
+    const uID = this.navParams.get('uID');
+    this.getUser(uID);
+    this.getUser(this.uID);
     this.initForm();
-    this.userId = this.activatedRoute.snapshot.paramMap.get('userId');
-    this.getUser(this.userId);
   }
 
   initForm() {

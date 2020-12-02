@@ -20,7 +20,7 @@ const routes: Routes = [
       },
       {path: 'create-dog-profile',
         children: [
-          {path: '',loadChildren: () => import('./create-dog-profile/create-dog-profile.module').then( m => m.CreateDogProfilePageModule)}
+          {path: '', loadChildren: () => import('./create-dog-profile/create-dog-profile.module').then( m => m.CreateDogProfilePageModule)}
         ]
       },
       {path: 'settings', 

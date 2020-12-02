@@ -27,7 +27,6 @@ export class SeeprofilePage implements OnInit {
               private alertCtrl: AlertController,
               private loadingCtrl: LoadingController,
               private activatedRoute: ActivatedRoute,
-              
 
   ) { }
 
@@ -39,7 +38,7 @@ export class SeeprofilePage implements OnInit {
   getUser(uID: string) {
     this.userService.getUser(uID).subscribe((user) => {
       this.user = user as User;
-    })
+    });
   }
 
   async getPicture(source: CameraSource): Promise<boolean> {
