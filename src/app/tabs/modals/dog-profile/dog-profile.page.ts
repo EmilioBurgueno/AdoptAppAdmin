@@ -33,8 +33,7 @@ export class DogProfilePage implements OnInit {
               private navParams: NavParams) { }
 
   ngOnInit() {
-    const dID = this.navParams.get('dID');
-    this.getDog(dID);
+    this.getDog(this.dID);
     this.authService.user$.subscribe((user) => {
       this.user = user;
     });

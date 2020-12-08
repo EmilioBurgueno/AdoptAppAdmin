@@ -45,7 +45,7 @@ export class CreateDogProfilePage implements OnInit {
     this.authService.user$.subscribe((user) => {
       this.user = user;
     });
-    this.getUser(this.uID);
+    //this.getUser(this.uID);
     this.initForm();
   }
 
@@ -67,7 +67,7 @@ export class CreateDogProfilePage implements OnInit {
       description: new FormControl(null),
       collar: new FormControl(null),
       status: new FormControl(null, [Validators.required]),
-      profilepic: new FormControl(null, [Validators.required])
+      profilepic: new FormControl(null)
     });
   }
 
