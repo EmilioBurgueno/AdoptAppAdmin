@@ -1,6 +1,9 @@
-import { Component, OnInit } from '@angular/core';
-import { ModalController } from '@ionic/angular';
+import { Component, Input, OnInit } from '@angular/core';
+import { ModalController, NavController, NavParams } from '@ionic/angular';
+import { DogService } from 'src/app/services/dog.service';
+import { UserService } from 'src/app/services/user.service';
 import { Dog } from 'src/models/dog.model';
+import { User } from 'src/models/user.model';
 
 @Component({
   selector: 'app-dog-adoptees',
@@ -9,11 +12,22 @@ import { Dog } from 'src/models/dog.model';
 })
 export class DogAdopteesPage implements OnInit {
 
-  constructor(private modalCtrl: ModalController) { }
+  @Input() dID: string;
+
+  dog: any;
+  Adoptees: any[];
+  Users: any[];
+
+  constructor(private modalCtrl: ModalController,
+              private dogService: DogService,
+              private navCtrl: NavController,
+              private navParams: NavParams,
+              private userService: UserService) { }
 
   ngOnInit() {
+    this.getDog(this.dID);
   }
-  Adoptees = [
+  /* Adoptees = [
     {
       id: '12345',
       name: 'Isaac1'
@@ -22,7 +36,30 @@ export class DogAdopteesPage implements OnInit {
       id: '23456',
       name: 'Isaac2'
     }
-  ];
+  ]; */
+
+  getDog(dogId: string) {
+    this.dogService.getDog(dogId).subscribe((dogprofile: any) => {
+      if (!dogprofile) {
+        this.navCtrl.navigateRoot(['tabs/feed']);
+      }
+      this.dog = dogprofile;
+      this.Adoptees = this.dog.adoptees;
+      console.log(this.Adoptees);
+      //this.getUsers(this.Adoptees);
+    });
+    //this.getUsers(this.Adoptees);
+  }
+
+ /*  getUsers(adopt: any[]) {
+    console.log(adopt);
+    adopt.forEach(function(userId) {
+      console.log(userId);
+      this.userService.getUser(userId).subscribe((user) => {
+        this.Users.push(user);
+      });
+    });
+  } */
 
   /* deleteAdoptee(adopteeId: string) {
     this.itemService
