@@ -20,8 +20,30 @@ ion-content {
 
     }
 
+    .lbl {
+        color: teal;
+        font-size: small;
+        font-weight: bold;
+    }
+
     .footer {
         padding-top: 200px;
+    }
+
+    .title {
+        color: teal;
+    }
+
+    ion-icon {
+        color: teal;
+    }
+
+    .btn {
+        margin-top: 15px;
+        border-radius: 5px;
+        color: white;
+        background-color: #00a7a7;
+        border-color: #00a7a7;
     }
 }
 

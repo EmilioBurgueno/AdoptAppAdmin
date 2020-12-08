@@ -41,21 +41,21 @@
                 <ion-col size="4">
                 </ion-col>
                 <ion-col size="8" class="px-0">
-                    <ion-button size="small" class="forget my-0 mx-0 " expand="block" fill="none" color="primary"
-                        style="color:#2E5CEF; font-size: xx-small;" (click)="forgotPassword()">
+                    <ion-button class="forgotBtn my-0 mx-0" size="small" expand="block" fill="clear"
+                        style="font-size: xx-small;" (click)="forgotPassword()">
                         ¿Olvidaste tu Contraseña?</ion-button>
                 </ion-col>
                 <ion-col size="12">
-                    <ion-button size="medium" expand="block" fill="solid" color="primary" (click)="onSubmit()"
-                        class="my-2" style="font-size: x-small">Iniciar Sesión
+                    <ion-button size="medium" expand="block" fill="clear" (click)="onSubmit()" class=" signInBtn my-2">
+                        Iniciar Sesión
                     </ion-button>
                 </ion-col>
             </ion-row>
             <ion-row style="text-align: center">
                 <ion-col>
                     <ion-label style="color: gray; font-size: small">¿Aún no tiene cuenta? </ion-label>
-                    <ion-label (click)="goToSignUp()" class="forget my-0" expand="block" fill="none" color="primary"
-                        style="color:#2E5CEF; font-size: small; font-weight: bold;">¡Regístrate!</ion-label>
+                    <ion-label (click)="goToSignUp()" class="forgotBtn my-0" expand="block" fill="none" color="primary"
+                    >¡Regístrate!</ion-label>
                 </ion-col>
             </ion-row>
         </ion-grid>

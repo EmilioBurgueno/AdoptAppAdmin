@@ -16,12 +16,13 @@ ion-content {
         font-size: 10px;
     }
 
-    .forget {
-        font-size: 12px;
-    }
-
     .logo {
         text-align: center;
+    }
+
+    .forgotBtn {
+        color: teal;
+        font-size: 12px;
     }
 }
 
@@ -44,4 +45,17 @@ ion-footer {
             }
         }
     }
+}
+
+ion-icon {
+    color: teal;
+}
+
+.signInBtn {
+    margin-top: 15px;
+    border-radius: 5px;
+    color: white;
+    background-color: #00a7a7;
+    border-color: #00a7a7;
+    font-size: small;
 }

@@ -1,6 +1,6 @@
 <ion-header class="ion-no-border">
     <ion-toolbar>
-        <ion-title>Crear una cuenta</ion-title>
+        <!-- <ion-title>Crear una cuenta</ion-title> -->
         <ion-buttons slot="start">
             <ion-back-button></ion-back-button>
         </ion-buttons>
@@ -10,7 +10,7 @@
 <ion-content>
     <div class="header-container">
         <!-- <h1>AdoptApp</h1> -->
-        <p>¡Registrate para ayudar a darle un hogar a todos esos perros!</p>
+        <h5 class="headText">¡Registrate para ayudar a darle un hogar animales en situación de calle</h5>
     </div>
 
     <form [formGroup]="signUpForm">
@@ -18,7 +18,7 @@
             <ion-row>
                 <ion-col size="12">
                     <ion-item>
-                        <ion-label position="floating">Nombre de Perrera</ion-label>
+                        <ion-label class="signUplbl" position="floating">Nombre de Perrera</ion-label>
                         <ion-input formControlName="nameDogPound" placeholder="Perrera Municipal"></ion-input>
                     </ion-item>
                 </ion-col>
@@ -27,7 +27,7 @@
             <ion-row>
                 <ion-col size="12">
                     <ion-item>
-                        <ion-label position="floating">Dirección</ion-label>
+                        <ion-label class="signUplbl" position="floating">Dirección</ion-label>
                         <ion-input formControlName="address"
                             placeholder="Calle Alvaro Obregon 123, Blvd. Rosas Magallon"></ion-input>
                     </ion-item>
@@ -37,7 +37,7 @@
             <ion-row>
                 <ion-col size="12">
                     <ion-item>
-                        <ion-label position="floating">Número de contacto</ion-label>
+                        <ion-label class="signUplbl" position="floating">Número de contacto</ion-label>
                         <ion-input formControlName="phone" placeholder="5557266293"></ion-input>
                     </ion-item>
                 </ion-col>
@@ -46,7 +46,7 @@
             <ion-row>
                 <ion-col size="12">
                     <ion-item>
-                        <ion-label position="floating">Nombre de usuario</ion-label>
+                        <ion-label class="signUplbl" position="floating">Nombre de usuario</ion-label>
                         <ion-input formControlName="username" placeholder="Perrera01"></ion-input>
                     </ion-item>
                 </ion-col>
@@ -55,7 +55,7 @@
             <ion-row>
                 <ion-col size="12">
                     <ion-item>
-                        <ion-label position="floating">Email</ion-label>
+                        <ion-label class="signUplbl" position="floating">Email</ion-label>
                         <ion-input formControlName="email" placeholder="perrera@tijuana.com"></ion-input>
                     </ion-item>
                 </ion-col>
@@ -67,7 +67,7 @@
                         <!-- <ion-label position="floating">Contraseña</ion-label> -->
                         <ion-input formControlName="password" placeholder="Contraseña"
                             [type]="showPassword ? 'text' : 'password'" clearOnEdit="false"></ion-input>
-                        <ion-button (click)="onPasswordToggle()" ion-button clear small item-end icon-only>
+                        <ion-button (click)="onPasswordToggle()" fill="clear">
                             <ion-icon [name]="showPassword ? 'eye-off-outline' : 'eye-outline'"></ion-icon>
                         </ion-button>
                     </ion-item>
@@ -80,7 +80,7 @@
                         <!-- <ion-label position="floating">Confirmar Contraseña</ion-label> -->
                         <ion-input formControlName="confirmPassword" placeholder="Confirmar contraseña"
                             [type]="showConfirmedPassword ? 'text' : 'password'" clearOnEdit="false"></ion-input>
-                        <ion-button (click)="onConfirmPasswordToggle()" ion-button clear small item-end icon-only>
+                        <ion-button (click)="onConfirmPasswordToggle()" fill="clear">
                             <ion-icon [name]="showConfirmedPassword ? 'eye-off-outline' : 'eye-outline'"></ion-icon>
                         </ion-button>
                     </ion-item>
@@ -89,14 +89,16 @@
 
             <ion-row>
                 <ion-col size="12">
-                    <ion-button color="primary" expand="block" fill="solid" (click)="onSubmit()">Registrarse
+                    <ion-button size="medium" class="signUpBtn" expand="block" fill="clear" (click)="onSubmit()">Registrarse
                     </ion-button>
                 </ion-col>
             </ion-row>
-            <ion-row>
-                <ion-col size="12">
-                    <ion-button color="primary" expand="block" fill="none" (click)="goToLogin()">¿Ya tienes una cuenta?
-                        ¡Inicia sesión!</ion-button>
+            <ion-row class="my-5 footer" style=" text-align: center;">
+                <ion-col>
+                    <ion-label style="color: gray; font-size: small">¿Ya tiene cuenta? </ion-label>
+                    <br>
+                    <ion-label (click)="goToLogin()" class="forget my-0" expand="block" fill="none" color="primary"
+                        style="color:teal; font-size: small; font-weight: bold;">¡Inicia Sesión!</ion-label>
                 </ion-col>
             </ion-row>
         </ion-grid>
