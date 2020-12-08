@@ -1,24 +1,27 @@
-.title{
+.title {
     font-size: 32px;
 }
 
-.headTitle{
+.headTitle {
     margin-top: 5%;
 }
 
-.headText{
-    margin-top: 5%;
-    margin-bottom: 10%;
+.headText {
+    font-family: 'Noto Sans JP', sans-serif;
+    color: teal;
+    font-weight: 700;
+    text-align: center;
+    line-height: normal;
 }
 
-ion-col{
-    
+ion-col {
+
     padding-top: 0px;
     margin-top: 0px;
     margin-bottom: 0px;
 }
 
-ion-card-content{
+ion-card-content {
     margin-bottom: 0px;
     padding-top: 0px;
     margin-top: 0px;
@@ -27,13 +30,12 @@ ion-card-content{
     margin-left: 0px;
 }
 
-ion-card{
+ion-card {
     padding-top: 0px;
     margin-bottom: 0px;
     padding-left: 0px;
     margin-left: 0px;
     padding-left: 0px;
-    margin-top:0px;
+    margin-top: 0px;
 
 }
-

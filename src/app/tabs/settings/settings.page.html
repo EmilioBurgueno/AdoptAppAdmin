@@ -1,20 +1,53 @@
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100;300;400;500;700&display=swap');
+</style>
+
+<ion-header class="ion-no-border">
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-back-button></ion-back-button>
+        </ion-buttons>
+        <ion-title class="ion-text-center">Configuración</ion-title>
+        <!-- <ion-buttons slot="primary">
+            <ion-button (click)="logout()">
+                <ion-icon slot="icon-only" name="exit-outline"></ion-icon>
+            </ion-button>
+        </ion-buttons> -->
+    </ion-toolbar>
+</ion-header>
+
 <ion-content>
 
     <ion-grid>
 
         <ion-row>
-            <ion-col class="headTitle" size="12">
-                <ion-text class="title">Configuracion</ion-text>
-            </ion-col>
-        </ion-row>
-
-        <ion-row>
             <ion-col class="headText" size="12">
-                <ion-text>Cambia la configuracion de tu aplicacion y perfil</ion-text>
+                <h4>Cambia la configuración de tu <br> aplicación y de tú perfil</h4>
             </ion-col>
         </ion-row>
 
         <ion-row>
+            <ion-list>
+                <ion-item>
+                    <ion-buttons>
+                        <ion-button (click)="gotoEditProfile()">
+                            <ion-label>Editar Perfil</ion-label>
+                        </ion-button>
+                        <ion-button (click)="gotoEditProfile()">
+                            <ion-label>Editar Perfil</ion-label>
+                        </ion-button>
+                        <ion-button (click)="gotoEditProfile()">
+                            <ion-label>Editar Perfil</ion-label>
+                        </ion-button>
+                        <ion-button (click)="gotoEditProfile()">
+                            <ion-label>Editar Perfil</ion-label>
+                        </ion-button>
+
+                    </ion-buttons>
+
+                </ion-item>
+            </ion-list>
+
             <ion-col class="card" size="10">
                 <ion-card (click)="gotoEditProfile()">
                     <ion-item no-lines>

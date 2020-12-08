@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { CameraSource , Plugins, CameraResultType} from '@capacitor/core';
+import { CameraSource, Plugins, CameraResultType } from '@capacitor/core';
 import { ActionSheetController, AlertController, LoadingController, ModalController, NavController } from '@ionic/angular';
 import { User } from 'firebase';
 import { AuthService } from 'src/app/services/auth.service';
@@ -19,14 +19,15 @@ export class SeeprofilePage implements OnInit {
   loadingIndicator: any;
   loading = false;
 
-  constructor(private authService: AuthService,
-              private userService: UserService,
-              private modalCtrl: ModalController,
-              private navCtrl: NavController,
-              private actionSheetCtrl: ActionSheetController,
-              private alertCtrl: AlertController,
-              private loadingCtrl: LoadingController,
-              private activatedRoute: ActivatedRoute,
+  constructor(
+    private authService: AuthService,
+    private userService: UserService,
+    private modalCtrl: ModalController,
+    private navCtrl: NavController,
+    private actionSheetCtrl: ActionSheetController,
+    private alertCtrl: AlertController,
+    private loadingCtrl: LoadingController,
+    private activatedRoute: ActivatedRoute,
 
   ) { }
 
@@ -142,6 +143,12 @@ export class SeeprofilePage implements OnInit {
     });
 
     await alert.present();
+  }
+
+  logout(): void {
+    this.authService.logout().then(() => {
+      this.navCtrl.navigateRoot(['']);
+    });
   }
 
 }
