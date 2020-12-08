@@ -35,17 +35,28 @@
                     <ion-button class="settings-button" expand="block" (click)="gotoChangePass()">
                         Cambiar contraseña</ion-button>
                 </section>
-                <section class="full-width">
-                    <ion-button class="settings-button" expand="block" (click)="gotoLogout()">
-                        Cerrar sesión</ion-button>
-                </section>
+
                 <section class="full-width">
                     <ion-button class="settings-button" expand="block" (click)="gotoDelete()">
                         Eliminar cuenta</ion-button>
                 </section>
-            </ion-col>
 
+            </ion-col>
         </ion-row>
+
+        <ion-row>
+            <ion-col class="logOutSection" size="12">
+                <section class="full-width ">
+                    <ion-button class="logout-button" color="danger" expand="block" (click)="gotoLogout()">
+                        Cerrar sesión</ion-button>
+                </section>
+            </ion-col>
+        </ion-row>
+
+
+
+
+
 
         <!-- <ion-row>
             <ion-col class="card" size="10">
