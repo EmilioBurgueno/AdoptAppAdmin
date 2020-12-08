@@ -16,9 +16,9 @@ export class LogoutPage implements OnInit {
   userId: string;
 
   constructor(private authService: AuthService,
-              private userService: UserService,
-              private navCtrl: NavController,
-              private activatedRoute: ActivatedRoute
+    private userService: UserService,
+    private navCtrl: NavController,
+    private activatedRoute: ActivatedRoute
   ) { }
 
   ngOnInit() {
@@ -29,13 +29,17 @@ export class LogoutPage implements OnInit {
   getUser(uID: string) {
     this.userService.getUser(uID).subscribe((user) => {
       this.user = user as User;
-    })
+    });
   }
 
   logout(): void {
     this.authService.logout().then(() => {
       this.navCtrl.navigateRoot(['']);
     });
+  }
+
+  goToFeed() {
+    this.navCtrl.navigateRoot(['tabs/feed']);
   }
 
 }

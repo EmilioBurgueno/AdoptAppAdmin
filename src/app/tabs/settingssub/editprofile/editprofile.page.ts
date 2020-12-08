@@ -21,13 +21,13 @@ export class EditprofilePage implements OnInit {
   loadingIndicator;
   loading = false;
 
-  constructor( private alertCtrl: AlertController,
-               private authService: AuthService,
-               private userService: UserService,
-               private navParams: NavParams,
-               private loadingCtrl: LoadingController,
-              private navCtrl: NavController,
-              private activatedRoute: ActivatedRoute
+  constructor(private alertCtrl: AlertController,
+    private authService: AuthService,
+    private userService: UserService,
+    private navParams: NavParams,
+    private loadingCtrl: LoadingController,
+    private navCtrl: NavController,
+    private activatedRoute: ActivatedRoute
   ) { }
 
   ngOnInit() {
@@ -121,8 +121,12 @@ export class EditprofilePage implements OnInit {
     await alert.present();
   }
 
-  goBack(){
+  goBack() {
     this.navCtrl.navigateRoot(['tabs/settings']);
+  }
+
+  goToFeed() {
+    this.navCtrl.navigateRoot(['tabs/feed']);
   }
 
 }

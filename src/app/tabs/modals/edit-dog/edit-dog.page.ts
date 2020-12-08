@@ -28,20 +28,20 @@ export class EditDogPage implements OnInit {
 
 
   constructor(private modalCtrl: ModalController,
-              private alertCtrl: AlertController,
-              private navParams: NavParams,
-              private loadingCtrl: LoadingController,
-              private dogService: DogService,
-              private sanitizer: DomSanitizer,
-              private actionSheetCtrl: ActionSheetController,
-              private afStorage: AngularFireStorage) { }
+    private alertCtrl: AlertController,
+    private navParams: NavParams,
+    private loadingCtrl: LoadingController,
+    private dogService: DogService,
+    private sanitizer: DomSanitizer,
+    private actionSheetCtrl: ActionSheetController,
+    private afStorage: AngularFireStorage) { }
 
   ngOnInit() {
     const dID = this.navParams.get('dID');
     this.getDog(dID);
     this.initForm();
     function delay(ms: number) {
-      return new Promise( resolve => setTimeout(resolve, ms) );
+      return new Promise(resolve => setTimeout(resolve, ms));
     }
     delay(10000);
     console.log(this.dog);
@@ -112,8 +112,8 @@ export class EditDogPage implements OnInit {
       behaviourKids: new FormControl(null, [Validators.required]),
       behaviourDogs: new FormControl(null, [Validators.required]),
       behaviourCats: new FormControl(null, [Validators.required]),
-      description: new FormControl(null, ),
-      collar: new FormControl(null, ),
+      description: new FormControl(null,),
+      collar: new FormControl(null,),
       status: new FormControl(null, [Validators.required]),
       profilepic: new FormControl(null,)
     });

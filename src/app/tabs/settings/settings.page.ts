@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ModalController, NavController } from '@ionic/angular';
+import { ModalController, NavController, AlertController } from '@ionic/angular';
 import { AuthService } from 'src/app/services/auth.service';
 import { UserService } from 'src/app/services/user.service';
 
@@ -15,7 +15,8 @@ export class SettingsPage implements OnInit {
   constructor( private userService: UserService,
                private authService: AuthService,
                private modalCtrl: ModalController,
-               private navCtrl: NavController
+               private navCtrl: NavController,
+               private alertCtrl: AlertController
   ) { }
 
   async ngOnInit() {
