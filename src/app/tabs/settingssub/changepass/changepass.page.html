@@ -1,4 +1,4 @@
-<ion-header>
+<ion-header class="ion-no-border">
     <ion-toolbar>
         <ion-buttons slot="start">
             <ion-back-button></ion-back-button>
@@ -25,20 +25,20 @@
         <form [formGroup]="editUserForm" *ngIf="editUserForm">
             <ion-row>
                 <ion-col size="12">
-                    <h5 class="headSubTitle">Ingresa tu contraseña actual</h5>
+                    <ion-text class="headSubTitle">Ingresa tu contraseña actual</ion-text>
                     <ion-item class="password">
                         <ion-input formControlName="cPassword" placeholder="Contraseña Actual"
                             [type]="showCurrentPassword ? 'text' : 'password'" clearOnEdit="false"></ion-input>
-                        <button (click)="onCurrentPasswordToggle()" fill="clear">
+                        <ion-button (click)="onCurrentPasswordToggle()" fill="clear">
                             <ion-icon [name]="showCurrentPassword ? 'eye-off-outline' : 'eye-outline'"></ion-icon>
-                        </button>
+                        </ion-button>
                     </ion-item>
                 </ion-col>
             </ion-row>
 
             <ion-row>
                 <ion-col size="12">
-                    <h5>Cambio de Email</h5>
+                    <ion-text class="headSubTitle">Cambio de Email</ion-text>
                     <ion-item class="password">
                         <ion-label position="floating">Email</ion-label>
                         <ion-input formControlName="email"></ion-input>
@@ -49,13 +49,13 @@
 
             <ion-row>
                 <ion-col size="12">
-                    <h5>Cambio de Contraseña</h5>
+                    <ion-text class="headSubTitle">Cambio de Contraseña</ion-text>
                     <ion-item class="password">
                         <ion-input formControlName="nPassword" placeholder="Nueva Contraseña"
                             [type]="showPassword ? 'text' : 'password'" clearOnEdit="false"></ion-input>
-                        <button (click)="onPasswordToggle()" fill="clear">
+                        <ion-button (click)="onPasswordToggle()" fill="clear">
                             <ion-icon [name]="showPassword ? 'eye-off-outline' : 'eye-outline'"></ion-icon>
-                        </button>
+                        </ion-button>
                     </ion-item>
                 </ion-col>
             </ion-row>
@@ -65,9 +65,9 @@
                     <ion-item class="password">
                         <ion-input formControlName="ncPassword" placeholder="Confirmar Nueva Contraseña"
                             [type]="showConfirmedPassword ? 'text' : 'password'" clearOnEdit="false"></ion-input>
-                        <button (click)="onConfirmPasswordToggle()" ion-button clear small item-end icon-only>
+                        <ion-button (click)="onConfirmPasswordToggle()" fill="clear">
                             <ion-icon [name]="showConfirmedPassword ? 'eye-off-outline' : 'eye-outline'"></ion-icon>
-                        </button>
+                        </ion-button>
                     </ion-item>
                     <ion-button size="small" (click)="updatePassword()" expand="block">Cambiar Contraseña</ion-button>
                 </ion-col>

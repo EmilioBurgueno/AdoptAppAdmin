@@ -1,7 +1,10 @@
 ion-content {
-    ion-grid, .header-container{
+
+    ion-grid,
+    .header-container {
         padding: 5px 20px 5px 20px;
     }
+
     ion-textarea {
         font-size: 12px;
     }
@@ -9,6 +12,17 @@ ion-content {
     .dogPicture {
         text-align: center;
     }
+}
+
+.headText {
+    font-family: 'Noto Sans JP', sans-serif;
+    color: #005959;
+    text-align: center;
+    line-height: normal;
+    padding-left: 5px;
+    padding-top: 5px;
+    margin-bottom: 15px;
+    font-weight: 700;
 }
 
 ion-footer {

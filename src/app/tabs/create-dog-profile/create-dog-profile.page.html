@@ -1,12 +1,20 @@
 <ion-header class="ion-no-border">
     <ion-toolbar>
-        <ion-title class="px-0" style="text-align: center; font-size: medium;">Crear Perfil de Mascota</ion-title>
+        <ion-buttons slot="start">
+            <ion-back-button></ion-back-button>
+        </ion-buttons>
+        <ion-title class="px-0" style="text-align: center; font-size: medium;">AdoptApp</ion-title>
+        <!-- <ion-buttons slot="primary">
+            <ion-button (click)="goToFeed()">
+                <ion-icon name="paw-outline"></ion-icon>
+            </ion-button>
+        </ion-buttons> -->
     </ion-toolbar>
 </ion-header>
 
 <ion-content>
     <div class="header-container">
-
+        <h3 class="headText">Crear Perfil de Mascota</h3>
         <p style="text-align: center; font-size: medium;">¡Ingresa los datos necesarios para que pueda ser adoptado!
         </p>
     </div>
@@ -87,7 +95,8 @@
                             <ion-select-option value="Pekinés">Pekinés</ion-select-option>
                             <ion-select-option value="Pembroke Welsh Corgi">Pembroke Welsh Corgi</ion-select-option>
                             <ion-select-option value="Perro pastor alemán">Perro pastor alemán</ion-select-option>
-                            <ion-select-option value="Perro pastor de Shetland (Sheltie)">Perro pastor de Shetland (Sheltie)
+                            <ion-select-option value="Perro pastor de Shetland (Sheltie)">Perro pastor de Shetland
+                                (Sheltie)
                             </ion-select-option>
                             <ion-select-option value="Perro tejonero">Perro tejonero</ion-select-option>
                             <ion-select-option value="Pinscher miniatura">Pinscher miniatura</ion-select-option>
@@ -225,7 +234,8 @@
                 <ion-col size="12">
                     <ion-item>
                         <ion-label position="floating">Descripción</ion-label>
-                        <ion-textarea formControlName="description" placeholder="Escribe una breve descripcion (ie. presenta maltrato, alguna seña en particular)">
+                        <ion-textarea formControlName="description"
+                            placeholder="Escribe una breve descripcion (ie. presenta maltrato, alguna seña en particular)">
                         </ion-textarea>
                     </ion-item>
                 </ion-col>
@@ -237,7 +247,8 @@
                 <ion-col size="12">
                     <ion-item>
                         <ion-label position="floating">Collar</ion-label>
-                        <ion-textarea formControlName="collar" placeholder="Informacion en collar (telefono, nombre de dueño , dirreccion, etc.">
+                        <ion-textarea formControlName="collar"
+                            placeholder="Informacion en collar (telefono, nombre de dueño , dirreccion, etc.">
                         </ion-textarea>
                     </ion-item>
                 </ion-col>
@@ -260,7 +271,8 @@
                 <ion-col size="12">
                     <ion-item lines="none">
                         <!-- <ion-label position="floating">Foto de perfil</ion-label> -->
-                        <img [src]="displayPhoto || 'https://support.apple.com/library/content/dam/edam/applecare/images/en_US/macos/photo-3nav-button-icon.png' " (click)="takePicture()">
+                        <img [src]="displayPhoto || 'https://support.apple.com/library/content/dam/edam/applecare/images/en_US/macos/photo-3nav-button-icon.png' "
+                            (click)="takePicture()">
                         <ion-input readonly formControlName="profilepic"></ion-input>
 
                     </ion-item>
