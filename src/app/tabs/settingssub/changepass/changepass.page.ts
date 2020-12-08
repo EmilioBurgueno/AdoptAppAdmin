@@ -25,12 +25,12 @@ export class ChangepassPage implements OnInit {
   public showConfirmedPassword: boolean = false;
 
   constructor(private modalCtrl: ModalController,
-              private authService: AuthService,
-              private alertCtrl: AlertController,
-              private loadingCtrl: LoadingController,
-              private userService: UserService,
-              private navCtrl: NavController,
-              private activatedRoute: ActivatedRoute
+    private authService: AuthService,
+    private alertCtrl: AlertController,
+    private loadingCtrl: LoadingController,
+    private userService: UserService,
+    private navCtrl: NavController,
+    private activatedRoute: ActivatedRoute
   ) { }
 
   ngOnInit() {
@@ -94,8 +94,8 @@ export class ChangepassPage implements OnInit {
   async updatePassword() {
     await this.presentLoading('Haciendo cambios...');
     if (this.editUserForm.valid) {
-      await this.authService.reauthenticate(this.editUserForm.controls.cPassword.value).then(() => {  
-       if (this.editUserForm.controls.nPassword.value !== this.editUserForm.controls.ncPassword.value) {
+      await this.authService.reauthenticate(this.editUserForm.controls.cPassword.value).then(() => {
+        if (this.editUserForm.controls.nPassword.value !== this.editUserForm.controls.ncPassword.value) {
           this.dismissLoading();
           this.presentAlert('¡Error!', 'Tus contraseñas no coinciden.');
 
@@ -177,7 +177,7 @@ export class ChangepassPage implements OnInit {
     await alert.present();
   }
 
-  goBack(){
+  goBack() {
     this.navCtrl.navigateRoot(['tabs/settings']);
   }
 
@@ -188,7 +188,10 @@ export class ChangepassPage implements OnInit {
     this.showPassword = !this.showPassword;
   }
   public onConfirmPasswordToggle(): void {
-    this.showConfirmedPassword = ! this.showConfirmedPassword;
+    this.showConfirmedPassword = !this.showConfirmedPassword;
+  }
+  goToFeed() {
+    this.navCtrl.navigateRoot(['tabs/feed']);
   }
 
 }

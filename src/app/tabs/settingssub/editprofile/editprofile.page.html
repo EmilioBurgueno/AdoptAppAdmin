@@ -1,7 +1,13 @@
-<ion-header>
+<ion-header class="ion-no-border">
     <ion-toolbar>
         <ion-buttons slot="start">
             <ion-back-button></ion-back-button>
+        </ion-buttons>
+        <ion-title style="text-align: center ; font-size: medium;">AdoptApp</ion-title>
+        <ion-buttons slot="primary">
+            <ion-button (click)="goToFeed()">
+                <ion-icon name="paw-outline"></ion-icon>
+            </ion-button>
         </ion-buttons>
     </ion-toolbar>
 </ion-header>
@@ -12,14 +18,8 @@
         <ion-grid>
 
             <ion-row>
-                <ion-col class="headTitle" size="12">
-                    <ion-text class="title">Edit Profile</ion-text>
-                </ion-col>
-            </ion-row>
-
-            <ion-row>
-                <ion-col class="headText" size="12">
-                    <ion-text>Cambia los detalles de tu perfil</ion-text>
+                <ion-col size="12">
+                    <H4 class="headText">Edit Profile</H4>
                 </ion-col>
             </ion-row>
 

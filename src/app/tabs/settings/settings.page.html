@@ -7,12 +7,7 @@
         <ion-buttons slot="start">
             <ion-back-button></ion-back-button>
         </ion-buttons>
-        <ion-title class="ion-text-center">Configuración</ion-title>
-        <!-- <ion-buttons slot="primary">
-            <ion-button (click)="logout()">
-                <ion-icon slot="icon-only" name="exit-outline"></ion-icon>
-            </ion-button>
-        </ion-buttons> -->
+        <ion-title class="px-0" style="text-align: center; font-size: medium;">AdoptApp</ion-title>
     </ion-toolbar>
 </ion-header>
 
@@ -21,86 +16,38 @@
     <ion-grid>
 
         <ion-row>
-            <ion-col class="headText" size="12">
-                <h4>Cambia la configuración de tu <br> aplicación y de tú perfil</h4>
+            <ion-col size="12">
+                <h3 class="headText">Configuración</h3>
             </ion-col>
         </ion-row>
 
-        <ion-row>
-            <ion-list>
-                <ion-item>
-                    <ion-buttons>
-                        <ion-button (click)="gotoEditProfile()">
-                            <ion-label>Editar Perfil</ion-label>
-                        </ion-button>
-                        <ion-button (click)="gotoEditProfile()">
-                            <ion-label>Editar Perfil</ion-label>
-                        </ion-button>
-                        <ion-button (click)="gotoEditProfile()">
-                            <ion-label>Editar Perfil</ion-label>
-                        </ion-button>
-                        <ion-button (click)="gotoEditProfile()">
-                            <ion-label>Editar Perfil</ion-label>
-                        </ion-button>
-
-                    </ion-buttons>
-
-                </ion-item>
-            </ion-list>
-
-            <ion-col class="card" size="10">
-                <ion-card (click)="gotoEditProfile()">
-                    <ion-item no-lines>
-                        <ion-label>Editar Perfil</ion-label>
-                    </ion-item>
-                    <ion-card-content no-lines>
-                        Cambia las caracteristicas de tu perfil
-                    </ion-card-content>
-                </ion-card>
+        <ion-row class="buttonsSection">
+            <ion-col size="12">
+                <section class="full-width settings-button">
+                    <ion-button class="settings-button" expand="block" (click)="gotoEditProfile()">
+                        Editar Perfil</ion-button>
+                </section>
+                <!-- <section class="full-width">
+                    <ion-button class="settings-button" expand="block" (click)="gotoSeeProfile()">
+                        Ver Perfil</ion-button>
+                </section> -->
+                <section class="full-width">
+                    <ion-button class="settings-button" expand="block" (click)="gotoChangePass()">
+                        Cambiar contraseña</ion-button>
+                </section>
+                <section class="full-width">
+                    <ion-button class="settings-button" expand="block" (click)="gotoLogout()">
+                        Cerrar sesión</ion-button>
+                </section>
+                <section class="full-width">
+                    <ion-button class="settings-button" expand="block" (click)="gotoDelete()">
+                        Eliminar cuenta</ion-button>
+                </section>
             </ion-col>
+
         </ion-row>
 
-        <ion-row>
-            <ion-col class="card" size="10">
-                <ion-card (click)="gotoSeeProfile()">
-                    <ion-item no-lines>
-                        <ion-label>Ver Perfil</ion-label>
-                    </ion-item>
-                    <ion-card-content no-lines>
-                        Ver las caracteristicas de tu perfil
-                    </ion-card-content>
-                </ion-card>
-            </ion-col>
-        </ion-row>
-
-        <ion-row>
-            <ion-col class="card" size="10">
-                <ion-card (click)="gotoChangePass()">
-                    <ion-item no-lines>
-                        <ion-label>Cambiar contraseña</ion-label>
-                    </ion-item>
-                    <ion-card-content no-lines>
-                        Cambia las contraseña de tu perfil
-                    </ion-card-content>
-                </ion-card>
-            </ion-col>
-        </ion-row>
-
-        <ion-row>
-            <ion-col class="card" size="10">
-                <ion-card (click)="gotoLogout()">
-                    <ion-item no-lines>
-                        <ion-label>Logout</ion-label>
-                    </ion-item>
-
-                    <ion-card-content no-lines>
-                        Salir de tu cuenta
-                    </ion-card-content>
-                </ion-card>
-            </ion-col>
-        </ion-row>
-
-        <ion-row>
+        <!-- <ion-row>
             <ion-col class="card" size="10">
                 <ion-card (click)="gotoDelete()">
                     <ion-item no-lines>
@@ -112,8 +59,10 @@
                     </ion-card-content>
                 </ion-card>
             </ion-col>
-        </ion-row>
+        </ion-row> -->
 
+        <p class="about">AdoptApp 1.0 by Burgueño, E., Sanchez I. & Sanchez J. </p>
     </ion-grid>
+
 
 </ion-content>

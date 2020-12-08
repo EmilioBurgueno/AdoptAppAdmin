@@ -4,6 +4,12 @@
             <ion-back-button></ion-back-button>
         </ion-buttons>
     </ion-toolbar>
+    <ion-title>AdoptApp</ion-title>
+    <ion-buttons slot="primary">
+        <ion-button (click)="goToFeed()">
+            <ion-icon name="paw-outline"></ion-icon>
+        </ion-button>
+    </ion-buttons>
 </ion-header>
 
 <ion-content>
@@ -18,7 +24,9 @@
 
         <ion-row>
             <ion-col class="headText" size="12">
-                <ion-text>Estamos tristes de verte ir, ingresa tu contraseña por última vez para borrar la cuenta. Al presionar el boton se borrara tu cuenta de Administrador junto con los datos asociados a ella.</ion-text>
+                <ion-text>Estamos tristes de verte ir, ingresa tu contraseña por última vez para borrar la cuenta. Al
+                    presionar el boton se borrara tu cuenta de Administrador junto con los datos asociados a ella.
+                </ion-text>
             </ion-col>
         </ion-row>
 
@@ -27,12 +35,14 @@
                 <ion-row>
                     <ion-col size="12">
                         <ion-item>
-                            <ion-input placeholder="Contraseña" [type]="showPassword ? 'text' : 'password'" clearOnEdit="false" [(ngModel)]="password" name="password"></ion-input>
+                            <ion-input placeholder="Contraseña" [type]="showPassword ? 'text' : 'password'"
+                                clearOnEdit="false" [(ngModel)]="password" name="password"></ion-input>
                             <button (click)="onPasswordToggle()" ion-button clear small item-end icon-only>
-                      <ion-icon [name]="showPassword ? 'eye-off-outline' : 'eye-outline'"></ion-icon>
-                     </button>
+                                <ion-icon [name]="showPassword ? 'eye-off-outline' : 'eye-outline'"></ion-icon>
+                            </button>
                         </ion-item>
-                        <ion-button color="danger" size="small" (click)="deleteAccount()" expand="block">Enviar</ion-button>
+                        <ion-button color="danger" size="small" (click)="deleteAccount()" expand="block">Enviar
+                        </ion-button>
                         <ion-button size="small" (click)="goBack()" expand="block" fill="outline">Cancelar</ion-button>
                     </ion-col>
                 </ion-row>

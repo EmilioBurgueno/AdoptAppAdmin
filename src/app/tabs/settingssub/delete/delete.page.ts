@@ -29,7 +29,7 @@ export class DeletePage implements OnInit {
     private modalCtrl: ModalController,
     private userService: UserService,
     private activatedRoute: ActivatedRoute
-    ) { }
+  ) { }
 
   ngOnInit() {
     this.userId = this.activatedRoute.snapshot.paramMap.get('userId');
@@ -113,8 +113,12 @@ export class DeletePage implements OnInit {
     this.showPassword = !this.showPassword;
   }
 
-  goBack(){
+  goBack() {
     this.navCtrl.navigateRoot(['tabs/settings']);
+  }
+
+  goToFeed() {
+    this.navCtrl.navigateRoot(['tabs/feed']);
   }
 
 }
