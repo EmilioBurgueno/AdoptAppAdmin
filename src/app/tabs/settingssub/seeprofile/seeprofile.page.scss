@@ -1,18 +1,18 @@
-.title{
+.title {
     font-size: 32px;
 }
 
-.headTitle{
+.headTitle {
     margin-top: 5%;
 }
 
-.headText{
+.headText {
     margin-top: 5%;
     margin-bottom: 10%;
 }
 
-ion-col{
-    
+ion-col {
+
     padding-top: 0px;
     margin-top: 0px;
     margin-bottom: 0px;
@@ -22,10 +22,26 @@ ion-avatar.dogpic {
     height: 60px;
     width: 60px;
     margin-right: 15px;
+
     img {
         border-radius: 20%;
     }
 }
+
+ion-header {
+    ion-toolbar {
+        ion-title {
+            position: absolute;
+            top: 0;
+            left: 0;
+            padding: 0 90px 1px;
+            width: 100%;
+            height: 100%;
+            text-align: center;
+        }
+    }
+}
+
 
 .arrow-icon {
     color: gray;
