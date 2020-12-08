@@ -115,6 +115,25 @@
             <ion-row>
                 <ion-col size="12">
                     <ion-item>
+                        <ion-label position="floating">Fecha en que se encontro (aprox.)</ion-label>
+                        <ion-datetime formControlName="found" displayFormat="DD MM YYYY" placeholder="16/05/2020">
+                        </ion-datetime>
+                    </ion-item>
+                </ion-col>
+            </ion-row>
+
+            <ion-row>
+                <ion-col size="12">
+                    <ion-item>
+                        <ion-label position="floating">Lugar en que se encontro</ion-label>
+                        <ion-input formControlName="fplace" placeholder="Calle Fantasma 123, Crystal Cove"></ion-input>
+                    </ion-item>
+                </ion-col>
+            </ion-row>
+
+            <ion-row>
+                <ion-col size="12">
+                    <ion-item>
                         <ion-label position="floating">Color</ion-label>
                         <ion-textarea formControlName="color" placeholder="Color de mascota">
                         </ion-textarea>

@@ -30,7 +30,7 @@ export class FeedPage implements OnInit {
   ngOnInit() {
     this.authService.user$.subscribe((user) => {
       this.user = user;
-      console.log(this.user);
+      //console.log(this.user);
     });
     this.getDogs();
    //this.displayPhoto = this.dog.profilepic;

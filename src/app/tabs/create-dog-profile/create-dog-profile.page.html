@@ -95,8 +95,7 @@
                             <ion-select-option value="Pekinés">Pekinés</ion-select-option>
                             <ion-select-option value="Pembroke Welsh Corgi">Pembroke Welsh Corgi</ion-select-option>
                             <ion-select-option value="Perro pastor alemán">Perro pastor alemán</ion-select-option>
-                            <ion-select-option value="Perro pastor de Shetland (Sheltie)">Perro pastor de Shetland
-                                (Sheltie)
+                            <ion-select-option value="Perro pastor de Shetland (Sheltie)">Perro pastor de Shetland (Sheltie)
                             </ion-select-option>
                             <ion-select-option value="Perro tejonero">Perro tejonero</ion-select-option>
                             <ion-select-option value="Pinscher miniatura">Pinscher miniatura</ion-select-option>
@@ -205,7 +204,7 @@
                 <ion-col size="12">
                     <ion-item>
                         <ion-label position="floating">Fecha en que se encontro (aprox.)</ion-label>
-                        <ion-datetime formControlName="fplace" displayFormat="DD MM YYYY" placeholder="16/05/2020">
+                        <ion-datetime formControlName="found" displayFormat="DD MM YYYY" placeholder="16/05/2020">
                         </ion-datetime>
                     </ion-item>
                 </ion-col>
@@ -215,7 +214,7 @@
                 <ion-col size="12">
                     <ion-item>
                         <ion-label position="floating">Lugar en que se encontro</ion-label>
-                        <ion-input formControlName="found" placeholder="Calle Fantasma 123, Crystal Cove"></ion-input>
+                        <ion-input formControlName="fplace" placeholder="Calle Fantasma 123, Crystal Cove"></ion-input>
                     </ion-item>
                 </ion-col>
             </ion-row>
@@ -234,8 +233,7 @@
                 <ion-col size="12">
                     <ion-item>
                         <ion-label position="floating">Descripción</ion-label>
-                        <ion-textarea formControlName="description"
-                            placeholder="Escribe una breve descripcion (ie. presenta maltrato, alguna seña en particular)">
+                        <ion-textarea formControlName="description" placeholder="Escribe una breve descripcion (ie. presenta maltrato, alguna seña en particular)">
                         </ion-textarea>
                     </ion-item>
                 </ion-col>
@@ -247,8 +245,7 @@
                 <ion-col size="12">
                     <ion-item>
                         <ion-label position="floating">Collar</ion-label>
-                        <ion-textarea formControlName="collar"
-                            placeholder="Informacion en collar (telefono, nombre de dueño , dirreccion, etc.">
+                        <ion-textarea formControlName="collar" placeholder="Informacion en collar (telefono, nombre de dueño , dirreccion, etc.">
                         </ion-textarea>
                     </ion-item>
                 </ion-col>
@@ -271,8 +268,7 @@
                 <ion-col size="12">
                     <ion-item lines="none">
                         <!-- <ion-label position="floating">Foto de perfil</ion-label> -->
-                        <img [src]="displayPhoto || 'https://support.apple.com/library/content/dam/edam/applecare/images/en_US/macos/photo-3nav-button-icon.png' "
-                            (click)="takePicture()">
+                        <img [src]="displayPhoto || 'https://support.apple.com/library/content/dam/edam/applecare/images/en_US/macos/photo-3nav-button-icon.png' " (click)="takePicture()">
                         <ion-input readonly formControlName="profilepic"></ion-input>
 
                     </ion-item>

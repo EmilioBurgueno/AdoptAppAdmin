@@ -72,15 +72,6 @@ export class DogProfilePage implements OnInit {
     });
   }
 
-  getUser(userId: string) {
-    this.userService.getUser(userId).subscribe((userprofile: any) => {
-      if (!userprofile) {
-        this.navCtrl.navigateRoot(['tabs/feed']);
-      }
-      this.user = userprofile;
-    });
-  }
-
   async presentAlert(title: string, body: string) {
     const alert = await this.alertCtrl.create({
       header: title,

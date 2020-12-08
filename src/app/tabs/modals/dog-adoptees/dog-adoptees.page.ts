@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ModalController } from '@ionic/angular';
 import { Dog } from 'src/models/dog.model';
 
 @Component({
@@ -8,7 +9,7 @@ import { Dog } from 'src/models/dog.model';
 })
 export class DogAdopteesPage implements OnInit {
 
-  constructor() { }
+  constructor(private modalCtrl: ModalController) { }
 
   ngOnInit() {
   }
@@ -33,4 +34,8 @@ export class DogAdopteesPage implements OnInit {
         console.log(error);
       });
   } */
+
+  async closeModal() {
+    await this.modalCtrl.dismiss();
+  }
 }
