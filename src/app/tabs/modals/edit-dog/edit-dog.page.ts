@@ -40,15 +40,7 @@ export class EditDogPage implements OnInit {
     this.initForm();
     const dID = this.navParams.get('dID');
     this.getDog(dID);
-<<<<<<< HEAD
     this.initForm();
-    function delay(ms: number) {
-      return new Promise(resolve => setTimeout(resolve, ms));
-    }
-    delay(10000);
-    console.log(this.dog);
-=======
->>>>>>> b20236ed6611f4f238e248a1f588f5983591f6d6
   }
 
   getDog(dId: string) {
@@ -122,18 +114,11 @@ export class EditDogPage implements OnInit {
       behaviourKids: new FormControl(null, [Validators.required]),
       behaviourDogs: new FormControl(null, [Validators.required]),
       behaviourCats: new FormControl(null, [Validators.required]),
-<<<<<<< HEAD
-      description: new FormControl(null,),
-      collar: new FormControl(null,),
-      status: new FormControl(null, [Validators.required]),
-      profilepic: new FormControl(null,)
-=======
       color: new FormControl(null, [Validators.required]),
       description: new FormControl(null, ),
       collar: new FormControl(null, ),
       status: new FormControl(null, [Validators.required]),
       profilepic: new FormControl(null)
->>>>>>> b20236ed6611f4f238e248a1f588f5983591f6d6
     });
   }
 
