@@ -79,6 +79,7 @@
                 <p class="profile-description">{{dog?.description || "No hay decripcion del perro."}}</p>
                 <h5 class="profile-header">FECHA / LUGAR ENCONTRADO</h5>
                 <p class="profile-description">Fecha en que se encontro: {{dog?.found | date:"dd/MM/yy"}}</p>
+                <p class="profile-description">Hora en que se encontro: {{dog?.found | date:"h:mm a" }}</p>
                 <p class="profile-description">Lugar donde se encontro: {{dog?.fplace}}</p>
                 <h5 class="profile-header">ORGANIZACIÓN</h5>
                 <p class="profile-description">Rescue Me Tijuana</p>
