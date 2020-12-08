@@ -1,32 +1,28 @@
-<ion-header>
+<ion-header class="ion-no-border">
     <ion-toolbar>
         <ion-buttons slot="start">
             <ion-back-button></ion-back-button>
         </ion-buttons>
+        <ion-title style="text-align: center ; font-size: medium;">AdoptApp</ion-title>
+        <!-- <ion-buttons slot="primary">
+            <ion-button (click)="goToFeed()">
+                <ion-icon name="paw-outline"></ion-icon>
+            </ion-button>
+        </ion-buttons> -->
     </ion-toolbar>
-    <ion-title>AdoptApp</ion-title>
-    <ion-buttons slot="primary">
-        <ion-button (click)="goToFeed()">
-            <ion-icon name="paw-outline"></ion-icon>
-        </ion-button>
-    </ion-buttons>
 </ion-header>
-
 <ion-content>
 
     <ion-grid>
 
         <ion-row>
-            <ion-col class="headTitle" size="12">
-                <ion-text class="title">Borrar tu cuenta</ion-text>
-            </ion-col>
-        </ion-row>
-
-        <ion-row>
-            <ion-col class="headText" size="12">
-                <ion-text>Estamos tristes de verte ir, ingresa tu contraseña por última vez para borrar la cuenta. Al
+            <ion-col size="12">
+                <h4 class="headText">Borrar tu cuenta</h4>
+                <p class="headParagraph">Estamos tristes de verte ir, ingresa tu contraseña por última vez para borrar
+                    la
+                    cuenta. Al
                     presionar el boton se borrara tu cuenta de Administrador junto con los datos asociados a ella.
-                </ion-text>
+                </p>
             </ion-col>
         </ion-row>
 
@@ -37,13 +33,15 @@
                         <ion-item>
                             <ion-input placeholder="Contraseña" [type]="showPassword ? 'text' : 'password'"
                                 clearOnEdit="false" [(ngModel)]="password" name="password"></ion-input>
-                            <button (click)="onPasswordToggle()" ion-button clear small item-end icon-only>
+                            <ion-button (click)="onPasswordToggle()" fill="clear">
                                 <ion-icon [name]="showPassword ? 'eye-off-outline' : 'eye-outline'"></ion-icon>
-                            </button>
+                            </ion-button>
                         </ion-item>
-                        <ion-button color="danger" size="small" (click)="deleteAccount()" expand="block">Enviar
+                        <ion-button color="danger" size="medium" (click)="deleteAccount()" expand="block"
+                            style="margin-top: 20px;">Eliminar
                         </ion-button>
-                        <ion-button size="small" (click)="goBack()" expand="block" fill="outline">Cancelar</ion-button>
+                        <ion-button class="deleteButton" size="medium" (click)="goBack()" expand="block" fill="clear">
+                            Cancelar</ion-button>
                     </ion-col>
                 </ion-row>
             </ion-grid>
