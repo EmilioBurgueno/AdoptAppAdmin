@@ -36,12 +36,15 @@ export class CreateDogProfilePage implements OnInit {
               private sanitizer: DomSanitizer,
               private userService: UserService,
               private navParams: NavParams,
-              private activatedRoute: ActivatedRoute) { }
+              private activatedRoute: ActivatedRoute,
+              private authService: AuthService) { }
 
   ngOnInit() {
     //this.uID = this.activatedRoute.snapshot.paramMap.get('uID');
-    const uID = this.navParams.get('uID');
-    this.getUser(uID);
+    //const uID = this.navParams.get('uID');
+    this.authService.user$.subscribe((user) => {
+      this.user = user;
+    });
     this.getUser(this.uID);
     this.initForm();
   }
@@ -96,8 +99,8 @@ export class CreateDogProfilePage implements OnInit {
       const profilepic = this.createDogForm.controls.profilepic.value;
 
       console.log(this.user);
-      const IdDogPound = this.user.id;
-      const idDogPound = IdDogPound;
+      //const IdDogPound = this.user.id;
+      const idDogPound = this.user.id;
       try {
         const dog = {
           name,

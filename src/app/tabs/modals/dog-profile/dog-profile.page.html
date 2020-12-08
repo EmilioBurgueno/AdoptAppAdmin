@@ -12,7 +12,7 @@
         </ion-buttons>
 
         <ion-buttons slot="end">
-            <ion-button (click)="deleteDog(dog?.id)">
+            <ion-button *ngIf="dog?.idDogPound === user?.id" (click)="deleteDog(dog?.id)">
                 <ion-icon slot="icon-only" name="trash-outline"></ion-icon>
             </ion-button>
         </ion-buttons>
@@ -57,7 +57,7 @@
                 <ion-buttons>
                     <!-- meter un if dog.dueno.id == user.id, en el create dog, agregar un nuevo parametro que al
                     crear perro se asocie el id de la perrera-->
-                    <ion-button (click)="openModalEdit(dog?.id)">
+                    <ion-button *ngIf="dog?.idDogPound === user?.id" (click)="openModalEdit(dog?.id)">
                         <ion-icon slot="icon-only" name="create-outline"></ion-icon>
                     </ion-button> &nbsp;
                 </ion-buttons>
