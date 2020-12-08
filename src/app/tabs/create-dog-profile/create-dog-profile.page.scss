@@ -14,13 +14,17 @@ ion-content {
     }
 }
 
+.lbl {
+    color: teal;
+    font-weight: bold;
+}
+
 .headText {
     font-family: 'Noto Sans JP', sans-serif;
     color: #005959;
-    text-align: center;
+    text-align: left;
     line-height: normal;
-    padding-left: 5px;
-    padding-top: 5px;
+    padding-left: 20px;
     margin-bottom: 15px;
     font-weight: 500;
 }

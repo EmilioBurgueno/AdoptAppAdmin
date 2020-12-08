@@ -26,7 +26,7 @@
 
             <ion-row class="formRow">
                 <ion-col size="12">
-                    <ion-text class="headSubTitle">Ingresa tu contraseña actual</ion-text>
+                    <ion-label class="lbl">Ingresa tu contraseña actual</ion-label>
                     <ion-item class="password">
                         <ion-input formControlName="cPassword" placeholder="Contraseña Actual"
                             [type]="showCurrentPassword ? 'text' : 'password'" clearOnEdit="false"></ion-input>
@@ -39,9 +39,8 @@
 
             <ion-row class="formRow">
                 <ion-col size="12">
-                    <ion-text class="headSubTitle">Cambio de Email</ion-text>
+                    <ion-text class="lbl">Cambio de Email</ion-text>
                     <ion-item class="password">
-                        <ion-label position="floating">Email</ion-label>
                         <ion-input formControlName="email"></ion-input>
                     </ion-item>
                     <section>
@@ -55,7 +54,7 @@
 
             <ion-row class="formRow">
                 <ion-col size="12">
-                    <ion-text class="headSubTitle">Cambio de Contraseña</ion-text>
+                    <ion-label class="lbl">Cambio de Contraseña</ion-label>
                     <ion-item class="password">
                         <ion-input formControlName="nPassword" placeholder="Nueva Contraseña"
                             [type]="showPassword ? 'text' : 'password'" clearOnEdit="false"></ion-input>

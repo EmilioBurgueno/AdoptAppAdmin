@@ -14,14 +14,9 @@
     line-height: normal;
     padding-left: 5px;
     padding-top: 5px;
-    font-weight: 700;
+    font-weight: 500;
 }
 
-.headParagraph {
-    padding-left: 10px;
-    padding-right: 10px;
-    text-align: justify;
-}
 
 .deleteButton {
     margin-top: 15px;
@@ -29,6 +24,19 @@
     color: white;
     background-color: #00a7a7;
     border-color: #00a7a7;
+}
+
+.lbl {
+    font-family: 'Noto Sans JP', sans-serif;
+    color: black;
+    text-align: left;
+    line-height: normal;
+    padding-left: 15px;
+    padding-right: 15px;
+    text-align: justify;
+    margin-bottom: 15px;
+    margin-top: 15px;
+    font-size: 14px;
 }
 
 ion-col {
@@ -53,4 +61,8 @@ ion-header {
 
 ion-icon {
     color: teal;
+}
+
+ion-back-button {
+    --color: teal !important;
 }

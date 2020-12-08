@@ -30,17 +30,17 @@ ion-icon {
     padding-left: 5px;
     padding-top: 5px;
     margin-bottom: 15px;
-    font-weight: 700;
+    font-weight: 500;
 }
 
-.headSubTitle {
+.lbl {
     font-family: 'Noto Sans JP', sans-serif;
     color: #005959;
     text-align: left;
     line-height: normal;
     padding-left: 5px;
     margin-bottom: 15px;
-    font-weight: 700;
+    font-weight: 500;
 }
 
 .form-title {
@@ -115,4 +115,8 @@ ion-footer {
             }
         }
     }
+}
+
+ion-back-button {
+    --color: teal !important;
 }
