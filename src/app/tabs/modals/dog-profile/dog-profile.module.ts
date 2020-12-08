@@ -10,6 +10,7 @@ import { DogProfilePage } from './dog-profile.page';
 import { EditDogPage } from '../edit-dog/edit-dog.page';
 import { ContactDogpoundPage } from '../contact-dogpound/contact-dogpound.page';
 import { ContactDogpoundPageModule } from '../contact-dogpound/contact-dogpound.module';
+import { DogAdopteesPageModule } from '../dog-adoptees/dog-adoptees.module';
 
 @NgModule({
   imports: [
@@ -18,7 +19,8 @@ import { ContactDogpoundPageModule } from '../contact-dogpound/contact-dogpound.
     ReactiveFormsModule,
     IonicModule,
     DogProfilePageRoutingModule,
-    ContactDogpoundPageModule
+    ContactDogpoundPageModule,
+    DogAdopteesPageModule
   ],
   declarations: [DogProfilePage, EditDogPage],
   entryComponents: [EditDogPage, ContactDogpoundPage]

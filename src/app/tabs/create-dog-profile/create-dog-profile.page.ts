@@ -95,6 +95,8 @@ export class CreateDogProfilePage implements OnInit {
       const behaviourDogs = this.createDogForm.controls.behaviourDogs.value;
       const behaviourCats = this.createDogForm.controls.behaviourCats.value;
       const status = this.createDogForm.controls.status.value;
+      const adoptStatus = 'Disponible';
+      const adoptees = [];
       const profilepic = this.createDogForm.controls.profilepic.value;
 
       console.log(this.user);
@@ -119,6 +121,8 @@ export class CreateDogProfilePage implements OnInit {
           behaviourCats,
           status,
           profilepic,
+          adoptStatus,
+          adoptees,
           idDogPound
         };
 

@@ -40,7 +40,11 @@ const routes: Routes = [
   {
     path: 'dogprofile',
     loadChildren: () => import('./modals/dog-profile/dog-profile.module').then( m => m.DogProfilePageModule)
+  },  {
+    path: 'dog-adoptees',
+    loadChildren: () => import('./modals/dog-adoptees/dog-adoptees.module').then( m => m.DogAdopteesPageModule)
   },
+
 ];
 
 @NgModule({

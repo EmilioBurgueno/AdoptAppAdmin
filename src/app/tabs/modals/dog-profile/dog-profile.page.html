@@ -31,8 +31,7 @@
 
         <ion-row>
             <ion-col>
-                <img class="picture"
-                    [src]="dog?.profilepic || 'https://support.apple.com/library/content/dam/edam/applecare/images/en_US/macos/photo-3nav-button-icon.png'">
+                <img class="picture" [src]="dog?.profilepic || 'https://support.apple.com/library/content/dam/edam/applecare/images/en_US/macos/photo-3nav-button-icon.png'">
             </ion-col>
         </ion-row>
 
@@ -58,6 +57,9 @@
                 <ion-buttons>
                     <!-- meter un if dog.dueno.id == user.id, en el create dog, agregar un nuevo parametro que al
                     crear perro se asocie el id de la perrera-->
+                    <ion-button *ngIf="dog?.idDogPound === user?.id" (click)="openModalAdoptees(dog?.id)">
+                        <ion-icon slot="icon-only" name="paw-outline"></ion-icon>
+                    </ion-button>
                     <ion-button *ngIf="dog?.idDogPound === user?.id" (click)="openModalEdit(dog?.id)">
                         <ion-icon slot="icon-only" name="create-outline"></ion-icon>
                     </ion-button> &nbsp;
@@ -80,9 +82,7 @@
                 <h5 class="profile-header">ORGANIZACIÓN</h5>
                 <p class="profile-description">Rescue Me Tijuana</p>
                 <h5 class="profile-header">PROCESO DE ADOPCIÓN</h5>
-                <p class="profile-description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta neque,
-                    nesciunt possimus minus consectetur aliquam sunt repellat architecto voluptas ullam recusandae,
-                    fugiat quod nisi. Natus vero quod ex dicta saepe.</p>
+                <p class="profile-description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta neque, nesciunt possimus minus consectetur aliquam sunt repellat architecto voluptas ullam recusandae, fugiat quod nisi. Natus vero quod ex dicta saepe.</p>
 
 
             </ion-col>

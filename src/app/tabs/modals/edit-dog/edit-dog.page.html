@@ -148,6 +148,19 @@
             <ion-row>
                 <ion-col size="12">
                     <ion-item>
+                        <ion-label position="floating">Status</ion-label>
+                        <ion-select formControlName="status" placeholder="Selecciona el Status">
+                            <ion-select-option value="Adopcion">Adopcion</ion-select-option>
+                            <ion-select-option value="Hogar temporal">Hogar temporal</ion-select-option>
+                            <ion-select-option value="Perdido">Perdido</ion-select-option>
+                        </ion-select>
+                    </ion-item>
+                </ion-col>
+            </ion-row>
+
+            <ion-row>
+                <ion-col size="12">
+                    <ion-item>
                         <!-- <ion-label position="floating">Foto de perfil</ion-label> -->
                         <img [src]="displayPhoto || 'https://support.apple.com/library/content/dam/edam/applecare/images/en_US/macos/photo-3nav-button-icon.png' " (click)="presentActionSheet()">
                         <!-- <ion-input readonly formControlName=" profilepic "></ion-input> -->

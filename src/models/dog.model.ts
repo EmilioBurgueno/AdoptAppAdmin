@@ -18,4 +18,6 @@ export interface Dog {
     status: string;
     profilepic: string;
     idDogPound: string;
+    adoptStatus: string;
+    adoptees: string[];
 }

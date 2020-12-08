@@ -55,7 +55,8 @@ export class EditDogPage implements OnInit {
     //console.log(this.editDogForm);
     if (this.editDogForm.valid) {
       const updatedDog = {
-        status: this.dog.status,
+        adoptStatus: this.dog.adoptStatus,
+        adoptees: this.dog.adoptees,
         idDogPound: this.dog.idDogPound,
         ...this.editDogForm.value
       };
@@ -92,6 +93,7 @@ export class EditDogPage implements OnInit {
       color: this.dog.color,
       description: this.dog.description,
       collar: this.dog.collar,
+      status: this.dog.status,
       profilepic: this.dog.profilepic
     });
     //console.log(this.dog);
@@ -114,6 +116,7 @@ export class EditDogPage implements OnInit {
       color: new FormControl(null, [Validators.required]),
       description: new FormControl(null, ),
       collar: new FormControl(null, ),
+      status: new FormControl(null, [Validators.required]),
       profilepic: new FormControl(null)
     });
   }

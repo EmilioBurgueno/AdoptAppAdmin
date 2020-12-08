@@ -6,6 +6,7 @@ import { EditDogPage } from '../edit-dog/edit-dog.page';
 import { ContactDogpoundPage } from '../contact-dogpound/contact-dogpound.page';
 import { AuthService } from 'src/app/services/auth.service';
 import { UserService } from 'src/app/services/user.service';
+import { DogAdopteesPage } from '../dog-adoptees/dog-adoptees.page';
 
 @Component({
   selector: 'app-dog-profile',
@@ -120,6 +121,16 @@ export class DogProfilePage implements OnInit {
   async openModalContact(dog: string) {
     const modal = await this.modalCtrl.create({
       component: ContactDogpoundPage,
+      componentProps: {
+        dID: dog
+      }
+    });
+    return await modal.present();
+  }
+
+  async openModalAdoptees(dog: string) {
+    const modal = await this.modalCtrl.create({
+      component: DogAdopteesPage,
       componentProps: {
         dID: dog
       }
