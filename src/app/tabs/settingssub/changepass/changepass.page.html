@@ -23,7 +23,8 @@
         </ion-row>
 
         <form [formGroup]="editUserForm" *ngIf="editUserForm">
-            <ion-row>
+
+            <ion-row class="formRow">
                 <ion-col size="12">
                     <ion-text class="headSubTitle">Ingresa tu contraseña actual</ion-text>
                     <ion-item class="password">
@@ -36,18 +37,23 @@
                 </ion-col>
             </ion-row>
 
-            <ion-row>
+            <ion-row class="formRow">
                 <ion-col size="12">
                     <ion-text class="headSubTitle">Cambio de Email</ion-text>
                     <ion-item class="password">
                         <ion-label position="floating">Email</ion-label>
                         <ion-input formControlName="email"></ion-input>
                     </ion-item>
-                    <ion-button size="small" (click)="updateEmail()" expand="block">Cambiar Email</ion-button>
+                    <section>
+                        <ion-button class="formButton" (click)="updateEmail()" expand="block" fill="clear">
+                            Cambiar Email
+                        </ion-button>
+
+                    </section>
                 </ion-col>
             </ion-row>
 
-            <ion-row>
+            <ion-row class="formRow">
                 <ion-col size="12">
                     <ion-text class="headSubTitle">Cambio de Contraseña</ion-text>
                     <ion-item class="password">
@@ -60,7 +66,7 @@
                 </ion-col>
             </ion-row>
 
-            <ion-row>
+            <ion-row class="formRow">
                 <ion-col size="12">
                     <ion-item class="password">
                         <ion-input formControlName="ncPassword" placeholder="Confirmar Nueva Contraseña"
@@ -69,11 +75,20 @@
                             <ion-icon [name]="showConfirmedPassword ? 'eye-off-outline' : 'eye-outline'"></ion-icon>
                         </ion-button>
                     </ion-item>
-                    <ion-button size="small" (click)="updatePassword()" expand="block">Cambiar Contraseña</ion-button>
+                    <section>
+                        <ion-button class="formButton" (click)="updatePassword()" expand="block" fill="clear">Cambiar
+                            Contraseña</ion-button>
+                    </section>
                 </ion-col>
             </ion-row>
 
-            <ion-button (click)="goBack()" expand="block" fill="outline">Cancelar</ion-button>
+            <ion-row>
+                <ion-col size="12">
+                    <section>
+                        <ion-button color="danger" (click)="goBack()" expand="block">Cancelar</ion-button>
+                    </section>
+                </ion-col>
+            </ion-row>
         </form>
 
     </ion-grid>
