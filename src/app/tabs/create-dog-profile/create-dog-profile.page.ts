@@ -18,7 +18,6 @@ import { AuthService } from 'src/app/services/auth.service';
 export class CreateDogProfilePage implements OnInit {
   @Input() uID: string;
 
-  dog: any;
   displayPhoto: any;
   file: any;
   user: any;
@@ -128,7 +127,7 @@ export class CreateDogProfilePage implements OnInit {
         this.presentAlertConfirm('Felicidades!', 'El perro esta listo para ser adoptado!');
         this.createDogForm.reset();
         this.resetView();
-        console.log(this.dog);
+        console.log(dog);
       } catch (error) {
         this.dismissLoading();
         this.presentAlert('Algo malo ha pasado', error.message);

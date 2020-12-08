@@ -37,14 +37,9 @@ export class EditDogPage implements OnInit {
               private afStorage: AngularFireStorage) { }
 
   ngOnInit() {
+    this.initForm();
     const dID = this.navParams.get('dID');
     this.getDog(dID);
-    this.initForm();
-    function delay(ms: number) {
-      return new Promise( resolve => setTimeout(resolve, ms) );
-    }
-    delay(10000);
-    console.log(this.dog);
   }
 
   getDog(dId: string) {
@@ -57,12 +52,14 @@ export class EditDogPage implements OnInit {
 
   async updateDog() {
     await this.presentLoading('Guardando el perfil...');
-    console.log(this.editDogForm);
+    //console.log(this.editDogForm);
     if (this.editDogForm.valid) {
       const updatedDog = {
+        status: this.dog.status,
+        idDogPound: this.dog.idDogPound,
         ...this.editDogForm.value
       };
-
+      console.log(updatedDog);
       try {
         await this.dogService.updateDog(this.dog.id.toString(), updatedDog, this.file);
         this.dismissLoading();
@@ -85,18 +82,19 @@ export class EditDogPage implements OnInit {
       size: this.dog.size,
       breed: this.dog.breed,
       age: this.dog.age,
+      coat: this.dog.coat,
       fplace: this.dog.fplace,
       found: this.dog.found,
       behaviourSenior: this.dog.behaviourSenior,
       behaviourKids: this.dog.behaviourKids,
       behaviourDogs: this.dog.behaviourDogs,
       behaviourCats: this.dog.behaviourCats,
+      color: this.dog.color,
       description: this.dog.description,
       collar: this.dog.collar,
-      status: this.dog.status,
       profilepic: this.dog.profilepic
     });
-    console.log(this.dog);
+    //console.log(this.dog);
   }
 
   initForm() {
@@ -106,16 +104,17 @@ export class EditDogPage implements OnInit {
       size: new FormControl(null, [Validators.required]),
       breed: new FormControl(null, [Validators.required]),
       age: new FormControl(null, [Validators.required]),
+      coat: new FormControl(null, [Validators.required]),
       fplace: new FormControl(null, [Validators.required]),
       found: new FormControl(null, [Validators.required]),
       behaviourSenior: new FormControl(null, [Validators.required]),
       behaviourKids: new FormControl(null, [Validators.required]),
       behaviourDogs: new FormControl(null, [Validators.required]),
       behaviourCats: new FormControl(null, [Validators.required]),
+      color: new FormControl(null, [Validators.required]),
       description: new FormControl(null, ),
       collar: new FormControl(null, ),
-      status: new FormControl(null, [Validators.required]),
-      profilepic: new FormControl(null,)
+      profilepic: new FormControl(null)
     });
   }
 
@@ -170,20 +169,20 @@ export class EditDogPage implements OnInit {
       resultType: CameraResultType.Base64,
       source
     });
-    console.log('1');
+    //console.log('1');
     const base64 = `data:image/${image.format};base64, ${image.base64String}`;
     this.displayPhoto = this.sanitizer.bypassSecurityTrustResourceUrl(base64);
-    console.log('2');
+    //console.log('2');
     const imageBlob = this.base64toBlob(image.base64String);
     this.file = new File([imageBlob], 'test.jpeg', { type: 'image/jpeg' });
     this.editDogForm.get('profilepic').setValue('Foto Tomada!');
     this.editDogForm.get('profilepic').updateValueAndValidity();
-    console.log('3');
+    //console.log('3');
     return;
   }
 
   base64toBlob(dataURI: string) {
-    console.log('4');
+    //console.log('4');
     const byteString = window.atob(dataURI);
     const arrayBuffer = new ArrayBuffer(byteString.length);
     const int8Array = new Uint8Array(arrayBuffer);
@@ -192,7 +191,7 @@ export class EditDogPage implements OnInit {
     }
     const blob = new Blob([int8Array], { type: 'image/jpeg' });
 
-    console.log('5');
+    //console.log('5');
     return blob;
   }
 
@@ -203,25 +202,25 @@ export class EditDogPage implements OnInit {
 
   async removePicture(): Promise<boolean> {
     await this.presentLoading('Removiendo tu Foto de Perfil...');
-    console.log('1');
+    //console.log('1');
     if (this.dog.profilepic) {
-      console.log(this.dog.profilepic);
-      console.log(this.dog.id);
-      console.log('posible problema1');
+      //console.log(this.dog.profilepic);
+      //console.log(this.dog.id);
+      //console.log('posible problema1');
       this.dogService.removeProfilePicture(this.dog.id.toString()).then(() => {
-        console.log('posible problema2');
+        //console.log('posible problema2');
         this.dismissLoading();
         this.presentAlert('Hecho!', 'Tu foto de perfil ha sido removida con exito!');
-        console.log('2');
+        //console.log('2');
       }).catch((error) => {
         this.dismissLoading();
         this.presentAlert('Error', error.message);
-        console.log('3');
+        //console.log('3');
       });
     } else {
       this.dismissLoading();
       this.presentAlert('Error', `No tienes foto de perfil.`);
-      console.log('4');
+      //console.log('4');
     }
 
     return;
