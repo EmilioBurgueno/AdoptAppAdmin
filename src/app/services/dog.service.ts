@@ -13,25 +13,33 @@ export class DogService {
   firestore: any;
 
   constructor(private afs: AngularFirestore,
-              private afsStorage: AngularFireStorage) { }
+    private afsStorage: AngularFireStorage) { }
 
   async createDog(dog: any, profilepic: File) {
     return new Promise(async (resolve, reject) => {
       try {
         const dogId = this.afs.createId();
-        const filePath = `dogs/${dogId}/profilepic.jpeg`;
 
-        dog.id = dogId;
-
-        await this.uploadDogImage(dog, profilepic);
         await this.afs.firestore.runTransaction(async transaction => {
           const dogRef = this.afs.doc(`dogs/${dogId}`).ref;
-          console.log(filePath);
+          if (dog.profilepic != null) {
+            const filePath = `dogs/${dogId}/profilepic.jpeg`;
 
-          dog.profilepic = await this.afsStorage.ref(filePath).getDownloadURL().toPromise();
+            dog.id = dogId;
 
+            await this.uploadDogImage(dog, profilepic);
+
+
+
+            console.log(filePath);
+
+            dog.profilepic = await this.afsStorage.ref(filePath).getDownloadURL().toPromise();
+
+
+          }
           transaction.set(dogRef, dog);
         });
+
         resolve(true);
       } catch (error) {
         reject(error);

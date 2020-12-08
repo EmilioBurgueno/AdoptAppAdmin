@@ -38,7 +38,7 @@ const routes: Routes = [
   },
   {path: '', redirectTo: '/tabs/profile', pathMatch: 'full'},
   {
-    path: 'dogprofile/:dogId', 
+    path: 'dogprofile',
     loadChildren: () => import('./modals/dog-profile/dog-profile.module').then( m => m.DogProfilePageModule)
   },
 ];
